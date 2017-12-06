@@ -55,7 +55,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	@Transactional
-	public void deleteStudent(Product product) {
+	public void deleteProduct(Product product) {
 		productRepository.delete(product);
 	}
 

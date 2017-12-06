@@ -26,9 +26,6 @@ public class Transaction implements Serializable {
 	private int qty;
 
 	private String remarks;
-	
-	@Column(name = "supplierId")
-	private int supplierId;
 
 	private String transactionType;
 
@@ -83,14 +80,6 @@ public class Transaction implements Serializable {
 
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
-	}
-
-	public int getSupplierId() {
-		return this.supplierId;
-	}
-
-	public void setSupplierId(int supplierId) {
-		this.supplierId = supplierId;
 	}
 
 	public String getTransactionType() {

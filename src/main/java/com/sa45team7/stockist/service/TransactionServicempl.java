@@ -13,35 +13,35 @@ import com.sa45team7.stockist.repository.TransactionRepository;
 @Service
 public class TransactionServicempl implements TransactionService {
 	@Resource
-	private TransactionRepository tansactionRepository;
+	private TransactionRepository transactionRepository;
 
 	public ArrayList<Transaction> findAllTransaction() {
-		ArrayList<Transaction> l = (ArrayList<Transaction>) tansactionRepository.findAll();
+		ArrayList<Transaction> l = (ArrayList<Transaction>) transactionRepository.findAll();
 		return l;
 	}
 
 	@Transactional
 	public Transaction findTransactionById(Integer tranId) {
-		return tansactionRepository.findTransactionByTransactionId(tranId);
+		return transactionRepository.findTransactionByTransactionId(tranId);
 
 	}
 
 	@Transactional
 	public ArrayList<Transaction> findTransactionByPartNo(Integer partNo) {
-		return tansactionRepository.findTransactionByPartNumber(partNo);
+		return transactionRepository.findTransactionByPartNumber(partNo);
 
 	}
 
 	@Transactional
 	public ArrayList<Transaction> findTransactionByDate(Date startDate, Date endDate) {
-		return tansactionRepository.findTransactionByDate(startDate, endDate);
+		return transactionRepository.findTransactionByDate(startDate, endDate);
 
 	}
 	@Transactional
 	public Transaction createTransaction(Transaction transaction)
 	{
 		
-			return tansactionRepository.saveAndFlush(transaction);
+			return transactionRepository.saveAndFlush(transaction);
 		
 	}
 

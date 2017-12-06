@@ -1,9 +1,6 @@
 package com.sa45team7.stockist.service;
 
 import java.util.ArrayList;
-
-import javax.transaction.Transactional;
-
 import com.sa45team7.stockist.model.Product;
 
 public interface ProductService {
@@ -20,7 +17,7 @@ public interface ProductService {
 
 	Product createProduct(Product product);
 
-	void deleteStudent(Product product);
+	void deleteProduct(Product product);
 
 	Product updateProduct(Product product);
 
