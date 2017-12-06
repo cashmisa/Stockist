@@ -9,10 +9,21 @@ import org.springframework.data.repository.query.Param;
 import com.sa45team7.stockist.model.Supplier;
 
 public interface SupplierRepository extends JpaRepository<Supplier, Integer > {
-	@Query("SELECT s FROM Supplier s where s.supplierId = :id")
-	Supplier findSupplierById(@Param("id") String id);
 	
 	@Query("SELECT s FROM Supplier s where s.supplierName = :name")
-	ArrayList<Supplier> findSupplierByName(@Param("name") String name);
+	Supplier findSupplierByName(@Param("name") String name);
+	
+	@Query("SELECT s FROM Supplier s where s.contactName = :contactName")
+	Supplier findSupplierByContactName(@Param("contactName") String contactName);
+	
+	@Query("SELECT s FROM Supplier s where s.phoneNumber = :phoneNumber")
+	Supplier findSupplierByPhoneNumber(@Param("phoneNumber") String phoneNumber);
+	
+	@Query("SELECT s FROM Supplier s where s.email = :email")
+	Supplier findSupplierByEmail(@Param("email") String email);
+	
+	@Query("SELECT s FROM Supplier s where s.website = :website")
+	Supplier findSupplierByWebsite(@Param("website") String website);
+
 }
 

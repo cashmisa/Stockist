@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `stockist`.`transaction` (
 `transactionId` INT NOT NULL AUTO_INCREMENT,     
 `userName` VARCHAR( 20 ) NOT NULL,     
 `partNumber` INT NOT NULL,     
-`qty` INT NOT NULL, 
+`qty` INT NOT NULL,      
 `transactionType` VARCHAR( 20 ) NOT NULL,     
 `date` DATETIME NOT NULL,     
 `customer` VARCHAR( 45 ) NULL,     
