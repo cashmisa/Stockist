@@ -6,7 +6,6 @@ import java.util.Date;
 import com.sa45team7.stockist.model.Transaction;
 
 
-
 public interface TransactionService
 {
 	
@@ -18,4 +17,5 @@ public interface TransactionService
 	
 	ArrayList<Transaction> findTransactionByDate(Date startDate,Date endDate);
 
+	Transaction createTransaction(Transaction t);
 }

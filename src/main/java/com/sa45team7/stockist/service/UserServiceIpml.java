@@ -1,10 +1,8 @@
 package com.sa45team7.stockist.service;
-
+import java.util.ArrayList;
 import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.sa45team7.stockist.model.User;
 import com.sa45team7.stockist.repository.UserRepository;
 
@@ -20,4 +18,38 @@ public class UserServiceIpml implements UserService {
 		User u = userRepository.findUserByNamePwd(uname, pwd);
 		return u;
 	}
+
+	@Transactional
+	public ArrayList<User> findAllUsers() {
+		ArrayList<User> ul = (ArrayList<User>) userRepository.findAll();
+		return ul;
+	}
+
+	@Override
+	@Transactional
+	public User findUser(String userId) {
+		return userRepository.findOne(userId);
+
+	}
+
+	@Override
+	@Transactional
+	public User createUser(User user) {
+		return userRepository.saveAndFlush(user);
+	}
+
+	@Override
+	@Transactional
+	public User changeUser(User user) {
+		return userRepository.saveAndFlush(user);
+	}
+
+	@Override
+	@Transactional
+	public void removeUser(User user) {
+		userRepository.delete(user);
+	}
+
+	
+
 }

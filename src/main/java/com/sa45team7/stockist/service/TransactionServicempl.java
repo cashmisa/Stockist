@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sa45team7.stockist.model.Transaction;
 import com.sa45team7.stockist.repository.TransactionRepository;
 
+
 @Service
 public class TransactionServicempl implements TransactionService {
 	@Resource
@@ -35,6 +36,13 @@ public class TransactionServicempl implements TransactionService {
 	public ArrayList<Transaction> findTransactionByDate(Date startDate, Date endDate) {
 		return tansactionRepository.findTransactionByDate(startDate, endDate);
 
+	}
+	@Transactional
+	public Transaction createTransaction(Transaction transaction)
+	{
+		
+			return tansactionRepository.saveAndFlush(transaction);
+		
 	}
 
 }
