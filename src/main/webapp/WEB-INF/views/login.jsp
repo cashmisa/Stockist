@@ -1,10 +1,11 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <html>
 <spring:url value="/css/simple.css" var="style" />
 <link rel="STYLESHEET" type="text/css" href="${style}" />
-<form:form method="POST" commandName="login">
+<form action="<c:url value="/login"/>" method="post">
 	<table class="framed">
 		<tr>
 			<td><spring:message code="fieldLabel.username" /></td>
@@ -26,6 +27,7 @@
 					<img src="/image/button_clear.gif" alt="" align="middle">
 				</form:button></td> --%>
 		</tr>
+		<tr><td colspan="2" align="center"> <button id="login">Login</button> </td></tr>
 	</table>
-</form:form>
+</form>
 </html>
