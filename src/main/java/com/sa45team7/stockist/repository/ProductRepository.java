@@ -28,12 +28,12 @@ public interface ProductRepository extends JpaRepository<Product, Integer>
 	
 	
 	@Query(value = "SELECT * FROM Product WHERE partNumber like %:partNumber%", nativeQuery = true)
-	ArrayList<Product> findProductByPartNumber(@Param("partNumber") String partNumber);
+	ArrayList<Product> findByPartNumberContaining(@Param("partNumber") String partNumber);
 	
 	
 	ArrayList<Product> findByBrandContaining(String brand);
 	
-	
+	// TODO - remove unnecessary methods
 	ArrayList<Product> findByMinOrderQty(int minOrderQty);
 	ArrayList<Product> findByMinOrderQtyLessThanEqual(int minOrderQty);
 	ArrayList<Product> findByMinOrderQtyGreaterThanEqual(int minOrderQty);
