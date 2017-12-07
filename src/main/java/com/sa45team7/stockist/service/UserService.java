@@ -12,8 +12,6 @@ public interface UserService extends UserDetailsService {
 	
 	ArrayList<User> findAllUsers();
 
-	ArrayList<User> findAllUsers();
-
 	User findUser(String userId);
 
 	User createUser(User user);

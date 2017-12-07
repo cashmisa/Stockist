@@ -26,24 +26,6 @@ public class UserServiceIpml implements UserService {
 		return u;
 	}
 
-	@Override
-	@Transactional
-	public ArrayList<User> findAllUsers() {
-		ArrayList<User> ul = (ArrayList<User>) userRepository.findAll();
-		return ul;
-	}
-
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userRepository.findUserByUserName(username);
-		if (user == null) {
-			throw new UsernameNotFoundException("No user found with username: " + username);
-		} else {
-			return user;
-		}
-	}
-
-
 	@Transactional
 	public ArrayList<User> findAllUsers() {
 		ArrayList<User> ul = (ArrayList<User>) userRepository.findAll();
