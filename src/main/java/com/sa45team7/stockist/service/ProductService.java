@@ -20,5 +20,7 @@ public interface ProductService {
 	void deleteProduct(Product product);
 
 	Product updateProduct(Product product);
+	
+	ArrayList<Product> findProductByCriteria(Product product);
 
 }
