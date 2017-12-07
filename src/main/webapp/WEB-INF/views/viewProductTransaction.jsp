@@ -26,46 +26,52 @@
 </h3>
 <form:form method="POST" commandName="viewProduct"
 	action="${pageContext.request.contextPath}/viewproduct/${id}">
-	<table>
-		<tr>
-			<td><spring:message code="fieldLabel.partNumber" /></td>
-			<td>${product.PartNumber}</td>
-		</tr>
-		
-		<tr>
-			<td><spring:message code="fieldLabel.partName" /></td>
-			<td>${product.PartName}</td>
-		</tr>
-			<tr>
-			<td><spring:message code="fieldLabel.partPrice" /></td>
-			<td>${product.Price}</td>
-		</tr>
-		<tr>
-			<td><spring:message code="fieldLabel.partBrand" /></td>
-			<td>${product.Brand}</td>
-		</tr>
-		<tr>
-			<td><spring:message code="fieldLabel.partQty" /></td>
-			<td>${product.Qty}</td>
-		</tr>
-		<tr>
-			<td><spring:message code="fieldLabel.partMOQ" /></td>
-			<td>${product.MinOrderQty}</td>
-		</tr>
-		<tr>
-			<td><spring:message code="fieldLabel.partROQ" /></td>
-			<td>${product.ReOrderQty}</td>
-		</tr>
-		<tr>
-			<td><spring:message code="fieldLabel.partSupplier" /></td>
-			<td>${product.Supplier}</td>
-		</tr>
-		<tr>
-			<td><spring:message code="fieldLabel.partLocation" /></td>
-			<td>${product.ShelfLocation}</td>
-		</tr>
-	</table>
-	<c:if test="${fn:length(transaction) gt 0}">
+	<c:if test="${fn:length(product) gt 0}">
+		<c:forEach var="product" items="${product}">
+			<table>
+				<tr>
+					<td><spring:message code="fieldLabel.partNumber" /></td>
+					<td>${product.PartNumber}</td>
+				</tr>
+
+				<tr>
+					<td><spring:message code="fieldLabel.partName" /></td>
+					<td>${product.PartName}</td>
+				</tr>
+				<tr>
+					<td><spring:message code="fieldLabel.partPrice" /></td>
+					<td>${product.Price}</td>
+				</tr>
+				<tr>
+					<td><spring:message code="fieldLabel.partBrand" /></td>
+					<td>${product.Brand}</td>
+				</tr>
+				<tr>
+					<td><spring:message code="fieldLabel.partQty" /></td>
+					<td>${product.Qty}</td>
+				</tr>
+				<tr>
+					<td><spring:message code="fieldLabel.partMOQ" /></td>
+					<td>${product.MinOrderQty}</td>
+				</tr>
+				<tr>
+					<td><spring:message code="fieldLabel.partROQ" /></td>
+					<td>${product.ReOrderQty}</td>
+				</tr>
+				<tr>
+					<td><spring:message code="fieldLabel.partSupplier" /></td>
+					<td>${product.Supplier}</td>
+				</tr>
+				<tr>
+					<td><spring:message code="fieldLabel.partLocation" /></td>
+					<td>${product.ShelfLocation}</td>
+				</tr>
+			</table>
+		</c:forEach>
+	</c:if>
+	<br>
+	<br>
+	<c:if test="${fn:length(transactionList) gt 0}">
 		<table style="cellspacing: 2; cellpadding: 2; border: 1;">
 			<tr>
 				<td><spring:message code="fieldLabel.startDate" /></td>
@@ -104,10 +110,7 @@
 						<img
 							src="${pageContext.request.contextPath}/image/button_submit.gif"
 							alt="" align="middle">
-					</form:button>&nbsp; <a href="javascript:history.back();"> <img
-						src="${pageContext.request.contextPath}/image/button_cancel.gif"
-						alt="" align="middle" border="0">
-				</a></td>
+					</form:button></td>
 			</tr>
 		</table>
 	</c:if>
