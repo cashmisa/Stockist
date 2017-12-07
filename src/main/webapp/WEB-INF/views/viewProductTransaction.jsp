@@ -21,54 +21,51 @@
 		});
 	});
 </script>
-<h3>
-	<spring:message code="fieldLabel.viewProduct" />
-</h3>
-<form:form method="POST" commandName="viewProduct"
+
+<form:form method="post"
 	action="${pageContext.request.contextPath}/viewproduct/${id}">
-	<c:if test="${fn:length(product) gt 0}">
-		<c:forEach var="product" items="${product}">
+	<h3>
+		<spring:message code="fieldLabel.viewProduct" />
+	</h3>
 			<table>
 				<tr>
 					<td><spring:message code="fieldLabel.partNumber" /></td>
-					<td>${product.PartNumber}</td>
+					<td>${product.partNumber}</td>
 				</tr>
 
 				<tr>
 					<td><spring:message code="fieldLabel.partName" /></td>
-					<td>${product.PartName}</td>
+					<td>${product.partName}</td>
 				</tr>
 				<tr>
 					<td><spring:message code="fieldLabel.partPrice" /></td>
-					<td>${product.Price}</td>
+					<td>${product.price}</td>
 				</tr>
 				<tr>
 					<td><spring:message code="fieldLabel.partBrand" /></td>
-					<td>${product.Brand}</td>
+					<td>${product.brand}</td>
 				</tr>
 				<tr>
 					<td><spring:message code="fieldLabel.partQty" /></td>
-					<td>${product.Qty}</td>
+					<td>${product.qty}</td>
 				</tr>
 				<tr>
 					<td><spring:message code="fieldLabel.partMOQ" /></td>
-					<td>${product.MinOrderQty}</td>
+					<td>${product.minOrderQty}</td>
 				</tr>
 				<tr>
 					<td><spring:message code="fieldLabel.partROQ" /></td>
-					<td>${product.ReOrderQty}</td>
+					<td>${product.reOrderQty}</td>
 				</tr>
 				<tr>
 					<td><spring:message code="fieldLabel.partSupplier" /></td>
-					<td>${product.Supplier}</td>
+					<td>${product.supplier}</td>
 				</tr>
 				<tr>
 					<td><spring:message code="fieldLabel.partLocation" /></td>
-					<td>${product.ShelfLocation}</td>
+					<td>${product.shelfLocation}</td>
 				</tr>
 			</table>
-		</c:forEach>
-	</c:if>
 	<br>
 	<br>
 	<c:if test="${fn:length(transactionList) gt 0}">

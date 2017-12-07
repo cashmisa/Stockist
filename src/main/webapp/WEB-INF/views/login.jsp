@@ -1,5 +1,4 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <html>
 
 <head>
@@ -12,7 +11,7 @@
 		<div class="card-body">
 			<form action="<spring:url value="/login"/>" method="post">
 
-				<h6 class="card-title">Log In</h6>
+				<h6 class="card-title"><spring:message code="login.header"/></h6>
 
 				<div class="ht-tm-element ht-tm-element-inner">
 					<spring:message code="login.username-label" var="un" />
