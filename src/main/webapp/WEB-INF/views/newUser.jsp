@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1>Create User page</h1>
-<form:form method="POST" modelAttribute="user" action="${pageContext.request.contextPath}/admin/user/create.html">
+<form:form method="POST" commandName="user" action="${pageContext.request.contextPath}/admin/user/create">
 	<table>
 			<tr>
 				<td>Username:</td>
@@ -18,7 +18,7 @@
 			</tr>
 			<tr>
 				<td>Role:</td>
-				<td><form:input path="user" /></td>
+				<td><form:input path="role" /></td>
 			</tr>
 			<tr>
 				<td>Password:</td>

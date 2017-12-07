@@ -1,13 +1,11 @@
 package com.sa45team7.stockist.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +26,7 @@ public class AdminUserController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value = "/listuser", method = RequestMethod.GET) //admin/user/listuser
+	@RequestMapping(value ={"", "/listuser"}, method = RequestMethod.GET) //admin/user/listuser
 	public ModelAndView listUser() 
 	{
 		ModelAndView modelAndView = new ModelAndView("listUser");
@@ -44,7 +42,7 @@ public class AdminUserController {
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST) //admin/user/create
-	public ModelAndView createdUser(@ModelAttribute @Valid User user, BindingResult result,
+	public ModelAndView createdUser(@ModelAttribute @Valid User user,
 			final RedirectAttributes redirectAttributes) 
 	{
 		String createdUser = "Created user: " + user.getUsername();
@@ -67,7 +65,7 @@ public class AdminUserController {
 	}
 	
 	@RequestMapping(value = "/edituser/{userName}", method = RequestMethod.POST) //admin/edituser/whicheveruser
-	public ModelAndView editUser(@ModelAttribute @Valid User user, BindingResult result, @PathVariable String userName,
+	public ModelAndView editUser(@ModelAttribute @Valid User user, @PathVariable String userName,
 			final RedirectAttributes redirectAttributes)
 	{
 		String updatedUser = "Updated user: " + user.getUsername();
