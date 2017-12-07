@@ -1,8 +1,15 @@
 package com.sa45team7.stockist.service;
+
 import java.util.ArrayList;
+
 import javax.annotation.Resource;
+
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.sa45team7.stockist.model.User;
 import com.sa45team7.stockist.repository.UserRepository;
 
@@ -50,6 +57,14 @@ public class UserServiceIpml implements UserService {
 		userRepository.delete(user);
 	}
 
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		User user = userRepository.findUserByUserName(username);
+		if (user == null) {
+			throw new UsernameNotFoundException("No user found with username: " + username);
+		} else {
+			return user;
+		}
+	}
 	
-
 }

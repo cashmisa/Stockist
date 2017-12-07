@@ -1,14 +1,26 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
+<%@ page session="false"%>
 <html>
 <head>
-	<title>Home</title>
+<title>Home</title>
 </head>
 <body>
-<h1>
-	Hello world!  
-</h1>
+	<h1>Hello world!</h1>
 
-<P>  The time on the server is ${serverTime}. </P>
+	<P>The time on the server is ${serverTime}.</P>
+
+	<sec:authorize access="hasAnyAuthority('admin', 'mechanic')">
+		<form action="/logout" method="post">
+			<button id="logout">Sign out</button>
+		</form>
+	</sec:authorize>
+
+	<sec:authorize access="isAuthenticated()">
+		<form action="/logout" method="post">
+			<button id="logout">Sign out</button>
+		</form>
+	</sec:authorize>
 </body>
 </html>
