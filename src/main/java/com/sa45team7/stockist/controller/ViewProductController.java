@@ -42,10 +42,10 @@ public class ViewProductController {
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
 	public ModelAndView viewProduct(@PathVariable String id, @RequestParam("startDate") String startDate, @RequestParam("endDate")String endDate) throws ParseException {
-		Integer idi = Integer.parseInt(id); 
-		SimpleDateFormat df = new SimpleDateFormat("dd/MM/YYY");
+		Integer idi = Integer.parseInt(id);
 		Date endDateD;
 		Date startDateD;
+		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 		try {
 			startDateD = df.parse(startDate);
 			endDateD = df.parse(endDate);

@@ -12,17 +12,17 @@
 <script>
 	$(document).ready(function() {
 		$("#datepicker1").datepicker({
-			dateFormat : "dd/mm/yyyy"
+			dateFormat : "dd-mm-yy"
 		});
 	});
 	$(document).ready(function() {
 		$("#datepicker2").datepicker({
-			dateFormat : "dd/mm/yyyyy"
+			dateFormat : "dd-mm-yy"
 		});
 	});
 </script>
 
-<form:form method="post"
+<form:form commandname="transactionList" method="post"
 	action="${pageContext.request.contextPath}/viewproduct/${id}">
 	<h3>
 		<spring:message code="fieldLabel.viewProduct" />
@@ -72,13 +72,11 @@
 		<table style="cellspacing: 2; cellpadding: 2; border: 1;">
 			<tr>
 				<td><spring:message code="fieldLabel.startDate" /></td>
-				<td><form:input size="16" path="fromDate" id="datepicker1"
-						name="startDate" /> <form:errors path="fromDate"
-						cssStyle="color: red;" /></td>
+				<td><input size="16" id="datepicker1"
+						name="startDate" /></td>
 				<td><spring:message code="fieldLabel.endDate" /></td>
-				<td><form:input size="16" path="toDate" id="datepicker2"
-						name="endDate" /> <form:errors path="toDate"
-						cssStyle="color: red;" /></td>
+				<td><input size="16" id="datepicker2"
+						name="endDate" /></td>
 			</tr>
 			<tr class="listHeading">
 				<th><spring:message code="fieldLabel.transactionId" /></th>
@@ -91,23 +89,20 @@
 			</tr>
 			<c:forEach var="transaction" items="${transactionList}">
 				<tr class="listRecord">
-					<td>${transaction.TransactionId}</td>
-					<td>${transaction.Date}</td>
-					<td>${transaction.Customer}</td>
-					<td>${transaction.Qty}</td>
-					<td>${transaction.TransactionType}</td>
-					<td>${transaction.User}</td>
-					<td>${transaction.Remarks}</td>
+					<td>${transaction.transactionId}</td>
+					<td>${transaction.date}</td>
+					<td>${transaction.customer}</td>
+					<td>${transaction.qty}</td>
+					<td>${transaction.transactionType}</td>
+					<td>${transaction.user.userName}</td>
+					<td>${transaction.remarks}</td>
 				</tr>
 			</c:forEach>
 			<tr>
 				<td>&nbsp;</td>
-				<td colspan="2" align="left"><br></br> <form:button
-						type="submit">
-						<img
-							src="${pageContext.request.contextPath}/image/button_submit.gif"
-							alt="" align="middle">
-					</form:button></td>
+				<td colspan="2" align="left"><br></br> 
+				<input type="submit" value="Filter">
+					</td>
 			</tr>
 		</table>
 	</c:if>
