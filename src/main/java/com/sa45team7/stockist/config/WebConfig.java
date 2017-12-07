@@ -1,5 +1,6 @@
 package com.sa45team7.stockist.config;
 
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
@@ -8,6 +9,8 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+
+import com.opensymphony.sitemesh.webapp.SiteMeshFilter;
 
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter{
@@ -31,5 +34,13 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 				.parseLocaleString("en"));
 		return cookieLocaleResolver;
 	}
+	
+	@Bean
+    public FilterRegistrationBean siteMeshFilter() {
+        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
+        filterRegistrationBean.setFilter(new SiteMeshFilter());
+        filterRegistrationBean.addUrlPatterns("/*");
+        return filterRegistrationBean;
+    }
 	
 }
