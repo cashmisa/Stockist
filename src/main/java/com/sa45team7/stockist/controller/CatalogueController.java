@@ -1,13 +1,17 @@
 package com.sa45team7.stockist.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sa45team7.stockist.model.Product;
+import com.sa45team7.stockist.model.ProductSearchDTO;
 import com.sa45team7.stockist.service.ProductService;
 
 
@@ -20,28 +24,42 @@ public class CatalogueController {
 	@Autowired
 	ProductService productService;
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value= {"", "/reset"}, method = RequestMethod.GET)
 	public ModelAndView createNewBrowseCatalog()
 	{
 		ModelAndView view = new ModelAndView("browseCatalog");
 		
-		Product product = new Product();
-		view.addObject("emptyProduct", product);
-		
-		//product.setPartNumber(10);
-		//product.setPartName("  st    ");
-		//product.setBrand("    m    ");		
-		//view.addObject("productList", productService.findProductByCriteria(product));
+		ProductSearchDTO productSearchDTO = new ProductSearchDTO();
+		view.addObject("emptyProductSearchDTO", productSearchDTO);
 		
 		return view;
 	}
 	
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView browseCatalog(@ModelAttribute("emptyProduct") Product product)
+	public ModelAndView browseCatalog(@ModelAttribute("emptyProductSearchDTO") ProductSearchDTO productSearchDTO, BindingResult bindingResult)
 	{
 		ModelAndView view = new ModelAndView("browseCatalog");
-		view.addObject("productList", productService.findProductByCriteria(product));
+		
+		if(bindingResult.hasErrors())
+		{
+			return view;
+		}
+		
+		view.addObject("productList", productService.findProductByCriteria(productSearchDTO));
+		
+		return view;
+	}
+	
+	@RequestMapping(value= {"/all"}, method = RequestMethod.GET)
+	public ModelAndView showAllProduct()
+	{
+		ModelAndView view = new ModelAndView("browseCatalog");
+		
+		ProductSearchDTO productSearchDTO = new ProductSearchDTO();
+		
+		view.addObject("emptyProductSearchDTO", productSearchDTO);
+		view.addObject("productList", productService.getProductList());
 		
 		return view;
 	}

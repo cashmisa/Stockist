@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
 import com.sa45team7.stockist.model.Product;
+import com.sa45team7.stockist.model.ProductSearchDTO;
 
 @Service
 public class ProductServiceImpl implements ProductService
@@ -84,26 +85,26 @@ public class ProductServiceImpl implements ProductService
 	
 	
 	@Override
-	public ArrayList<Product> findProductByCriteria(Product product)
+	public ArrayList<Product> findProductByCriteria(ProductSearchDTO productSearchDTO)
 	{
 		ArrayList<Product> resultList = null;
 		
 		boolean first = true;
 		
-		if (product.getPartNumber() != 0)
+		if (productSearchDTO.getPartNumber() != null)
 		{
-			int partNumber = product.getPartNumber();
+			String partNumber = productSearchDTO.getPartNumber().toLowerCase().trim();
 			
 			if (first)
 			{
-				resultList = productRepository.findProductByPartNumber(String.valueOf(partNumber));
+				resultList = productRepository.findByPartNumberContaining(partNumber);
 				first = false;
 			}
 		}
 		
-		if (product.getPartName() != null)
+		if (productSearchDTO.getPartName() != null)
 		{
-			String partName = product.getPartName().toLowerCase().trim();
+			String partName = productSearchDTO.getPartName().toLowerCase().trim();
 			
 			if (first)
 			{
@@ -117,9 +118,9 @@ public class ProductServiceImpl implements ProductService
 			}
 		}
 		
-		if (product.getBrand() != null)
+		if (productSearchDTO.getBrand() != null)
 		{
-			String brand = product.getBrand().toLowerCase().trim();
+			String brand = productSearchDTO.getBrand().toLowerCase().trim();
 			
 			if (first)
 			{
@@ -130,6 +131,23 @@ public class ProductServiceImpl implements ProductService
 			{
 				Predicate<Product> filterByBrand = p -> !p.getBrand().toLowerCase().trim().contains(brand);
 				resultList.removeIf(filterByBrand);
+			}
+		}
+		
+		
+		if (productSearchDTO.getShelfLocation() != null)
+		{
+			String shelfLocation = productSearchDTO.getShelfLocation().toLowerCase().trim();
+			
+			if (first)
+			{
+				resultList = productRepository.findByShelfLocationContaining(shelfLocation);
+				first = false;
+			}
+			else
+			{
+				Predicate<Product> filterByShelf = p -> !p.getShelfLocation().toLowerCase().trim().contains(shelfLocation);
+				resultList.removeIf(filterByShelf);
 			}
 		}
 		
