@@ -4,23 +4,16 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Product Catalogue</title>
 
-<style type="text/css">
-table {
-	text-align: left;
-}
+<script src="/js/jquery.js"></script>
+<script src="/js/jquery.tablesorter.pager.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#productTable").tablesorter();
+	});
+</script>
 
-tr {
-	padding: 1px 1px;
-}
-</style>
-</head>
-<body>
+
 	<form:form modelAttribute="emptyProductSearchDTO" method="post" action="${pageContext.request.contextPath}/catalogue">
 		<h1>Product Catalogue</h1>
 		<div>
@@ -70,7 +63,7 @@ tr {
 			<%-- Display product info --%>
 			<h3>>>> Showing ${productList.size()}/${productList.size()} result(s)</h3>
 			<br>
-			<table>
+			<table id="productTable" class="tablesorter">
 				<thead>
 					<tr>
 						<th>Part Number</th>
@@ -96,5 +89,4 @@ tr {
 			</table>
 		</c:if>
 	</form:form>
-</body>
-</html>
+
