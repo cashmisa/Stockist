@@ -22,4 +22,6 @@ public interface TransactionRepository extends JpaRepository<Transaction, Intege
 	@Query("SELECT t FROM Transaction t where t.date BETWEEN :startDate AND :endDate")
 	ArrayList<Transaction> findTransactionByDate(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 	
+	@Query("SELECT t FROM Transaction t where t.product.partNumber = :partNumber AND t.date BETWEEN :startDate AND :endDate")
+	ArrayList<Transaction> findTransactionByPartNumberAndDate(@Param("partNumber") Integer partNumber, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
 }
