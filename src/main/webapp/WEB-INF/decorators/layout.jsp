@@ -8,8 +8,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="/css/bootstrap4-business-tycoon.min.css" rel="stylesheet"
+<link href="/css/bootstrap4-business-tycoon.css" rel="stylesheet"
 	type="text/css" />
+<link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="/css/bootstrap-themes.css" rel="stylesheet" type="text/css" />
 <title><dec:title default="Web Page" /></title>
 <script src="/js/jquery.js"></script>
@@ -30,12 +31,11 @@
 
 		<div id="m_container">
 			<div id="content">
-				<div class="row">
-					<div class="col-sm-4"
-						style="border-left: 1px solid #fff; min-height: 300px;">
+				<div class="row" style="margin-right:0px">
+					<div class="col-sm-2">
 						<%@ include file="sidebar.jsp"%>
 					</div>
-					<div class="col-sm-8">
+					<div class="col-sm-10">
 						<dec:body />
 					</div>
 				</div>
