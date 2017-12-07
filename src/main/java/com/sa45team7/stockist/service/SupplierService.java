@@ -15,7 +15,7 @@ public interface SupplierService {
 	
 	Supplier findSupplier(Integer supplierId);
 	
-	Supplier findSupplierByName(String supplierName);
+	ArrayList<Supplier> findSupplierByName(String supplierName);
 	
 	Supplier findSupplierByContactName(String contactName);
 	

@@ -10,9 +10,12 @@ import com.sa45team7.stockist.model.Supplier;
 
 public interface SupplierRepository extends JpaRepository<Supplier, Integer > {
 	
-	@Query("SELECT s FROM Supplier s where s.supplierName = :name")
-	Supplier findSupplierByName(@Param("name") String name);
+	//@Query("SELECT s FROM Supplier s where s.supplierName = :name")
 	
+	
+	@Query("SELECT s FROM Supplier s WHERE s.supplierName LIKE CONCAT('%',:name,'%')")
+	ArrayList<Supplier> findSupplierByName(@Param("name") String name);
+
 	@Query("SELECT s FROM Supplier s where s.contactName = :contactName")
 	Supplier findSupplierByContactName(@Param("contactName") String contactName);
 	

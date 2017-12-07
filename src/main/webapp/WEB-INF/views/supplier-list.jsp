@@ -1,10 +1,36 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 
 <h3>Supplier List page</h3>
+<br>
+<form:form method="POST" modelAttribute="supplier"
+	action="${pageContext.request.contextPath}/admin/supplier/list/${supplier.supplierName}.html">
+
+<table>
+		<tbody>
+			<tr>
+				<td><spring:message code="fieldLabel.supplierName" /></td>
+				<td><form:input path="supplierName"  /></td>
+				
+			</tr>
+</tbody>
+</table>
+
+<input type="submit" value="Search"> 
+<input type="reset" value="Reset" >
+</form:form>
+
+
 <a href="${pageContext.request.contextPath}/admin/supplier/create">Add
 	Supplier</a>
+	<br>
+	
 <c:if test="${fn:length(supplierList) gt 0}">
 	<table border=2>
 		<thead>

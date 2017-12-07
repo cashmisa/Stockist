@@ -38,7 +38,7 @@ public class SupplierServiceImpl implements SupplierService {
 
 	@Override
 	@Transactional
-	public Supplier findSupplierByName(String supplierName) {
+	public ArrayList<Supplier> findSupplierByName(String supplierName) {
 		return supplierRepository.findSupplierByName(supplierName);
 	}
 

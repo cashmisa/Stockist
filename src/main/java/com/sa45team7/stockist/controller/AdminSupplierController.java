@@ -21,7 +21,7 @@ import com.sa45team7.exception.SupplierNotFound;
 import com.sa45team7.stockist.model.Supplier;
 import com.sa45team7.stockist.service.SupplierService;
 
-import com.sa45team7.validator.SupplierValidator;
+
 
 
 
@@ -46,7 +46,32 @@ public class AdminSupplierController {
 	 * 
 	 * @return
 	 */
+	@RequestMapping(value = "/list/{supplierName}", method = RequestMethod.POST)
+	public ModelAndView SearchSupplier(@ModelAttribute Supplier supplier, BindingResult result,@PathVariable String supplierName,
+			final RedirectAttributes redirectAttributes) {
 
+		//if (result.hasErrors())
+			//return new ModelAndView("supplier-list");
+
+		ModelAndView mav = new ModelAndView();
+		String message = "Search results are ";
+
+		ArrayList<Supplier> supplierList = sService.findSupplierByName(supplierName);
+		mav.setViewName("redirect:/admin/supplier/list");
+		mav.addObject("supplierList", supplierList);
+		
+		redirectAttributes.addFlashAttribute("message", message);
+		return mav;
+	}
+	
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView supplierListPage() {
+		ModelAndView mav = new ModelAndView("supplier-list");
+		List<Supplier> supplierList = sService.findAllSuppliers();
+		mav.addObject("supplierList", supplierList);
+		return mav;
+	}
+	
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView newSupplierPage() {
 		ModelAndView mav = new ModelAndView("supplier-new", "supplier", new Supplier());
@@ -72,13 +97,7 @@ public class AdminSupplierController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView supplierListPage() {
-		ModelAndView mav = new ModelAndView("supplier-list");
-		List<Supplier> supplierList = sService.findAllSuppliers();
-		mav.addObject("supplierList", supplierList);
-		return mav;
-	}
+	
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
 	public ModelAndView editSupplierPage(@PathVariable Integer id) 
