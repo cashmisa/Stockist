@@ -21,10 +21,6 @@ import com.sa45team7.exception.SupplierNotFound;
 import com.sa45team7.stockist.model.Supplier;
 import com.sa45team7.stockist.service.SupplierService;
 
-
-
-
-
 @RequestMapping("/admin/supplier")
 @Controller
 public class AdminSupplierController {
@@ -46,23 +42,6 @@ public class AdminSupplierController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/list/{supplierName}", method = RequestMethod.POST)
-	public ModelAndView SearchSupplier(@ModelAttribute Supplier supplier, BindingResult result,@PathVariable String supplierName,
-			final RedirectAttributes redirectAttributes) {
-
-		//if (result.hasErrors())
-			//return new ModelAndView("supplier-list");
-
-		ModelAndView mav = new ModelAndView();
-		String message = "Search results are ";
-
-		ArrayList<Supplier> supplierList = sService.findSupplierByName(supplierName);
-		mav.setViewName("redirect:/admin/supplier/list");
-		mav.addObject("supplierList", supplierList);
-		
-		redirectAttributes.addFlashAttribute("message", message);
-		return mav;
-	}
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView supplierListPage() {

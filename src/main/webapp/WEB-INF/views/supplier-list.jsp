@@ -9,23 +9,6 @@
 
 <h3>Supplier List page</h3>
 <br>
-<form:form method="POST" modelAttribute="supplier"
-	action="${pageContext.request.contextPath}/admin/supplier/list/${supplier.supplierName}.html">
-
-<table>
-		<tbody>
-			<tr>
-				<td><spring:message code="fieldLabel.supplierName" /></td>
-				<td><form:input path="supplierName"  /></td>
-				
-			</tr>
-</tbody>
-</table>
-
-<input type="submit" value="Search"> 
-<input type="reset" value="Reset" >
-</form:form>
-
 
 <a href="${pageContext.request.contextPath}/admin/supplier/create">Add
 	Supplier</a>
