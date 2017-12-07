@@ -3,13 +3,12 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
+<link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css" >
 
-
-<script src="/js/jquery.js"></script>
-<script src="/js/jquery.tablesorter.pager.js"></script>
+<script src="/js/jquery.tablesorter.js"></script>
 <script>
 	$(document).ready(function() {
-		$("#productTable").tablesorter();
+		$("#productTable").tablesorter({widthFixed: true, widgets: ['zebra']});
 	});
 </script>
 
@@ -66,11 +65,11 @@
 			<table id="productTable" class="tablesorter">
 				<thead>
 					<tr>
-						<th>Part Number</th>
-						<th>Part Name</th>
-						<th>Brand</th>
-						<th>Shelf</th>
-						<th>Stock</th>
+						<th class="header">Part Number</th>
+						<th class="header">Part Name</th>
+						<th class="header">Brand</th>
+						<th class="header">Shelf</th>
+						<th class="header">Stock</th>
 					</tr>
 
 				</thead>
