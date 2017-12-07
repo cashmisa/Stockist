@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.sa45team7.stockist.model.Supplier;
 import com.sa45team7.stockist.repository.SupplierRepository;
 
+
+
 @Service
 public class SupplierServiceImpl implements SupplierService {
 	
@@ -29,9 +31,8 @@ public class SupplierServiceImpl implements SupplierService {
 		return supplierRepository.findOne(supplierId);
 	}
 	
-	@Override
 	@Transactional
-	public Supplier updateSupplier(Supplier supplier) {
+	public Supplier changeSupplier(Supplier supplier) {
 		return supplierRepository.saveAndFlush(supplier);
 	}
 
@@ -70,4 +71,23 @@ public class SupplierServiceImpl implements SupplierService {
 	public Supplier createSupplier(Supplier supplier) {
 		return supplierRepository.saveAndFlush(supplier);
 	}
+	
+	@Override
+	public ArrayList<Integer> findAllSupplierIDs() {
+		return supplierRepository.findAllSupplierIDs();
+	}
+
+	
+		
+	@Transactional
+	@Override
+	public void removeSupplier(Supplier supplier) {
+		supplierRepository.delete(supplier);
+
+		
+	}
+
+	
+	
+	
 }

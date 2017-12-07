@@ -24,6 +24,10 @@ public interface SupplierRepository extends JpaRepository<Supplier, Integer > {
 	
 	@Query("SELECT s FROM Supplier s where s.website = :website")
 	Supplier findSupplierByWebsite(@Param("website") String website);
+	
+	@Query("SELECT DISTINCT s.supplierId FROM Supplier s")
+	ArrayList<Integer>findAllSupplierIDs();
 
+	
 }
 
