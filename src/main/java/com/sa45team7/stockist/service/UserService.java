@@ -12,7 +12,7 @@ public interface UserService extends UserDetailsService {
 	
 	ArrayList<User> findAllUsers();
 
-	User findUser(String userId);
+	User findUser(String userName);
 
 	User createUser(User user);
 
