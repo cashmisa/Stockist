@@ -91,7 +91,7 @@ public class ProductServiceImpl implements ProductService
 		
 		boolean first = true;
 		
-		if (productSearchDTO.getPartNumber() != null)
+		if (productSearchDTO.getPartNumber() != "")
 		{
 			String partNumber = productSearchDTO.getPartNumber().toLowerCase().trim();
 			
@@ -102,7 +102,7 @@ public class ProductServiceImpl implements ProductService
 			}
 		}
 		
-		if (productSearchDTO.getPartName() != null)
+		if (productSearchDTO.getPartName() != "")
 		{
 			String partName = productSearchDTO.getPartName().toLowerCase().trim();
 			
@@ -118,7 +118,7 @@ public class ProductServiceImpl implements ProductService
 			}
 		}
 		
-		if (productSearchDTO.getBrand() != null)
+		if (productSearchDTO.getBrand() != "")
 		{
 			String brand = productSearchDTO.getBrand().toLowerCase().trim();
 			
@@ -135,7 +135,7 @@ public class ProductServiceImpl implements ProductService
 		}
 		
 		
-		if (productSearchDTO.getShelfLocation() != null)
+		if (productSearchDTO.getShelfLocation() != "")
 		{
 			String shelfLocation = productSearchDTO.getShelfLocation().toLowerCase().trim();
 			

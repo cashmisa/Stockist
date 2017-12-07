@@ -2,7 +2,7 @@
 <decorators defaultdir="/WEB-INF/decorators/">
 	<!-- Any urls that are excluded will never be decorated by Sitemesh -->
 	<excludes>
-		<pattern>/login</pattern>
+		<pattern>/login*</pattern>
 	</excludes>
 	
 	<!-- apply Sitemesh default template -->
