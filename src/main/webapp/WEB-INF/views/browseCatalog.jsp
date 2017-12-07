@@ -1,26 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
+<link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css" >
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Product Catalogue</title>
+<script src="/js/jquery.tablesorter.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#productTable").tablesorter({widthFixed: true, widgets: ['zebra']});
+	});
+</script>
 
-<style type="text/css">
-table {
-	text-align: left;
-}
 
-tr {
-	padding: 1px 1px;
-}
-</style>
-</head>
-<body>
 	<form:form modelAttribute="emptyProductSearchDTO" method="post" action="${pageContext.request.contextPath}/catalogue">
 		<h1>Product Catalogue</h1>
 		<div>
@@ -70,14 +62,14 @@ tr {
 			<%-- Display product info --%>
 			<h3>>>> Showing ${productList.size()}/${productList.size()} result(s)</h3>
 			<br>
-			<table>
+			<table id="productTable" class="tablesorter">
 				<thead>
 					<tr>
-						<th>Part Number</th>
-						<th>Part Name</th>
-						<th>Brand</th>
-						<th>Shelf</th>
-						<th>Stock</th>
+						<th class="header">Part Number</th>
+						<th class="header">Part Name</th>
+						<th class="header">Brand</th>
+						<th class="header">Shelf</th>
+						<th class="header">Stock</th>
 					</tr>
 
 				</thead>
@@ -96,5 +88,4 @@ tr {
 			</table>
 		</c:if>
 	</form:form>
-</body>
-</html>
+

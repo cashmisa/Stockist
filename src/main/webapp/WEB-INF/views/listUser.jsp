@@ -10,13 +10,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>User List page</h1>
-<a href="${pageContext.request.contextPath}/admin/user/create">Add User</a>
+<h1>User List</h1>
 	<table>
 			<tr>
-				<th>userName</th>
-				<th>role</th>
-				<th>password</th>
+				<th>:username:</th>
+				<th>:password:</th>
+				<th>:role:</th>
 			</tr>
 			<c:forEach var="user" items="${userList}">
 				<tr>
@@ -24,11 +23,14 @@
 					<td>${user.password}</td>
 					<td>${user.role}</td>
 					<td align="center">
-					<a href="${pageContext.request.contextPath}/admin/user/edit/${user.userName}.html">edit</a></td>
+					<a href="${pageContext.request.contextPath}/admin/user/edit/${user.userName}">edit</a></td>
 					<td>
-					<a href="${pageContext.request.contextPath}/admin/user/delete/${user.userName}.html">delete</a></td>
+					<a href="${pageContext.request.contextPath}/admin/user/delete/${user.userName}">delete</a></td>
 				</tr>
 			</c:forEach>
 	</table>
+	<div>
+	<a href="${pageContext.request.contextPath}/admin/user/create">Add User</a>
+	</div>
 </body>
 </html>

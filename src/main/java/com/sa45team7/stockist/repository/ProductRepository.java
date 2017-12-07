@@ -24,8 +24,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer>
 	@Query("SELECT p FROM Product p where p.brand = :brand")
 	ArrayList<Product> findProductByBrand(@Param("brand") String brand);
 	
-	//"select * from stockist.product where partNumber like \"%100%\";
-	
 	
 	@Query(value = "SELECT * FROM Product WHERE partNumber like %:partNumber%", nativeQuery = true)
 	ArrayList<Product> findByPartNumberContaining(@Param("partNumber") String partNumber);
