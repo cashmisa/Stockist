@@ -18,9 +18,8 @@ import com.sa45team7.stockist.model.Transaction;
 import com.sa45team7.stockist.service.ProductService;
 import com.sa45team7.stockist.service.TransactionService;
 
-
-@RequestMapping("/viewproduct")
 @Controller
+@RequestMapping("/viewproduct")
 public class ViewProductController {
 	//view one product and its transactions
 	//MENG GUAN
