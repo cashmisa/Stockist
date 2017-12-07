@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
             		.antMatchers("/admin/**").access("hasAuthority('admin')")
             		.antMatchers("/mechanic/**").access("hasAuthority('mechanic')")
-                .antMatchers("/", "/home").permitAll()
+                .antMatchers("/", "/home", "/css/**", "/js/**", "/images/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
