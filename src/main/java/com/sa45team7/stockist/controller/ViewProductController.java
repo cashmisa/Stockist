@@ -7,4 +7,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ViewProductController {
 	//view one product and its transactions
+	//MENG GUAN
 }

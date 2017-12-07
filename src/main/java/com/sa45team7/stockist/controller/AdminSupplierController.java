@@ -7,4 +7,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class AdminSupplierController {
 	//CRUD suppliers
+	//MAY KO
 }
