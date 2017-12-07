@@ -13,6 +13,7 @@
 <link href="/css/bootstrap-themes.css" rel="stylesheet" type="text/css" />
 <title><dec:title default="Web Page" /></title>
 <script src="/js/jquery.js"></script>
+<script src="/js/jquery-ui.js"></script>
 <dec:head />
 </head>
 <body>
