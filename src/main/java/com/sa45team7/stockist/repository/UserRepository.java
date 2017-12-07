@@ -1,6 +1,7 @@
 package com.sa45team7.stockist.repository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -18,5 +19,9 @@ public interface UserRepository extends JpaRepository<User, String>{
 	User findUserByUserName(@Param("userName") String userName);
 	
 	@Query("SELECT u FROM User u WHERE u.role = :role")
-	ArrayList<User> findUserByRole(@Param("role") String role);	
+	ArrayList<User> findUserByRole(@Param("role") String role);
+	
+	@Query("SELECT DISTINCT u.role FROM User u")
+	ArrayList<String> findRoles();
+
 }

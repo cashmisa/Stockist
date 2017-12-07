@@ -18,14 +18,14 @@
 			</tr>
 			<tr>
 				<td>Role:</td>
-				<td><form:input path="role" /></td>
+				<td><form:select path="role" items="${roleList}" /></td>
 			</tr>
 			<tr>
 				<td>Password:</td>
 				<td><form:password path="password" /></td>
 			</tr>
 			<tr>
-				<td><form:button type="submit" />create new user</td>
+				<td colspan="2"><form:button type="submit"> Create New User </form:button></td>
 				<td></td>
 			</tr>
 	</table>
