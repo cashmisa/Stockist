@@ -18,4 +18,6 @@ public interface TransactionService
 	ArrayList<Transaction> findTransactionByDate(Date startDate,Date endDate);
 
 	Transaction createTransaction(Transaction t);
+	
+	ArrayList<Transaction> findTransactionByPartNumberAndDate(int partNumber, Date startDate, Date endDate);
 }

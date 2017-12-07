@@ -1,5 +1,6 @@
 package com.sa45team7.stockist.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -30,14 +31,20 @@ public class AdminUserController {
 	@RequestMapping(value = "/listuser", method = RequestMethod.GET) //admin/user/listuser
 	public ModelAndView listUser() 
 	{
-		ModelAndView modelAndView = new ModelAndView("list-user");
+		ModelAndView modelAndView = new ModelAndView("listUser");
 		List<User> userList = userService.findAllUsers();
 		modelAndView.addObject("userList", userList);
 		return modelAndView;
 	}
+	
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	public ModelAndView createNewUser() {
+		ModelAndView modelAndView = new ModelAndView("newUser", "user", new User()); //viewname, modelname, modelobject
+		return modelAndView;
+	}
 
-	@RequestMapping(value = "/createuser", method = RequestMethod.POST) //admin/user/create
-	public ModelAndView createNewUser(@ModelAttribute @Valid User user, BindingResult result,
+	@RequestMapping(value = "/create", method = RequestMethod.POST) //admin/user/create
+	public ModelAndView createdUser(@ModelAttribute @Valid User user, BindingResult result,
 			final RedirectAttributes redirectAttributes) 
 	{
 		String createdUser = "Created user: " + user.getUsername();
@@ -53,7 +60,7 @@ public class AdminUserController {
 	@RequestMapping(value = "/edituser/{userName}", method = RequestMethod.GET)
 	public ModelAndView editUser(@PathVariable String userName) 
 	{
-		ModelAndView modelAndView = new ModelAndView("edit-user");
+		ModelAndView modelAndView = new ModelAndView("editUser");
 		User user = userService.findUser(userName);
 		modelAndView.addObject("user", user);
 		return modelAndView;
@@ -77,7 +84,7 @@ public class AdminUserController {
 	public ModelAndView delete(@PathVariable String userName, final RedirectAttributes redirectAttributes)
 	{
 		
-		ModelAndView modelAndView = new ModelAndView("redirect:/admin/user/list");
+		ModelAndView modelAndView = new ModelAndView("redirect:/admin/user/listuser");
 		User user = userService.findUser(userName);
 		userService.removeUser(user);
 		String deletedUser = "Deleted user: " + user.getUsername();	

@@ -44,5 +44,11 @@ public class TransactionServicempl implements TransactionService {
 			return transactionRepository.saveAndFlush(transaction);
 		
 	}
+	
+	@Transactional
+	public ArrayList<Transaction> findTransactionByPartNumberAndDate(int partNumber, Date startDate, Date endDate){
+		return transactionRepository.findTransactionByPartNumberAndDate(partNumber, startDate, endDate);
+	}
+	
 
 }

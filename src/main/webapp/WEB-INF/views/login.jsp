@@ -1,33 +1,37 @@
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <html>
-<spring:url value="/css/simple.css" var="style" />
-<link rel="STYLESHEET" type="text/css" href="${style}" />
-<form action="<c:url value="/login"/>" method="post">
-	<table class="framed">
-		<tr>
-			<td><spring:message code="fieldLabel.username" /></td>
-			<td colspan="3"><input type="text" name="username" size="40" /></td>
-		</tr>
-		<tr>
-			<td><spring:message code="fieldLabel.password" /></td>
-			<td colspan="3"><input type="password" name="password" size="40" /></td>
-		</tr>
-		<tr>
-			<td colspan="4">&nbsp;</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-<%-- 			<td><form:button name="submit" type="submit" value="s">
-					<img src="/image/button_login.gif" alt="" align="middle">
-				</form:button></td>
-			<td><form:button name="clear" type="reset" value="r">
-					<img src="/image/button_clear.gif" alt="" align="middle">
-				</form:button></td> --%>
-		</tr>
-		<tr><td colspan="2" align="center"> <button id="login">Login</button> </td></tr>
-	</table>
-</form>
+
+<head>
+<link href="/css/bootstrap4-business-tycoon.min.css" rel="stylesheet"
+	type="text/css" />
+<link href="/css/bootstrap-themes.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="card">
+		<div class="card-body">
+			<form action="<spring:url value="/login"/>" method="post">
+
+				<h6 class="card-title">Log In</h6>
+
+				<div class="ht-tm-element ht-tm-element-inner">
+					<spring:message code="login.username-label" var="un" />
+					<input type="text" class="form-control" id="username"
+						name="username" placeholder="${un}">
+				</div>
+
+				<div class="ht-tm-element ht-tm-element-inner">
+					<spring:message code="login.password-label" var="pw" />
+					<input type="password" class="form-control" id="password"
+						name="password" placeholder="${pw}">
+				</div>
+
+				<button type="submit" class="btn btn-outline-primary">
+					<spring:message code="login.submit-label" />
+				</button>
+
+			</form>
+		</div>
+	</div>
+</body>
 </html>
