@@ -6,5 +6,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin/product")
 @Controller
 public class AdminProductController {
-
+	//CRUD product
 }

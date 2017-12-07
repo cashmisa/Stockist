@@ -6,5 +6,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin/user")
 @Controller
 public class AdminUserController {
-
+	//CRUD users
 }

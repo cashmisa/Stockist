@@ -6,5 +6,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin/report")
 @Controller
 public class AdminReportController {
-
+	//select from list of supplier to print report
 }
