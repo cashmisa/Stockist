@@ -14,7 +14,7 @@ import com.sa45team7.stockist.model.User;
 import com.sa45team7.stockist.repository.UserRepository;
 
 @Service
-public class UserServiceIpml implements UserService {
+public class UserServiceImpl implements UserService {
 
 	@Resource
 	private UserRepository userRepository;
