@@ -3,6 +3,7 @@ package com.sa45team7.stockist.service;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.sa45team7.stockist.model.Product;
 import com.sa45team7.stockist.model.Transaction;
 
 
@@ -20,4 +21,5 @@ public interface TransactionService
 	Transaction createTransaction(Transaction t);
 	
 	ArrayList<Transaction> findTransactionByPartNumberAndDate(int partNumber, Date startDate, Date endDate);
+	
 }

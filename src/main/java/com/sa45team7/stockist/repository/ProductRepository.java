@@ -37,4 +37,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer>
 	
 	ArrayList<Product> findByShelfLocationContaining(String shelfLocation);
 	
+	@Query("SELECT DISTINCT p.partNumber FROM Product p")
+	ArrayList<Integer> findPartNumber();
+	
 }
