@@ -11,6 +11,7 @@ import java.util.List;
  */
 @Entity
 @NamedQuery(name="Supplier.findAll", query="SELECT s FROM Supplier s")
+@Table(name="supplier")
 public class Supplier implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -104,6 +105,28 @@ public class Supplier implements Serializable {
 		product.setSupplier(null);
 
 		return product;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + supplierId;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Supplier other = (Supplier) obj;
+		if (supplierId != other.supplierId)
+			return false;
+		return true;
 	}
 
 }

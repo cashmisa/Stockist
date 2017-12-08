@@ -46,8 +46,9 @@
 			<tr>
 				<td><spring:message code="fieldLabel.supplierId" /></td>
 				<td><form:select path="supplier">
+				
 				<form:option value="${product.supplier}"></form:option>
-				<form:options items="${suppliersList}" itemValue="supplierId" itemLabel="supplierName"></form:options>
+				<form:options items="${suppliersList}"></form:options>
 				</form:select></td>
 <%-- 				<td><form:errors path="supplier" cssStyle="color: red;" /></td> --%>
 			</tr>

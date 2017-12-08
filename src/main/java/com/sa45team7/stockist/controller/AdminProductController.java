@@ -1,11 +1,18 @@
 package com.sa45team7.stockist.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -86,14 +93,14 @@ public class AdminProductController {
 	{
 		ModelAndView mav = new ModelAndView("product-edit");
 		Product product = pService.findProduct(id);
-		mav.addObject("product", product);
+		mav.addObject("productMap", new HashMap<Product, String>().put(product, ""));
 		mav.addObject("suppliersList", sService.findAllSuppliers());
 		return mav;
 
 	}
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-	public ModelAndView editProduct(@ModelAttribute @Valid Product product, BindingResult result,
+	public ModelAndView editProduct(@ModelAttribute("productMap") @Valid HashMap<Product, String> productMap, BindingResult result,
 			@PathVariable Integer id, final RedirectAttributes redirectAttributes)throws ProductNotFound{
 
 	   if (result.hasErrors())
@@ -104,11 +111,21 @@ public class AdminProductController {
 		String message = "Product Details was successfully updated.";
 		
 		//product.setSupplier(sService.findSupplier(product.getSupplier().getSupplierId()));
-	
-		pService.updateProduct(product);
+		
+		
+//		Product pr = productMap.keySet().toArray();
+//		sService.findSupplier(productMap.get(pr))
+//		pService.updateProduct(product);
 
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
+	}
+	
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+	public String finishEditProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String productName = request.getParameter("productName");
+		
+		return "";
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
