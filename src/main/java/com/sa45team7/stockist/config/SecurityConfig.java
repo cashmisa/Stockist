@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						if(roles.contains("admin")) {
 							response.sendRedirect("/admin/user");
 						} else if(roles.contains("mechanic")) {
-							response.sendRedirect("/viewproduct");
+							response.sendRedirect("/catalogue");
 						}
 					}
 				})
