@@ -1,6 +1,7 @@
 package com.sa45team7.stockist.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -56,7 +57,13 @@ public class UserServiceImpl implements UserService {
 	public void removeUser(User user) {
 		userRepository.delete(user);
 	}
-
+	
+	@Override
+	@Transactional
+	public ArrayList<String> findAllRoles() {
+		return userRepository.findRoles();
+	}	
+	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userRepository.findUserByUserName(username);
@@ -66,5 +73,6 @@ public class UserServiceImpl implements UserService {
 			return user;
 		}
 	}
+
 	
 }

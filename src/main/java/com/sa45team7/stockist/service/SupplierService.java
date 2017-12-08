@@ -4,13 +4,18 @@ import java.util.ArrayList;
 
 import com.sa45team7.stockist.model.Supplier;
 
+
 public interface SupplierService {
 	
 	ArrayList<Supplier> findAllSuppliers();
 	
+	ArrayList<Integer> findAllSupplierIDs();
+	
+	void removeSupplier(Supplier supplier);
+	
 	Supplier findSupplier(Integer supplierId);
 	
-	Supplier findSupplierByName(String supplierName);
+	ArrayList<Supplier> findSupplierByName(String supplierName);
 	
 	Supplier findSupplierByContactName(String contactName);
 	
@@ -22,6 +27,6 @@ public interface SupplierService {
 	
 	Supplier createSupplier(Supplier supplier);
 	
-	Supplier updateSupplier(Supplier supplier);
-
+	Supplier changeSupplier(Supplier supplier);
 }
+	

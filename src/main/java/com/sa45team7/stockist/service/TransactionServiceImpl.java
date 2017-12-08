@@ -11,7 +11,7 @@ import com.sa45team7.stockist.repository.TransactionRepository;
 
 
 @Service
-public class TransactionServicempl implements TransactionService {
+public class TransactionServiceImpl implements TransactionService {
 	@Resource
 	private TransactionRepository transactionRepository;
 
@@ -44,5 +44,11 @@ public class TransactionServicempl implements TransactionService {
 			return transactionRepository.saveAndFlush(transaction);
 		
 	}
+	
+	@Transactional
+	public ArrayList<Transaction> findTransactionByPartNumberAndDate(int partNumber, Date startDate, Date endDate){
+		return transactionRepository.findTransactionByPartNumberAndDate(partNumber, startDate, endDate);
+	}
+	
 
 }

@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
             		.antMatchers("/admin/**").access("hasAuthority('admin')")
             		.antMatchers("/mechanic/**").access("hasAuthority('mechanic')")
-                .antMatchers("/", "/home").permitAll() //allowing home and localhost:XXXX
+                .antMatchers("/", "/home", "/css/**", "/js/**", "/images/**").permitAll() //allowing home and localhost:XXXX
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -45,9 +45,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 							throws IOException, ServletException {
 						Set<String> roles = AuthorityUtils.authorityListToSet(auth.getAuthorities());
 						if(roles.contains("admin")) {
-							response.sendRedirect("/admin");
+							response.sendRedirect("/admin/user");
 						} else if(roles.contains("mechanic")) {
-							response.sendRedirect("/mechanic");
+							response.sendRedirect("/viewproduct");
 						}
 					}
 				})
