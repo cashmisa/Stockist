@@ -23,7 +23,8 @@ public class Supplier implements Serializable {
 	private String email;
 
 	private String phoneNumber;
-
+	
+	
 	private String supplierName;
 
 	private String website;
