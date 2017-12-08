@@ -5,24 +5,26 @@
 
 <script>
 $(document).ready(function() {
-$( "#target1" ).focus(function() {
+$( "#target1" ).keypress(function() {
 	$("#error1").html("");
 });
-$( "#target2" ).focus(function() {
+$( "#target2" ).keypress(function() {
 	$("#error2").html("");
 });
-$( "#target3" ).focus(function() {
+$( "#target3" ).keypress(function() {
 	$("#error3").html("");
 });
-$( "#target4" ).focus(function() {
+$( "#target4" ).keypress(function() {
 	$("#error4").html("");
 });
-$( "#target5" ).focus(function() {
+$( "#target5" ).keypress(function() {
 	$("#error5").html("");
 });
 });
 
 </script>
+<br>
+<br>
 <h3>Edit Supplier page</h3>
 
 <div class="col-md-4">
@@ -51,12 +53,12 @@ $( "#target5" ).focus(function() {
 		</div>
 		<div class="form-group">
 			<spring:message code="fieldLabel.phoneNo" />
-			<form:input id="target3" path="phoneNumber" type="number" class="form-control target" />
+			<form:input id="target3" path="phoneNumber" class="form-control target" />
 			<form:errors id="error3" path="phoneNumber" cssStyle="color: red;" />
 		</div>
 		<div class="form-group">
 			<spring:message code="fieldLabel.email" />
-			<form:input id="target4" path="email" type="email" class="form-control target" />
+			<form:input id="target4" path="email" class="form-control target" />
 			<form:errors id="error4" path="email" cssStyle="color: red;" />
 		</div>
 
@@ -66,10 +68,14 @@ $( "#target5" ).focus(function() {
 			<form:errors id="error5" path="website" cssStyle="color: red;" />
 		</div>
 
-		<div class="col-sm-offset-2 col-sm-10">
-			<button type="submit" class="btn btn-primary">Update</button>
+		<div class="container">
+			<button class="btn btn-primary" type="submit" >Update</button>
+			
+			<a class="btn btn-primary" href="${pageContext.request.contextPath}/admin/supplier">
+			Cancel
+			</a> 
+		
 		</div>
-
 
 
 	</form:form>

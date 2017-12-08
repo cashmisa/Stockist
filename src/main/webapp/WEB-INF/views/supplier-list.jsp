@@ -2,26 +2,41 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<br>
 
 <h3>Supplier List page</h3>
+
 <style>
 
-table th {
+ table th {
     
-    background-color: #4CAF50;
+    background-color: #007bff;
     color: white;
 }
-
 
 </style>
 <br>
 
 <a href="${pageContext.request.contextPath}/admin/supplier/create">Add Supplier</a>
+<br>
+	<br>
+	
+	
+	<c:if test="${message != null}">
+	<div class="alert alert-primary" style="color:black" role="alert">
+  <h4 class="alert-heading">Success !!!</h4>
+ ${message}
 
-	<br>
-	<br>
-	<br>
-	<c:if test="${message != null}"><div id="message" style="color:#0000ff">${message}</div></c:if>
+</div>
+</c:if>
+
+	<c:if test="${errorMessage != null}">
+	<div class="alert alert-primary" style="color:red"  role="alert">
+  <h4 class="alert-heading" style="color:red" >Exception!!!</h4>
+ ${errorMessage}
+ 
+</div>
+</c:if>
 	
 	<br> 
 <c:if test="${fn:length(supplierList) gt 0}">

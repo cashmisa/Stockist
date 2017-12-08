@@ -70,7 +70,7 @@ public class AdminSupplierController {
 			return new ModelAndView("supplier-new");
 
 		ModelAndView view = new ModelAndView();
-		String message = "New Supplier " + supplier.getSupplierName() + " was successfully created.";
+		String message = "New Supplier <strong> " + supplier.getSupplierName() + " </strong> was successfully created.";
 
 		sService.createSupplier(supplier);
 		view.setViewName("redirect:/admin/supplier/list");
@@ -101,7 +101,7 @@ public class AdminSupplierController {
 		return new ModelAndView("supplier-edit");
 
 		ModelAndView view = new ModelAndView("redirect:/admin/supplier/list");
-		String message = "Supplier was successfully updated.";
+		String message = "Supplier <strong> "+ supplier.getSupplierName()  +" </strong> was successfully updated.";
 
 		sService.changeSupplier(supplier);
 
@@ -118,15 +118,17 @@ public class AdminSupplierController {
 		String message;
 	if(supplier.getProducts().size()>0)
 	{
-		 message= "The supplier cannot be deleted.";
+		 String errorMessage= "Supplier <strong> "+ supplier.getSupplierName() +" </strong> cannot be deleted.";
+		 redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
 	}
 	else
 	{
 		sService.removeSupplier(supplier);
-		 message = "The supplier " + supplier.getSupplierName() + " was successfully deleted.";
+		 message = "Supplier <strong> " + supplier.getSupplierName() + " </strong> was successfully deleted.";
+		 redirectAttributes.addFlashAttribute("message", message);
 	}
 		
-		redirectAttributes.addFlashAttribute("message", message);
+		
 		return view;
 	}
 

@@ -74,10 +74,11 @@
     border-collapse: collapse !important; }
     .table td,
     .table th {
-      background-color: #0080ff !important;
+      background-color: #007bff !important;
       color: white 
       }
       
+     
       
      
   .table-bordered th,

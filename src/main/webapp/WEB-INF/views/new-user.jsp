@@ -10,11 +10,12 @@
 </head>
 <body>
 <h1>Create User page</h1>
-<form:form method="POST" commandName="user" action="${pageContext.request.contextPath}/admin/user/create">
+<form:form method="POST" modelAttribute="user" action="${pageContext.request.contextPath}/admin/user/create">
 	<table>
 			<tr>
 				<td>Username:</td>
 				<td><form:input path="userName" /></td>
+				<td><form:errors path="userName"/></td>
 			</tr>
 			<tr>
 				<td>Role:</td>

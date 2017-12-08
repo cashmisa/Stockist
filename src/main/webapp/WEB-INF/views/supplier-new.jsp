@@ -6,26 +6,30 @@
 
 <script>
 $(document).ready(function() {
-$( "#target1" ).focus(function() {
+$( "#target1" ).keypress(function() {
 	$("#error1").html("");
 });
-$( "#target2" ).focus(function() {
+$( "#target2" ).keypress(function() {
 	$("#error2").html("");
 });
-$( "#target3" ).focus(function() {
+$( "#target3" ).keypress(function() {
 	$("#error3").html("");
 });
-$( "#target4" ).focus(function() {
+$( "#target4" ).keypress(function() {
 	$("#error4").html("");
 });
-$( "#target5" ).focus(function() {
+$( "#target5" ).keypress(function() {
 	$("#error5").html("");
 });
 });
 
 </script>
 <br>
+<br>
+
 <h3>New Supplier page</h3>
+<br>
+<br>
 
 <div class="col-md-4">
 	<form:form method="POST" modelAttribute="supplier" action="${pageContext.request.contextPath}/admin/supplier/create">
@@ -46,7 +50,7 @@ $( "#target5" ).focus(function() {
 		</div>
 		<div class="form-group">
 			<spring:message code="fieldLabel.phoneNo" />
-			<form:input id="target3" path="phoneNumber" class="form-control target" />
+			<form:input id="target3" path="phoneNumber"  class="form-control target" />
 			<form:errors id="error3" path="phoneNumber" cssStyle="color: red;" />
 		</div>
 		<div class="form-group">
@@ -59,13 +63,25 @@ $( "#target5" ).focus(function() {
 			<spring:message code="fieldLabel.website" />
 			<form:input id="target5" path="website" class="form-control target" />
 			<form:errors id="error5" path="website" cssStyle="color: red;" />
+	
+	</div>
+		<div class="container">
+			<button class="btn btn-primary" type="submit" >Create</button>
+			
+			<a class="btn btn-primary" href="${pageContext.request.contextPath}/admin/supplier">
+			Cancel
+			</a> 
+		
 		</div>
+		
+		
+		
+		
+		
 
-		<div class="col-sm-offset-2 col-sm-10">
-			<button type="submit" class="btn btn-primary">Create</button>
-		</div>
-
-
+		
+		
+		
 			
 </form:form>
 </div>
