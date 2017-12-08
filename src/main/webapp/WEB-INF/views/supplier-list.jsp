@@ -1,32 +1,32 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
-
-<script src="/js/jquery.tablesorter.js"></script>
-<script>
-	$(document).ready(function() {
-		$("#supplierTable").tablesorter({
-			widthFixed : true,
-			widgets : [ 'zebra' ]
-		});
-	});
-</script>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <h3>Supplier List page</h3>
+<style>
+
+table th {
+    
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+</style>
 <br>
 
 <a href="${pageContext.request.contextPath}/admin/supplier/create">Add Supplier</a>
 
 	<br>
 	<br>
+	<br>
+	<c:if test="${message != null}"><div id="message" style="color:#0000ff">${message}</div></c:if>
 	
+	<br> 
 <c:if test="${fn:length(supplierList) gt 0}">
-	<table  id="supplierTable" class="tablesorter">
+<div class="container table-responsive">
+	<table class="table table-bordered table-hover" id="supplier-table">
 		<thead>
 			<tr class="listHeading">
 				<th><spring:message code="fieldLabel.supplierId" /></th>
@@ -49,7 +49,7 @@
 					<td>${supplier.email}</td>
 					<td>${supplier.website}</td>
 					<td align="center"><a
-						href="${pageContext.request.contextPath}/admin/supplier/edit/${supplier.supplierId}.html"><spring:message
+						href="${pageContext.request.contextPath}/admin/supplier/edit/${supplier.supplierId}"><spring:message
 								code="caption.edit" /></a></td>
 					<td><a
 						href="${pageContext.request.contextPath}/admin/supplier/delete/${supplier.supplierId}.html"><spring:message
@@ -58,4 +58,5 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	</div>
 </c:if>

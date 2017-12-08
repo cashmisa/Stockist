@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.sa45team7.exception.SupplierNotFound;
 
 import com.sa45team7.stockist.model.Supplier;
+import com.sa45team7.stockist.service.ProductService;
 import com.sa45team7.stockist.service.SupplierService;
 import com.sa45team7.stockist.validator.SupplierValidator;
 
@@ -46,7 +47,7 @@ public class AdminSupplierController {
 	 */
 	
 	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = {"", "/list"}, method = RequestMethod.GET)
 	public ModelAndView supplierListPage() {
 		ModelAndView view = new ModelAndView("supplier-list");
 		List<Supplier> supplierList = sService.findAllSuppliers();
@@ -115,9 +116,17 @@ public class AdminSupplierController {
 
 		ModelAndView view = new ModelAndView("redirect:/admin/supplier/list");
 		Supplier supplier = sService.findSupplier(id);
+		String message;
+	if(supplier.getProducts().size()>0)
+	{
+		 message= "The supplier cannot be deleted.";
+	}
+	else
+	{
 		sService.removeSupplier(supplier);
-		String message = "The supplier " + supplier.getSupplierName() + " was successfully deleted.";
-
+		 message = "The supplier " + supplier.getSupplierName() + " was successfully deleted.";
+	}
+		
 		redirectAttributes.addFlashAttribute("message", message);
 		return view;
 	}
