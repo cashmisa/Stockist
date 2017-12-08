@@ -3,46 +3,71 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-<h3>New Supplier page</h3>
-<form:form method="POST" modelAttribute="supplier"
-	action="${pageContext.request.contextPath}/admin/supplier/create">
-	<table>
-		<tbody>
-			
-			<tr>
-				<td><spring:message code="fieldLabel.supplierName" /></td>
-				<td><form:input path="supplierName" /></td>
-				<td><form:errors path="supplierName" cssStyle="color: red;" /></td>
-			</tr>
-			<tr>
-				<td><spring:message code="fieldLabel.contactName" /></td>
-				<td><form:input path="contactName" /></td>
-				<td><form:errors path="contactName" cssStyle="color: red;" /></td>
-			</tr>
-			<tr>
-				<td><spring:message code="fieldLabel.phoneNo" /></td>
-				<td><form:input path="phoneNumber" /></td>
-				<td><form:errors path="phoneNumber" cssStyle="color: red;" /></td>
-			</tr>
 
-			<tr>
-				<td><spring:message code="fieldLabel.email" /></td>
-				<td><form:input path="email"/></td>
-				<td><form:errors path="email" cssStyle="color: red;" /></td>
-			</tr>
+<script>
+$(document).ready(function() {
+$( "#target1" ).focus(function() {
+	$("#error1").html("");
+});
+$( "#target2" ).focus(function() {
+	$("#error2").html("");
+});
+$( "#target3" ).focus(function() {
+	$("#error3").html("");
+});
+$( "#target4" ).focus(function() {
+	$("#error4").html("");
+});
+$( "#target5" ).focus(function() {
+	$("#error5").html("");
+});
+});
+
+</script>
+<br>
+<h3>New Supplier page</h3>
+
+<div class="col-md-4">
+	<form:form method="POST" modelAttribute="supplier" action="${pageContext.request.contextPath}/admin/supplier/create">
+
+
+		<div class="form-group">
+
+			<spring:message code="fieldLabel.supplierName" />
+			<form:input id="target1" path="supplierName" class="form-control" />
+			<form:errors id="error1" path="supplierName" cssStyle="color: red;" />
+
+
+		</div>
+		<div class="form-group">
+			<spring:message code="fieldLabel.contactName" />
+			<form:input id="target2" path="contactName" class="form-control target" />
+			<form:errors id="error2" path="contactName" cssStyle="color: red;" />
+		</div>
+		<div class="form-group">
+			<spring:message code="fieldLabel.phoneNo" />
+			<form:input id="target3" path="phoneNumber" class="form-control target" />
+			<form:errors id="error3" path="phoneNumber" cssStyle="color: red;" />
+		</div>
+		<div class="form-group">
+			<spring:message code="fieldLabel.email" />
+			<form:input id="target4" path="email" class="form-control target" />
+			<form:errors id="error4" path="email" cssStyle="color: red;" />
+		</div>
+
+		<div class="form-group">
+			<spring:message code="fieldLabel.website" />
+			<form:input id="target5" path="website" class="form-control target" />
+			<form:errors id="error5" path="website" cssStyle="color: red;" />
+		</div>
+
+		<div class="col-sm-offset-2 col-sm-10">
+			<button type="submit" class="btn btn-primary">Create</button>
+		</div>
+
+
 			
-			<tr>
-				<td><spring:message code="fieldLabel.website" /></td>
-				<td><form:input path="website"/></td>
-				<td><form:errors path="website" cssStyle="color: red;" /></td>
-			</tr>
-			
-			<tr>
-				<td><input type="submit" value="Create" /></td>
-				<td></td>
-				<td></td>
-			</tr>
-		</tbody>
-	</table>
 </form:form>
+</div>
+
 
