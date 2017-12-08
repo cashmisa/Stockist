@@ -118,15 +118,17 @@ public class AdminSupplierController {
 		String message;
 	if(supplier.getProducts().size()>0)
 	{
-		 message= "The supplier cannot be deleted.";
+		 String errorMessage= "The supplier "+ supplier.getSupplierName() +" cannot be deleted.";
+		 redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
 	}
 	else
 	{
 		sService.removeSupplier(supplier);
 		 message = "The supplier " + supplier.getSupplierName() + " was successfully deleted.";
+		 redirectAttributes.addFlashAttribute("message", message);
 	}
 		
-		redirectAttributes.addFlashAttribute("message", message);
+		
 		return view;
 	}
 

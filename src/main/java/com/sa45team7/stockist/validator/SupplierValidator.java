@@ -46,17 +46,29 @@ public class SupplierValidator implements Validator  {
 		      if (!(Phonepattern.matcher(supplier.getPhoneNumber()).matches()) && (!supplier.getPhoneNumber().isEmpty())) {
 		    	  arg1.rejectValue("phoneNumber", "error.supplier.phoneno.invalid");
 		      }*/
-	      
-	      if(supplier.getPhoneNumber().length()!=8 && (!supplier.getPhoneNumber().isEmpty()))
+	      Pattern phonePattern=Pattern.compile("[a-zA-Z]+", Pattern.CASE_INSENSITIVE);
+	      String s=supplier.getPhoneNumber();
+	    		
+	      if(!s.isEmpty())
 	      {
-	    	  arg1.rejectValue("phoneNumber", "error.supplier.phoneno.invalid");
+	    	  if((s.length()!=8) || (phonePattern.matcher(s).matches()))
+		      {
+		    	  arg1.rejectValue("phoneNumber", "error.supplier.phoneno.invalid");
+		      }
 	      }
-		      
-		      Pattern Websitepattern = Pattern.compile("(www\\.)+[a-zA-Z0-9\\.\\-\\_]+(\\.[a-zA-Z]{2,3})+(\\/[a-zA-Z0-9\\_\\-\\s\\.\\/\\?\\%\\#\\&\\=]*)?$",
-		    		  Pattern.CASE_INSENSITIVE);
-			      if (!(Websitepattern.matcher(supplier.getWebsite()).matches()) && (!supplier.getWebsite().isEmpty())) {
-			    	  arg1.rejectValue("website", "error.supplier.website.invalid");
-			      }
+	    		
+	    		
+	    			 
+	  		      Pattern Websitepattern = Pattern.compile("(www\\.)+[a-zA-Z0-9\\.\\-\\_]+(\\.[a-zA-Z]{2,3})+(\\/[a-zA-Z0-9\\_\\-\\s\\.\\/\\?\\%\\#\\&\\=]*)?$",
+	  		    		  Pattern.CASE_INSENSITIVE);
+	  			      if (!Websitepattern.matcher(supplier.getWebsite()).matches() && (!supplier.getWebsite().isEmpty()))
+	  			      {
+	  			    	  arg1.rejectValue("website", "error.supplier.website.invalid");
+	  			      }
+	  		     
+	    		
+	    		
+	     
 		     
 		
 		System.out.println(supplier.toString());

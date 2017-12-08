@@ -18,11 +18,25 @@
 <br>
 
 <a href="${pageContext.request.contextPath}/admin/supplier/create">Add Supplier</a>
+<br>
+	<br>
+	
+	
+	<c:if test="${message != null}">
+	<div class="alert alert-primary" style="color:black" role="alert">
+  <h4 class="alert-heading">Success !</h4>
+ ${message}
 
-	<br>
-	<br>
-	<br>
-	<c:if test="${message != null}"><div id="message" style="color:#0000ff">${message}</div></c:if>
+</div>
+</c:if>
+
+	<c:if test="${errorMessage != null}">
+	<div class="alert alert-primary" style="color:red"  role="alert">
+  <h4 class="alert-heading" style="color:red" >Exception!</h4>
+ ${errorMessage}
+ 
+</div>
+</c:if>
 	
 	<br> 
 <c:if test="${fn:length(supplierList) gt 0}">
