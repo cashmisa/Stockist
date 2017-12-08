@@ -31,6 +31,9 @@
 	</table>
 	<div>
 	<a href="${pageContext.request.contextPath}/admin/user/create">Add User</a>
+	<c:url var="add_url" value = "${pageContext.request.contextPath}/admin/user/create" />
+	<a href="${add_url}">Add User</a>
+	<br/>
 	<c:if test="${createdUser != null}"><div id="createdUser" style="color:#0000ff">${createdUser}</div></c:if> 
 	</div>
 </body>
