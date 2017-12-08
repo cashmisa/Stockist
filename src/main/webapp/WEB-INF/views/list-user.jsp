@@ -33,9 +33,9 @@ $(document).ready(function() {
 	<table id="userTable" class="tablesorter">
 	<thead>
 			<tr>
-				<th><spring:message code="fieldLabel.userName" /></th>
-				<th><spring:message code="fieldLabel.password" /></th>
-				<th><spring:message code="fieldLabel.role" /></th>
+				<th><spring:message code="fieldLabel.user.userName" /></th>
+				<th><spring:message code="fieldLabel.user.password" /></th>
+				<th><spring:message code="fieldLabel.user.role" /></th>
 				<th><spring:message code="caption.edit" /></th>
 				<th><spring:message code="caption.delete" /></th>
 			</tr>
