@@ -26,15 +26,19 @@ public class SupplierValidator implements Validator  {
 		ValidationUtils.rejectIfEmpty(arg1, "supplierName", "error.supplier.supplierName.empty");
 		
 		
-		ValidationUtils.rejectIfEmpty(arg1, "contactName", "error.supplier.contactName.empty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "contactName", "error.supplier.contactName.empty");
 		
-		ValidationUtils.rejectIfEmpty(arg1, "phoneNumber", "error.supplier.phoneNo.empty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "phoneNumber", "error.supplier.phoneNo.empty");
 		
-		ValidationUtils.rejectIfEmpty(arg1, "email", "error.supplier.email.empty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "email", "error.supplier.email.empty");
 		
-		ValidationUtils.rejectIfEmpty(arg1, "website", "error.supplier.website.empty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "website", "error.supplier.website.empty");
+		
+
 		
 		System.out.println(supplier.toString());
 	}
-
+	
+	
+	
 }

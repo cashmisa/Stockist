@@ -45,20 +45,36 @@ public class ViewProductController {
 		Integer idi = Integer.parseInt(id);
 		Date endDateD;
 		Date startDateD;
-		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			startDateD = df.parse(startDate);
 			endDateD = df.parse(endDate);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			System.out.println("We need validator here");
-			throw e;
-		}				
+			ModelAndView errorMav = new ModelAndView("viewProductTransaction");
+			errorMav.addObject("errorInvalidDate", "InvalidDate");
+			errorMav.addObject("startDate", startDate);
+			errorMav.addObject("endDate", endDate);
+			Product product = pService.findProduct(idi);
+			errorMav.addObject("product", product);
+			return errorMav;
+		}
+		if(endDateD.before(startDateD)) {
+			ModelAndView errorMav = new ModelAndView("viewProductTransaction");
+			errorMav.addObject("error", "date");
+			errorMav.addObject("startDate", startDate);
+			errorMav.addObject("endDate", endDate);
+			Product product = pService.findProduct(idi);
+			errorMav.addObject("product", product);
+			return errorMav;
+			
+		}
 		ModelAndView mav = new ModelAndView("viewProductTransaction");
 		Product product = pService.findProduct(idi);
+		ArrayList<Transaction> transactionsL = tService.findTransactionByPartNo(idi);
 		ArrayList<Transaction> transactions = tService.findTransactionByPartNumberAndDate(idi, startDateD, endDateD);
 		mav.addObject("product", product);
 		mav.addObject("transactionList", transactions);
+		mav.addObject("transactionL", transactionsL);
 		return mav;
 	}
 

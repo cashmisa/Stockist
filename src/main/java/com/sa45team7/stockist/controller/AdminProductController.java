@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.sa45team7.exception.ProductNotFound;
 import com.sa45team7.stockist.model.Product;
 import com.sa45team7.stockist.service.ProductService;
+import com.sa45team7.stockist.service.SupplierService;
 import com.sa45team7.stockist.validator.ProductValidator;
 
 
@@ -31,6 +32,9 @@ public class AdminProductController {
 	
 	@Autowired
 	private ProductService pService;
+	
+	@Autowired
+	private SupplierService sService;
 	
 	@Autowired
 	private ProductValidator pValidator;
@@ -56,13 +60,12 @@ public class AdminProductController {
 	public ModelAndView newProductPage()
 	 {
 		ModelAndView mav = new ModelAndView("product-new", "product", new Product());
-		ArrayList<Product> productpartNumber=pService.getProductList();
-		mav.addObject("productpartNumber",pService.getProductList());
+		mav.addObject("suppliersList", sService.findAllSuppliers());
 		return mav;
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public ModelAndView createNewEmployee(@ModelAttribute  @Valid Product product, BindingResult result,
+	public ModelAndView createNewProduct(@ModelAttribute  @Valid Product product, BindingResult result,
 			final RedirectAttributes redirectAttributes) {
 
 		if (result.hasErrors())
@@ -84,8 +87,7 @@ public class AdminProductController {
 		ModelAndView mav = new ModelAndView("product-edit");
 		Product product = pService.findProduct(id);
 		mav.addObject("product", product);
-		ArrayList<Product> productpartNumber = pService.getProductList();
-		mav.addObject("productpartNumber", productpartNumber);
+		mav.addObject("suppliersList", sService.findAllSuppliers());
 		return mav;
 
 	}
@@ -98,8 +100,11 @@ public class AdminProductController {
 		return new ModelAndView("product-edit");
 
 		ModelAndView mav = new ModelAndView("redirect:/admin/product/list");
-		String message = "Product Detals was successfully updated.";
-
+		
+		String message = "Product Details was successfully updated.";
+		
+		//product.setSupplier(sService.findSupplier(product.getSupplier().getSupplierId()));
+	
 		pService.updateProduct(product);
 
 		redirectAttributes.addFlashAttribute("message", message);

@@ -3,6 +3,7 @@
 	<!-- Any urls that are excluded will never be decorated by Sitemesh -->
 	<excludes>
 		<pattern>/login*</pattern>
+		<pattern>/error/</pattern>
 	</excludes>
 	
 	<!-- apply Sitemesh default template -->
