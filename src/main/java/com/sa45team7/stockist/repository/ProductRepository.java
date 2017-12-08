@@ -31,32 +31,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer>
 	
 	ArrayList<Product> findByBrandContaining(String brand);
 	
-	// TODO - remove unnecessary methods
-	ArrayList<Product> findByMinOrderQty(int minOrderQty);
-	ArrayList<Product> findByMinOrderQtyLessThanEqual(int minOrderQty);
-	ArrayList<Product> findByMinOrderQtyGreaterThanEqual(int minOrderQty);
-	ArrayList<Product> findByMinOrderQtyBetween(int min, int max);
-	
 	
 	ArrayList<Product> findByPartNameContaining(String partName);
-	
-	
-	ArrayList<Product> findByPrice(double price);
-	ArrayList<Product> findByPriceLessThanEqual(double price);	
-	ArrayList<Product> findByPriceGreaterThanEqual(double price);
-	ArrayList<Product> findByPriceBetween(double min, double max);
-	
-	
-	ArrayList<Product> findByQty(int qty);
-	ArrayList<Product> findByQtyLessThanEqual(int qty);
-	ArrayList<Product> findByQtyGreaterThanEqual(int qty);
-	ArrayList<Product> findByQtyBetween(int min, int max);
-	
-	
-	ArrayList<Product> findByReOrderQty(int reOrderQty);
-	ArrayList<Product> findByReOrderQtyLessThanEqual(int reOrderQty);
-	ArrayList<Product> findByReOrderQtyGreaterThanEqual(int reOrderQty);
-	ArrayList<Product> findByReOrderQtyBetween(int min, int max);
 	
 	
 	ArrayList<Product> findByShelfLocationContaining(String shelfLocation);

@@ -23,14 +23,15 @@
 					<td>${user.password}</td>
 					<td>${user.role}</td>
 					<td align="center">
-					<a href="${pageContext.request.contextPath}/admin/user/edit/${user.userName}">edit</a></td>
+					<a href="${pageContext.request.contextPath}/admin/user/edituser/${user.userName}">edit</a></td>
 					<td>
-					<a href="${pageContext.request.contextPath}/admin/user/delete/${user.userName}">delete</a></td>
+					<a href="${pageContext.request.contextPath}/admin/user/deleteuser/${user.userName}">delete</a></td>
 				</tr>
 			</c:forEach>
 	</table>
 	<div>
 	<a href="${pageContext.request.contextPath}/admin/user/create">Add User</a>
+	<c:if test="${createdUser != null}"><div id="createdUser" style="color:#0000ff">${createdUser}</div></c:if> 
 	</div>
 </body>
 </html>

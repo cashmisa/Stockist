@@ -1,7 +1,5 @@
 package com.sa45team7.stockist.controller;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -10,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sa45team7.stockist.model.Product;
 import com.sa45team7.stockist.model.ProductSearchDTO;
 import com.sa45team7.stockist.service.ProductService;
 
@@ -27,7 +24,7 @@ public class CatalogueController {
 	@RequestMapping(value= {"", "/reset"}, method = RequestMethod.GET)
 	public ModelAndView createNewBrowseCatalog()
 	{
-		ModelAndView view = new ModelAndView("browseCatalog");
+		ModelAndView view = new ModelAndView("browse-catalogue");
 		
 		ProductSearchDTO productSearchDTO = new ProductSearchDTO();
 		view.addObject("emptyProductSearchDTO", productSearchDTO);
@@ -39,7 +36,7 @@ public class CatalogueController {
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView browseCatalog(@ModelAttribute("emptyProductSearchDTO") ProductSearchDTO productSearchDTO, BindingResult bindingResult)
 	{
-		ModelAndView view = new ModelAndView("browseCatalog");
+		ModelAndView view = new ModelAndView("browse-catalogue");
 		
 		if(bindingResult.hasErrors())
 		{
@@ -54,7 +51,7 @@ public class CatalogueController {
 	@RequestMapping(value= {"/all"}, method = RequestMethod.GET)
 	public ModelAndView showAllProduct()
 	{
-		ModelAndView view = new ModelAndView("browseCatalog");
+		ModelAndView view = new ModelAndView("browse-catalogue");
 		
 		ProductSearchDTO productSearchDTO = new ProductSearchDTO();
 		

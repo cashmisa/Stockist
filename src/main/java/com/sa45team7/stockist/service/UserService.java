@@ -1,6 +1,7 @@
 package com.sa45team7.stockist.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -19,5 +20,7 @@ public interface UserService extends UserDetailsService {
 	User changeUser(User user);
 
 	void removeUser(User user);
+	
+	ArrayList<String> findAllRoles();
 
 	}
