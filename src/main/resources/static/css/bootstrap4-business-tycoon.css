@@ -74,7 +74,12 @@
     border-collapse: collapse !important; }
     .table td,
     .table th {
-      background-color: #fff !important; }
+      background-color: #0080ff !important;
+      color: white 
+      }
+      
+      
+     
   .table-bordered th,
   .table-bordered td {
     border: 1px solid #ddd !important; } }
@@ -557,6 +562,13 @@ pre {
           flex-wrap: wrap;
   margin-right: -15px;
   margin-left: -15px; }
+
+table th {
+    
+    background-color: #4CAF50;
+    color: white;
+}
+
 
 .no-gutters {
   margin-right: 0;

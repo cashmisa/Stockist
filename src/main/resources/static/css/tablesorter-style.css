@@ -1,5 +1,24 @@
 /* tables */
+table.searchTable td {
+	padding: 6px;
+}
 
+#searchButton {
+	margin-right: 6px;
+	padding-left: 18px;
+	padding-right: 18px;
+}
+
+#browseAllButton {
+	margin-right: 6px;
+	padding-left: 18px;
+	padding-right: 18px;
+}
+
+#resetButton {
+	padding-left: 18px;
+	padding-right: 18px;
+}
 
 table.tablesorter {
 	font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont,
