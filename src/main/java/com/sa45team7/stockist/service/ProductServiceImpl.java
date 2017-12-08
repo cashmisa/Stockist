@@ -1,6 +1,7 @@
 package com.sa45team7.stockist.service;
 
 import com.sa45team7.stockist.repository.ProductRepository;
+import com.sa45team7.stockist.repository.SupplierRepository;
 
 import java.util.ArrayList;
 import java.util.function.Predicate;
@@ -10,7 +11,9 @@ import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
 import com.sa45team7.stockist.model.Product;
+import com.sa45team7.stockist.model.ProductDTO;
 import com.sa45team7.stockist.model.ProductSearchDTO;
+import com.sa45team7.stockist.model.Supplier;
 
 @Service
 public class ProductServiceImpl implements ProductService
@@ -18,6 +21,9 @@ public class ProductServiceImpl implements ProductService
 	
 	@Resource
 	private ProductRepository productRepository;
+	
+	@Resource
+	private SupplierRepository supplierRepository;
 	
 	
 	@Override
@@ -67,6 +73,15 @@ public class ProductServiceImpl implements ProductService
 		return productRepository.saveAndFlush(product);
 	}
 	
+	@Override
+	@Transactional
+	public Product createProduct(ProductDTO productDTO)
+	{
+		Product product = new Product();
+		product = convertToProduct(product, productDTO);
+		return productRepository.saveAndFlush(product);
+	}
+	
 	
 	@Override
 	@Transactional
@@ -83,6 +98,27 @@ public class ProductServiceImpl implements ProductService
 		return productRepository.saveAndFlush(product);
 	}
 	
+	@Override
+	@Transactional
+	public Product updateProduct(ProductDTO productDTO) {
+		Product product = productRepository.findOne(productDTO.getPartNumber());
+		product = convertToProduct(product, productDTO);
+		return productRepository.saveAndFlush(product);
+	}
+	
+	public Product convertToProduct(Product product, ProductDTO productDTO) {
+		product.setPartNumber(productDTO.getPartNumber());
+		product.setPartName(productDTO.getPartName());
+		product.setBrand(productDTO.getBrand());
+		product.setMinOrderQty(productDTO.getMinOrderQty());
+		product.setPrice(productDTO.getPrice());
+		product.setQty(productDTO.getQty());
+		product.setReOrderQty(productDTO.getReOrderQty());
+		product.setShelfLocation(productDTO.getShelfLocation());
+		Supplier supplier = supplierRepository.findOne(productDTO.getSupplierId());
+		product.setSupplier(supplier);
+		return product;
+	}
 	
 	@Override
 	public ArrayList<Product> findProductByCriteria(ProductSearchDTO productSearchDTO)

@@ -3,12 +3,16 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-<h3>Edit Supplier page</h3>
-<form:form method="POST" modelAttribute="product"
-	action="${pageContext.request.contextPath}/admin/product/edit/${product.partNumber}">
+<h3>Edit Product</h3>
+<form:form method="POST" modelAttribute="productDTO"
+	action="${pageContext.request.contextPath}/admin/product/edit/${productDTO.partNumber}">
 	<table>
 		<tbody>
-			
+			<tr>
+				<td><spring:message code="fieldLabel.partNumber" /></td>
+				<td><form:input path="partNumber" readonly="true"/></td>
+				<td><form:errors path="partNumber" cssStyle="color: red;" /></td>
+			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.partName" /></td>
 				<td><form:input path="partName" /></td>
@@ -16,13 +20,13 @@
 			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.partBrand" /></td>
-				<td><form:input path="Brand" /></td>
-				<td><form:errors path="Brand" cssStyle="color: red;" /></td>
+				<td><form:input path="brand" /></td>
+				<td><form:errors path="brand" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.partPrice" /></td>
-				<td><form:input path="Price" /></td>
-				<td><form:errors path="Price" cssStyle="color: red;" /></td>
+				<td>$<form:input path="price" /></td>
+				<td><form:errors path="price" cssStyle="color: red;" /></td>
 			</tr>
 
 			<tr>
@@ -45,10 +49,8 @@
 			
 			<tr>
 				<td><spring:message code="fieldLabel.supplierId" /></td>
-				<td><form:select path="supplier">
-				
-				<form:option value="${product.supplier}"></form:option>
-				<form:options items="${suppliersList}"></form:options>
+				<td><form:select path="supplierId">				
+				<form:options items="${suppliersList}" selected="${productDTO.supplierId}"/>
 				</form:select></td>
 <%-- 				<td><form:errors path="supplier" cssStyle="color: red;" /></td> --%>
 			</tr>

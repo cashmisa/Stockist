@@ -19,11 +19,7 @@
 </head>
 <body>
 	<div>
-		<!-- /header -->
-		<div id="m_header">
-			<%@ include file="header.jsp"%>
-		</div>
-
+	
 		<!-- /top menu -->
 		<div id="m_menu_top">
 			<%@ include file="menu-top.jsp"%>
