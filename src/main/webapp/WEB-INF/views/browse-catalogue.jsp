@@ -20,7 +20,7 @@
 	<h1><spring:message code="fieldLabel.productCatalogue" /></h1>
 	<div>
 
-		<table>
+		<table class="searchTable">
 
 			<tr>
 				<td><spring:message code="fieldLabel.partNumber" /></td>
@@ -42,12 +42,12 @@
 				<td><form:input path="shelfLocation" /></td>
 			</tr>
 
-			<tr id="tableButton">
-				<td colspan="2"><form:button type="submit"> <spring:message code="fieldLabel.search" /> </form:button> 
+			<tr>
+				<td colspan="2" align="justify" id="tableButton"><form:button type="submit" class="btn btn-outline-primary" id="searchButton"> <spring:message code="button.search" /> </form:button> 
 				<a
-					href="${pageContext.request.contextPath}/catalogue/all"><input type="button" value="<spring:message code="fieldLabel.browseAll" />"></input></a>
+					href="${pageContext.request.contextPath}/catalogue/all"><input class="btn btn-outline-primary" id="browseAllButton" type="button" value="<spring:message code="button.browseAll" />"></input></a>
 					 <a
-					href="${pageContext.request.contextPath}/catalogue/reset"><input type="button" value="<spring:message code="fieldLabel.reset" />"></input></a></td>
+					href="${pageContext.request.contextPath}/catalogue/reset"><input class="btn btn-outline-primary" id="resetButton" type="button" value="<spring:message code="button.reset" />"></input></a></td>
 			</tr>
 
 		</table>
@@ -56,24 +56,24 @@
 
 	<c:if test="${productList == null}">
 		<h5>
-			<spring:message code="fieldLabel.startSearch" />
+			<spring:message code="message.startSearch" />
 		</h5>
 	</c:if>
 
 	<c:if test="${productList.size() == 0}">
 		<h5>
-			<spring:message code="fieldLabel.pleaseRefineSearch" />
+			<spring:message code="message.pleaseRefineSearch" />
 		</h5>
 	</c:if>
 
 	<c:if test="${productList.size() > 0}">
 		<%-- Display product info --%>
 		<h5>
-			<spring:message code="fieldLabel.showResult" arguments="${productList.size()};${productList.size()}" htmlEscape="false"
+			<spring:message code="message.showResult" arguments="${productList.size()};${productList.size()}" htmlEscape="false"
 				argumentSeparator=";" />
 		</h5>
 		<br>
-		<h6><strong>TIP!</strong> <spring:message code="fieldLabel.tip" /></h6>
+		<h6><strong>TIP!</strong> <spring:message code="message.tip" /></h6>
 		<table id="productTable" class="tablesorter">
 			<thead>
 				<tr>
