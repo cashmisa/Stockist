@@ -21,7 +21,7 @@ public class UserValidator implements Validator {
 		{
 			User user = (User) arg0;
 			
-			ValidationUtils.rejectIfEmpty(arg1, "userName", "error.user.userName.empty");
+			ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "userName", "error.user.userName.empty");
 			
 			System.out.println(user.toString());			
 		}
