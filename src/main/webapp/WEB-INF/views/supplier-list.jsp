@@ -5,17 +5,25 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
 
+<script src="/js/jquery.tablesorter.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#supplierTable").tablesorter({
+			widthFixed : true,
+			widgets : [ 'zebra' ]
+		});
+	});
+</script>
 
 <h3>Supplier List page</h3>
 <br>
 
-<a href="${pageContext.request.contextPath}/admin/supplier/create">Add
-	Supplier</a>
-	<br>
+
 	
 <c:if test="${fn:length(supplierList) gt 0}">
-	<table border=2>
+	<table  id="supplierTable" class="tablesorter">
 		<thead>
 			<tr class="listHeading">
 				<th><spring:message code="fieldLabel.supplierId" /></th>
