@@ -17,8 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.sa45team7.exception.SupplierNotFound;
-
+import com.sa45team7.stockist.exception.SupplierNotFound;
 import com.sa45team7.stockist.model.Supplier;
 import com.sa45team7.stockist.service.ProductService;
 import com.sa45team7.stockist.service.SupplierService;
