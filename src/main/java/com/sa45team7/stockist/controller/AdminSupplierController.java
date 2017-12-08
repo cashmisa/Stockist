@@ -21,7 +21,7 @@ import com.sa45team7.exception.SupplierNotFound;
 
 import com.sa45team7.stockist.model.Supplier;
 import com.sa45team7.stockist.service.SupplierService;
-import com.sa45team7.stocklist.validator.SupplierValidator;
+import com.sa45team7.stockist.validator.SupplierValidator;
 
 @RequestMapping("/admin/supplier")
 @Controller
