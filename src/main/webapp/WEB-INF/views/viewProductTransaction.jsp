@@ -7,8 +7,6 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<script src="${pageContext.request.contextPath}/js/jquery.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery-ui.js"></script>
 <form:form method="post"
 	action="${pageContext.request.contextPath}/viewproduct/${id}">
 	<h3>
@@ -57,12 +55,16 @@
 	<table style="cellspacing: 2; cellpadding: 2; border: 1;">
 		<tr>
 			<td><spring:message code="fieldLabel.startDate" /></td>
-			<td><input class="form-control" value="yyyy-mm-dd"
+			
+			<td><input class="form-control" value="${startDate != null ? startDate : 'yyyy-mm-dd'}"
 				id="example-date-input" type="date" name="startDate"></td>
 			<td><spring:message code="fieldLabel.endDate" /></td>
-			<td><input class="form-control" value="yyyy-mm-dd"
+			<td><input class="form-control" value="${endDate != null ? endDate : 'yyyy-mm-dd'}"
 				id="example-date-input" type="date" name="endDate"></td>
+			<tr><td><span>${errorInvalidDate == "InvalidDate" ? 'Error: Invalid Date(s), please verify' : '' }
+			</span><span>${error == "date" ? 'Error: Start date is after end date' : '' }</span><td></td>	
 		</tr>
+		
 		<c:choose>
 			<c:when test="${fn:length(transactionList) gt 0}">
 				<tr class="listHeading">
