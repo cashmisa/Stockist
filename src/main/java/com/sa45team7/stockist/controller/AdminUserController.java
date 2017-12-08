@@ -63,6 +63,8 @@ public class AdminUserController {
 		ModelAndView modelAndView = new ModelAndView("edit-user");
 		User user = userService.findUser(userName);
 		modelAndView.addObject("user", user);
+		ArrayList<String> roleList = userService.findAllRoles();
+		modelAndView.addObject("roleList", roleList);
 		return modelAndView;		
 	}
 	
@@ -79,7 +81,7 @@ public class AdminUserController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "deleteuser/{userName)", method = RequestMethod.GET)
+	@RequestMapping(value = "deleteuser/{userName}", method = RequestMethod.GET)
 	public ModelAndView delete(@PathVariable String userName, final RedirectAttributes redirectAttributes)
 	{	
 		ModelAndView modelAndView = new ModelAndView("redirect:/admin/user/listuser");

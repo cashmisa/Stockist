@@ -1,38 +1,39 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
 
+<script src="/js/jquery.tablesorter.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#supplierTable").tablesorter({
+			headers : {
+				5 : {
+					sorter : false
+				},
+
+				6 : {
+					sorter : false
+				},
+
+				7 : {
+					sorter : false
+				}
+			}
+		});
+	});
+</script>
 
 <h3>Supplier List page</h3>
 <br>
-<form:form method="POST" modelAttribute="supplier"
-	action="${pageContext.request.contextPath}/admin/supplier/list/${supplier.supplierName}.html">
-
-<table>
-		<tbody>
-			<tr>
-				<td><spring:message code="fieldLabel.supplierName" /></td>
-				<td><form:input path="supplierName"  /></td>
-				
-			</tr>
-</tbody>
-</table>
-
-<input type="submit" value="Search"> 
-<input type="reset" value="Reset" >
-</form:form>
 
 
-<a href="${pageContext.request.contextPath}/admin/supplier/create">Add
-	Supplier</a>
-	<br>
-	
+
 <c:if test="${fn:length(supplierList) gt 0}">
-	<table border=2>
+	<table id="supplierTable" class="tablesorter">
 		<thead>
 			<tr class="listHeading">
 				<th><spring:message code="fieldLabel.supplierId" /></th>
@@ -57,8 +58,7 @@
 					<td align="center"><a
 						href="${pageContext.request.contextPath}/admin/supplier/edit/${supplier.supplierId}.html"><spring:message
 								code="caption.edit" /></a></td>
-					<td><a
-						href="${pageContext.request.contextPath}/admin/supplier/delete/${supplier.supplierId}.html"><spring:message
+					<td><a href="${pageContext.request.contextPath}/admin/supplier/delete/${supplier.supplierId}.html"><spring:message
 								code="caption.delete" /></a></td>
 				</tr>
 			</c:forEach>

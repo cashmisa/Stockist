@@ -1,4 +1,4 @@
-package com.sa45team7.validator;
+package com.sa45team7.stockist.validator;
 
 import org.springframework.stereotype.Component;
 
@@ -7,6 +7,7 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.sa45team7.stockist.model.Supplier;
+
 @Component
 public class SupplierValidator implements Validator  {
 
