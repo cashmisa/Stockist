@@ -1,4 +1,4 @@
-package com.sa45team7.validator;
+package com.sa45team7.stocklist.validator;
 
 import org.springframework.stereotype.Component;
 

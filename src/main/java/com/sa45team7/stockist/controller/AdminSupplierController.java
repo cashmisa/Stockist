@@ -21,6 +21,7 @@ import com.sa45team7.exception.SupplierNotFound;
 
 import com.sa45team7.stockist.model.Supplier;
 import com.sa45team7.stockist.service.SupplierService;
+import com.sa45team7.stocklist.validator.SupplierValidator;
 
 @RequestMapping("/admin/supplier")
 @Controller
@@ -30,12 +31,12 @@ public class AdminSupplierController {
 	private SupplierService sService;
 	
 	
-	/*@Autowired
+	@Autowired
 	private SupplierValidator sValidator;
 	@InitBinder("supplier")
 	private void initSupplierBinder(WebDataBinder binder) {
 		binder.setValidator(sValidator);
-	}*/
+	}
 	
 	
 	/**
