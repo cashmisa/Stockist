@@ -2,16 +2,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<br>
 
 <h3>Supplier List page</h3>
+
 <style>
 
-table th {
+ table th {
     
-    background-color: #4CAF50;
+    background-color: #007bff;
     color: white;
 }
-
 
 </style>
 <br>

@@ -23,6 +23,8 @@ $( "#target5" ).focus(function() {
 });
 
 </script>
+<br>
+<br>
 <h3>Edit Supplier page</h3>
 
 <div class="col-md-4">
@@ -66,10 +68,14 @@ $( "#target5" ).focus(function() {
 			<form:errors id="error5" path="website" cssStyle="color: red;" />
 		</div>
 
-		<div class="col-sm-offset-2 col-sm-10">
-			<button type="submit" class="btn btn-primary">Update</button>
+		<div class="container">
+			<button class="btn btn-primary" type="submit" >Update</button>
+			
+			<a class="btn btn-primary" href="${pageContext.request.contextPath}/admin/supplier">
+			Cancel
+			</a> 
+		
 		</div>
-
 
 
 	</form:form>

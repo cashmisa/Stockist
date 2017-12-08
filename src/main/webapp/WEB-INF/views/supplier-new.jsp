@@ -25,7 +25,11 @@ $( "#target5" ).focus(function() {
 
 </script>
 <br>
+<br>
+
 <h3>New Supplier page</h3>
+<br>
+<br>
 
 <div class="col-md-4">
 	<form:form method="POST" modelAttribute="supplier" action="${pageContext.request.contextPath}/admin/supplier/create">
@@ -46,12 +50,12 @@ $( "#target5" ).focus(function() {
 		</div>
 		<div class="form-group">
 			<spring:message code="fieldLabel.phoneNo" />
-			<form:input id="target3" path="phoneNumber" class="form-control target" />
+			<form:input id="target3" path="phoneNumber" type="number" class="form-control target" />
 			<form:errors id="error3" path="phoneNumber" cssStyle="color: red;" />
 		</div>
 		<div class="form-group">
 			<spring:message code="fieldLabel.email" />
-			<form:input id="target4" path="email" class="form-control target" />
+			<form:input id="target4" path="email" type="email" class="form-control target" />
 			<form:errors id="error4" path="email" cssStyle="color: red;" />
 		</div>
 
@@ -59,13 +63,25 @@ $( "#target5" ).focus(function() {
 			<spring:message code="fieldLabel.website" />
 			<form:input id="target5" path="website" class="form-control target" />
 			<form:errors id="error5" path="website" cssStyle="color: red;" />
+	
+	</div>
+		<div class="container">
+			<button class="btn btn-primary" type="submit" >Create</button>
+			
+			<a class="btn btn-primary" href="${pageContext.request.contextPath}/admin/supplier">
+			Cancel
+			</a> 
+		
 		</div>
+		
+		
+		
+		
+		
 
-		<div class="col-sm-offset-2 col-sm-10">
-			<button type="submit" class="btn btn-primary">Create</button>
-		</div>
-
-
+		
+		
+		
 			
 </form:form>
 </div>
