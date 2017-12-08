@@ -20,7 +20,10 @@
 <h3>Supplier List page</h3>
 <br>
 
+<a href="${pageContext.request.contextPath}/admin/supplier/create">Add Supplier</a>
 
+	<br>
+	<br>
 	
 <c:if test="${fn:length(supplierList) gt 0}">
 	<table  id="supplierTable" class="tablesorter">
