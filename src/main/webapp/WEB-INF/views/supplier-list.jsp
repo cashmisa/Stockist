@@ -24,7 +24,7 @@
 	
 	<c:if test="${message != null}">
 	<div class="alert alert-primary" style="color:black" role="alert">
-  <h4 class="alert-heading">Success !</h4>
+  <h4 class="alert-heading">Success !!!</h4>
  ${message}
 
 </div>
@@ -32,7 +32,7 @@
 
 	<c:if test="${errorMessage != null}">
 	<div class="alert alert-primary" style="color:red"  role="alert">
-  <h4 class="alert-heading" style="color:red" >Exception!</h4>
+  <h4 class="alert-heading" style="color:red" >Exception!!!</h4>
  ${errorMessage}
  
 </div>
