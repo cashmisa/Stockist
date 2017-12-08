@@ -45,7 +45,7 @@ public class ViewProductController {
 		Integer idi = Integer.parseInt(id);
 		Date endDateD;
 		Date startDateD;
-		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			startDateD = df.parse(startDate);
 			endDateD = df.parse(endDate);
