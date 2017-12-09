@@ -29,6 +29,8 @@ public interface ProductService {
 	
 	ArrayList<Product> findProductByCriteria(ProductSearchDTO productSearchDTO);
 
+	ArrayList<Product> getProductListSorted();
+
 	
 
 }
