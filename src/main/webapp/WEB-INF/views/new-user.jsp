@@ -15,7 +15,6 @@
 			<tr>
 				<td>Username:</td>
 				<td><form:input path="userName" /></td>
-				<td><form:errors path="userName"/></td>
 			</tr>
 			<tr>
 				<td>Role:</td>
@@ -23,7 +22,7 @@
 			</tr>
 			<tr>
 				<td>Password:</td>
-				<td><form:password path="password" /></td>
+		 <form:errors path="password" /><form:password path="password" />
 			</tr>
 			<tr>
 				<td colspan="2"><form:button type="submit"> Create New User </form:button></td>
