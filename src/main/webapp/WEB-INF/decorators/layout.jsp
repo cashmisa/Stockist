@@ -3,6 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
@@ -19,7 +20,7 @@
 </head>
 <body>
 	<div>
-	
+
 		<!-- /top menu -->
 		<div id="m_menu_top">
 			<%@ include file="menu-top.jsp"%>
@@ -27,7 +28,7 @@
 
 		<div id="m_container">
 			<div id="content">
-				<div class="row" style="margin-right:0px">
+				<div class="row" style="margin-right: 0px">
 					<div class="col-sm-2">
 						<%@ include file="sidebar.jsp"%>
 					</div>

@@ -8,7 +8,7 @@
 	type="text/css" />
 <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="/css/bootstrap-themes.css" rel="stylesheet" type="text/css" />
-<title>404</title>
+<title>403</title>
 <script src="/js/jquery.js"></script>
 <script src="/js/jquery-ui.js"></script>
 </head>
@@ -18,8 +18,8 @@
 			<%@ include file="/WEB-INF/decorators/menu-top.jsp"%>
 		</div>
 		<div class="jumbotron text-center">
-			<h1 class="display-3">404: Page Not Found</h1>
-			<p class="lead">Sorry, you just can't have everything in life.</p>
+			<h1 class="display-3">403: Forbidden</h1>
+			<p class="lead">Hmm, you're not that VIP.</p>
 		</div>
 	</div>
 </body>
