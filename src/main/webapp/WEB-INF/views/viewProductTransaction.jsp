@@ -51,62 +51,78 @@
 			<td>${product.shelfLocation}</td>
 		</tr>
 	</table>
+
 	<br>
 	<table style="cellspacing: 2; cellpadding: 2; border: 1;">
-		<tr>
-			<td><spring:message code="fieldLabel.startDate" /></td>
-
-			<td><form:input path="startDate" class="form-control"
-					value="${startDate != null ? startDate : 'yyyy-mm-dd'}"
-					id="example-date-input" type="date" name="startDate" /></td>
-			<td><spring:message code="fieldLabel.endDate" /></td>
-			<td><form:input path="endDate" class="form-control"
-					value="${endDate != null ? endDate : 'yyyy-mm-dd'}"
-					id="example-date-input" type="date" name="endDate" /></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td><form:errors path="startDate" cssStyle="color: red;" /></td>
-			<td></td>
-			<td><form:errors path="endDate" cssStyle="color: red;" /></td>
-		</tr>
-
 		<c:choose>
-			<c:when test="${fn:length(transactionList) gt 0}">
-				<tr class="listHeading">
-					<th><spring:message code="fieldLabel.transactionId" /></th>
-					<th><spring:message code="fieldLabel.transactionDate" /></th>
-					<th><spring:message code="fieldLabel.transactionCustomer" /></th>
-					<th><spring:message code="fieldLabel.transactionQty" /></th>
-					<th><spring:message code="fieldLabel.transactionType" /></th>
-					<th><spring:message code="fieldLabel.transactionUser" /></th>
-					<th><spring:message code="fieldLabel.transactionRemarks" /></th>
+			<c:when test="${fn:length(transactionL) gt 0}">
+
+				<tr>
+					<td><spring:message code="fieldLabel.startDate" /></td>
+
+					<td><form:input path="startDate" class="form-control" value=""
+							id="example-date-input" type="date" name="startDateA" /></td>
+					<td><spring:message code="fieldLabel.endDate" /></td>
+					<td><form:input path="endDate" class="form-control" value=""
+							id="example-date-input" type="date" name="endDateA" /></td>
 				</tr>
-				<c:forEach var="transaction" items="${transactionList}">
-					<tr class="listRecord">
-						<td>${transaction.transactionId}</td>
-						<td>${transaction.date}</td>
-						<td>${transaction.customer}</td>
-						<td>${transaction.qty}</td>
-						<td>${transaction.transactionType}</td>
-						<td>${transaction.user.userName}</td>
-						<td>${transaction.remarks}</td>
-					</tr>
-				</c:forEach>
-				<br>
+				<tr>
+					<td></td>
+					<td><form:errors path="startDate" cssStyle="color: red;" /></td>
+					<td></td>
+					<td><form:errors path="endDate" cssStyle="color: red;" /></td>
+				</tr>
+
+
+
+				<c:choose>
+					<c:when test="${fn:length(transactionList) gt 0}">
+
+						<tr class="listHeading">
+							<th><spring:message code="fieldLabel.transactionId" /></th>
+							<th><spring:message code="fieldLabel.transactionDate" /></th>
+							<th><spring:message code="fieldLabel.transactionCustomer" /></th>
+							<th><spring:message code="fieldLabel.transactionQty" /></th>
+							<th><spring:message code="fieldLabel.transactionType" /></th>
+							<th><spring:message code="fieldLabel.transactionUser" /></th>
+							<th><spring:message code="fieldLabel.transactionRemarks" /></th>
+						</tr>
+						<c:forEach var="transaction" items="${transactionList}">
+							<tr class="listRecord">
+								<td>${transaction.transactionId}</td>
+								<td>${transaction.date}</td>
+								<td>${transaction.customer}</td>
+								<td>${transaction.qty}</td>
+								<td>${transaction.transactionType}</td>
+								<td>${transaction.user.userName}</td>
+								<td>${transaction.remarks}</td>
+							</tr>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<tr>
+							<td><spring:message code="Message.noTransactionFound" /></td>
+						</tr>
+					</c:otherwise>
+				</c:choose>
+				<tr>
+					<td colspan="2" align="left"><br></br> <form:button
+							type="submit" class="btn btn-outline-primary">
+							<spring:message code="button.filter" />
+						</form:button></td>
+				</tr>
+
 			</c:when>
 			<c:otherwise>
 				<tr>
-					<td><spring:message code="fieldLabel.transactionNotFound" /></td>
+					<td><spring:message code="Message.noPreviousTransaction" /></td>
 				</tr>
 			</c:otherwise>
 		</c:choose>
+		<tr><td><a href="${pageContext.request.contextPath}/catalogue"
+			class="btn btn-outline-primary"><spring:message
+				code="button.returnToCatalogue" /></a></td></tr>
 
-		<tr>
-			<td>&nbsp;</td>
-			<td colspan="2" align="left"><br></br> <input type="submit"
-				value="Filter"></td>
-		</tr>
 	</table>
 </form:form>
 
