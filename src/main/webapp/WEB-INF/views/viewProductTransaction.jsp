@@ -7,7 +7,7 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<form:form method="post"
+<form:form modelAttribute="transactionSearchHelper" method="post"
 	action="${pageContext.request.contextPath}/viewproduct/${id}">
 	<h3>
 		<spring:message code="fieldLabel.viewProduct" />
@@ -55,16 +55,22 @@
 	<table style="cellspacing: 2; cellpadding: 2; border: 1;">
 		<tr>
 			<td><spring:message code="fieldLabel.startDate" /></td>
-			
-			<td><input class="form-control" value="${startDate != null ? startDate : 'yyyy-mm-dd'}"
-				id="example-date-input" type="date" name="startDate"></td>
+
+			<td><form:input path="startDate" class="form-control"
+					value="${startDate != null ? startDate : 'yyyy-mm-dd'}"
+					id="example-date-input" type="date" name="startDate" /></td>
 			<td><spring:message code="fieldLabel.endDate" /></td>
-			<td><input class="form-control" value="${endDate != null ? endDate : 'yyyy-mm-dd'}"
-				id="example-date-input" type="date" name="endDate"></td>
-			<tr><td><span>${errorInvalidDate == "InvalidDate" ? 'Error: Invalid Date(s), please verify' : '' }
-			</span><span>${error == "date" ? 'Error: Start date is after end date' : '' }</span><td></td>	
+			<td><form:input path="endDate" class="form-control"
+					value="${endDate != null ? endDate : 'yyyy-mm-dd'}"
+					id="example-date-input" type="date" name="endDate" /></td>
 		</tr>
-		
+		<tr>
+			<td></td>
+			<td><form:errors path="startDate" cssStyle="color: red;" /></td>
+			<td></td>
+			<td><form:errors path="endDate" cssStyle="color: red;" /></td>
+		</tr>
+
 		<c:choose>
 			<c:when test="${fn:length(transactionList) gt 0}">
 				<tr class="listHeading">
@@ -95,6 +101,7 @@
 				</tr>
 			</c:otherwise>
 		</c:choose>
+
 		<tr>
 			<td>&nbsp;</td>
 			<td colspan="2" align="left"><br></br> <input type="submit"
