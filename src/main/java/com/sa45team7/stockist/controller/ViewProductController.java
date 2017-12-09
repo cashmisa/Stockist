@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,8 @@ import com.sa45team7.stockist.model.Product;
 import com.sa45team7.stockist.model.Transaction;
 import com.sa45team7.stockist.service.ProductService;
 import com.sa45team7.stockist.service.TransactionService;
-import com.sa45team7.stockist.validator.SupplierValidator;
 import com.sa45team7.stockist.validator.TransactionSearchHelperValidator;
+
 
 @Controller
 @RequestMapping("/viewproduct")
@@ -54,33 +55,33 @@ public class ViewProductController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ModelAndView viewProductPage(@ModelAttribute("transactionSearchHelper") TransactionSearchHelper transactionSearchHelper,  @PathVariable String id) {
 		Integer idi = Integer.parseInt(id); 
-		ModelAndView mav = new ModelAndView("viewProductTransaction");
+		ModelAndView mav = new ModelAndView("viewProductTransaction", "transactionSearchHelper", new TransactionSearchHelper());
 		Product product = pService.findProduct(idi);
 		ArrayList<Transaction> transactions = tService.findTransactionByPartNo(idi);
-		mav.addObject("product", product);
-		mav.addObject("transactionList", transactions);
-		return mav;
-	}
-	
-	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
-	public ModelAndView viewProduct(@Valid @ModelAttribute("transactionSearchHelper") TransactionSearchHelper transactionSearchHelper, BindingResult result, 
-			@PathVariable String id) throws ParseException {
-		transactionSearchHelper.getStartDate();
-		if (result.hasErrors())
-			return new ModelAndView("viewProductTransaction");
-		Integer idi = Integer.parseInt(id);
-
-		ModelAndView mav = new ModelAndView("viewProductTransaction");
-		Product product = pService.findProduct(idi);
-		ArrayList<Transaction> transactionsL = tService.findTransactionByPartNo(idi);
-		ArrayList<Transaction> transactions = tService.findTransactionByPartNumberAndDate(idi, transactionSearchHelper.getStartDate(), transactionSearchHelper.getEndDate()/*startDateD, endDateD*/);
+		ArrayList<Transaction> transactionsL = transactions;
 		mav.addObject("product", product);
 		mav.addObject("transactionList", transactions);
 		mav.addObject("transactionL", transactionsL);
 		return mav;
 	}
-
 	
+	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
+	public ModelAndView viewProduct(@Valid @ModelAttribute("transactionSearchHelper") TransactionSearchHelper transactionSearchHelper, BindingResult result,
+			@PathVariable String id) throws ParseException {		
+		Integer idi = Integer.parseInt(id);
+		ModelAndView mav = new ModelAndView("viewProductTransaction");
+		Product product = pService.findProduct(idi);
+		ArrayList<Transaction> transactionsL = tService.findTransactionByPartNo(idi);
+		mav.addObject("transactionL", transactionsL);
+		if (!result.hasErrors())	{
+		ArrayList<Transaction> transactions = tService.findTransactionByPartNumberAndDate(idi, transactionSearchHelper.getStartDate(), transactionSearchHelper.getEndDate());
+		mav.addObject("transactionList", transactions);
+		}
+		mav.addObject("product", product);
+		return mav;
+	}
+
+	 
 	
 	
 }

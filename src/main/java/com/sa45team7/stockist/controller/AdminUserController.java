@@ -92,9 +92,19 @@ public class AdminUserController {
 	}
 	
 	@RequestMapping(value = "/edituser/{userName}", method = RequestMethod.POST) //admin/edituser/whicheveruser
-	public ModelAndView editUser(@ModelAttribute @Valid User user, @PathVariable String userName,
+	public ModelAndView editUser(@ModelAttribute @Valid User user, BindingResult result, @PathVariable String userName,
 			final RedirectAttributes redirectAttributes)
 	{
+		if (result.hasErrors())
+		{
+			ModelAndView modelAndView = new ModelAndView("edit-user");
+			User user1 = userService.findUser(userName);
+			modelAndView.addObject("user", user1);
+			ArrayList<String> roleList = userService.findAllRoles();
+			modelAndView.addObject("roleList", roleList);
+			return modelAndView;
+		}
+		
 		userService.changeUser(user);	
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("redirect:/admin/user/listuser");

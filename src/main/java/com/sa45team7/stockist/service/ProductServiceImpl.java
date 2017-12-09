@@ -1,19 +1,20 @@
 package com.sa45team7.stockist.service;
 
-import com.sa45team7.stockist.repository.ProductRepository;
-import com.sa45team7.stockist.repository.SupplierRepository;
-
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
-import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
+
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 import com.sa45team7.stockist.model.Product;
 import com.sa45team7.stockist.model.ProductDTO;
 import com.sa45team7.stockist.model.ProductSearchDTO;
 import com.sa45team7.stockist.model.Supplier;
+import com.sa45team7.stockist.repository.ProductRepository;
+import com.sa45team7.stockist.repository.SupplierRepository;
 
 @Service
 public class ProductServiceImpl implements ProductService
@@ -32,6 +33,14 @@ public class ProductServiceImpl implements ProductService
 	{
 		return (ArrayList<Product>) productRepository.findAll();
 	}
+	
+	@Override
+	@Transactional
+	public ArrayList<Product> getProductListSorted()
+	{
+		return (ArrayList<Product>) productRepository.findAll(new Sort("partNumber"));
+	}
+	
 	
 	
 	@Override

@@ -29,6 +29,9 @@ $(document).ready(function() {
 	<c:if test="${createdUser != null}">
 	<div id="createdUser" style="color:#000000">${createdUser}</div>
 	</c:if> 
+	<c:if test="${updatedUser != null}">
+	<div id="updatedUser" style="color:#000000">${updatedUser}</div>
+	</c:if> 
 	
 	<table id="userTable" class="tablesorter">
 	<thead>

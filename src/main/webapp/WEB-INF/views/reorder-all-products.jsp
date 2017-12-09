@@ -1,0 +1,62 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
+<br />
+<h3 align="center">Reorder Report for All Products</h3><hr/>
+<br />
+<table id="reorder-table-all" class="tablesorter">
+	<thead>
+		<tr class="listHeading">
+			<th><spring:message code="fieldLabel.supplierId" /></th>
+			<th><spring:message code="fieldLabel.supplierName" /></th>
+			<th><spring:message code="fieldLabel.partNumberReport" /></th>
+			<th><spring:message code="fieldLabel.partPriceReport" /></th>
+			<th><spring:message code="fieldLabel.partQtyReport" /></th>
+			<th><spring:message code="fieldLabel.partROQReport" /></th>
+			<th><spring:message code="fieldLabel.partMOQReport" /></th>
+			<th><spring:message code="fieldLabel.orderQtyReport" /></th>
+			<th><spring:message code="fieldLabel.orderPriceReport" /></th>
+		</tr>
+	</thead>
+	<tbody>
+		<c:forEach var="reorder" items="${reorderList}">
+			<tr class="listRecord">
+				<td>${reorder.key.supplier.supplierId}</td>
+				<td>${reorder.key.supplier.supplierName}</td>
+				<td><fmt:formatNumber value="${reorder.key.partNumber}"
+						pattern="##0000"></fmt:formatNumber></td>
+				<td><fmt:formatNumber value="${reorder.key.price}"
+						pattern="0.00"></fmt:formatNumber></td>
+				<td>${reorder.key.qty}</td>
+				<td>${reorder.key.reOrderQty}</td>
+				<td>${reorder.key.minOrderQty}</td>
+				<td>${reorder.value}</td>
+				<td><fmt:formatNumber
+						value="${reorder.key.price * reorder.value}" pattern="0.00"></fmt:formatNumber></td>
+			</tr>
+		</c:forEach>
+	</tbody>
+	<tfoot>
+		<tr>
+			<th id="total" colspan="8">TOTAL</th>
+			<td><strong><fmt:formatNumber value="${sumPrice}"
+						pattern="0.00"></fmt:formatNumber></strong></td>
+		</tr>
+	</tfoot>
+</table>
+<hr/>
+<br />
+<h3 align="center">End of Report</h3>
+<p align="center"><a href="${pageContext.request.contextPath }/admin/report/list"> <spring:message
+		code="caption.back" /></a></p>
+<script src="/js/jquery.tablesorter.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#reorder-table-all").tablesorter({
+			widthFixed : true,
+			widgets : [ 'zebra' ]
+		});
+	});
+</script>
