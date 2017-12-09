@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
 <br />
-<h3 align="center">Reorder Report for All Products</h3><hr/>
+<h3 align="center"><spring:message code="heading.report.all" /></h3><hr/>
 <br />
 <table id="reorder-table-all" class="tablesorter">
 	<thead>
@@ -47,8 +47,7 @@
 	</tfoot>
 </table>
 <hr/>
-<br />
-<h3 align="center">End of Report</h3>
+<h3 align="center"><spring:message code="caption.endOfReport" /></h3>
 <p align="center"><a href="${pageContext.request.contextPath }/admin/report/list"> <spring:message
 		code="caption.back" /></a></p>
 <script src="/js/jquery.tablesorter.js"></script>

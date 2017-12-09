@@ -10,12 +10,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3>Edit User</h3>
+<h3><spring:message code="heading.user.editUser" /></h3>
 <form:form method="POST" commandName="user"
 	action="${pageContext.request.contextPath}/admin/user/edituser/${user.userName}">
 <table>
 			<tr>
-				<td>Username:</td>	
+				<td><spring:message code="fieldLabel.user.userName" /></td>	
 				<td><form:input path="userName" readonly="true" /></td>
 				<td></td>
 			</tr>

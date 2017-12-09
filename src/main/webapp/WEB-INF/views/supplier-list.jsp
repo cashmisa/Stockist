@@ -2,9 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<br>
-
-<h3>Supplier List page</h3>
+<h3><spring:message code="heading.supplier.supplierList" /></h3>
 
 <style>
 

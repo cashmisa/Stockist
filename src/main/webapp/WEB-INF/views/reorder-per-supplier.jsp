@@ -5,8 +5,7 @@
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
 <br />
 <br />
-<h3 align="center">Inventory Reorder Report for Supplier:
-	${supplierName }</h3>
+<h3 align="center"><spring:message code="caption.reorderReportSupplier" />: ${supplierName }</h3>
 <hr />
 <br />
 <table id="reorder-table" class="tablesorter">
@@ -46,8 +45,7 @@
 	</tfoot>
 </table>
 <hr />
-<br />
-<h3 align="center">End of Report</h3>
+<h3 align="center"><spring:message code="caption.endOfReport" /></h3>
 <p align="center">
 	<a href="${pageContext.request.contextPath }/admin/report/list"> <spring:message
 			code="caption.back" /></a>

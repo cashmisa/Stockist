@@ -29,7 +29,7 @@
 	});
 </script>
 
-<h3>Product List page</h3>
+<h3><spring:message code="heading.productList" /></h3>
 <br>
 
 
