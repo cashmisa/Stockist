@@ -14,16 +14,20 @@
 	action="${pageContext.request.contextPath}/admin/user/edituser/${user.userName}">
 <table>
 			<tr>
-				<td>Username:</td>
-				<td><form:input path="userName" /></td>
+				<td>Username:</td>	
+				<td><form:input path="userName" readonly="true" /></td>
+				<td></td>
 			</tr>
+			
 			<tr>
 				<td>Role:</td>
 				<td><form:select path="role" items="${roleList}" /></td>
+				<td></td>
 			</tr>
 			<tr>
 				<td>Password:</td>
 				<td><form:password path="password" /></td>
+				<td><form:errors path="password" /></td>
 			</tr>
 			<tr>
 				<td colspan="2"><form:button type="submit"> Edit User </form:button></td>
