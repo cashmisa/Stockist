@@ -9,20 +9,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Create User page</h1>
+<h3>Create User</h3>
 <form:form method="POST" modelAttribute="user" action="${pageContext.request.contextPath}/admin/user/create">
 	<table>
 			<tr>
-				<td>Username:</td>
+				<td><spring:message code="fieldLabel.user.userName" /></td>
 				<td><form:input path="userName" /></td>
+				<td><form:errors path="userName" /></td>
 			</tr>
 			<tr>
-				<td>Role:</td>
+				<td><spring:message code="fieldLabel.user.role" /></td>
 				<td><form:select path="role" items="${roleList}" /></td>
 			</tr>
 			<tr>
-				<td>Password:</td>
-		 <form:errors path="password" /><form:password path="password" />
+				<td><spring:message code="fieldLabel.user.password" /></td>
+		 		<td><form:password path="password" /></td>
+		 		<td><form:errors path="password" /></td>
 			</tr>
 			<tr>
 				<td colspan="2"><form:button type="submit"> Create New User </form:button></td>

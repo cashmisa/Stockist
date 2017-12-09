@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h3>Edit User</h3>
 <form:form method="POST" commandName="user"
 	action="${pageContext.request.contextPath}/admin/user/edituser/${user.userName}">
 <table>
@@ -20,14 +21,13 @@
 			</tr>
 			
 			<tr>
-				<td>Role:</td>
+				<td><spring:message code="fieldLabel.user.role" /></td>
 				<td><form:select path="role" items="${roleList}" /></td>
-				<td></td>
 			</tr>
 			<tr>
-				<td>Password:</td>
-				<td><form:password path="password" /></td>
-				<td><form:errors path="password" /></td>
+				<td><spring:message code="fieldLabel.user.password" /></td>
+		 		<td><form:password path="password" /></td>
+		 		<td><form:errors path="password" /></td>
 			</tr>
 			<tr>
 				<td colspan="2"><form:button type="submit"> Edit User </form:button></td>

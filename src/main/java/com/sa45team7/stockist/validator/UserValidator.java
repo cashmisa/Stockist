@@ -10,6 +10,8 @@ import com.sa45team7.stockist.model.User;
 @Component
 public class UserValidator implements Validator {
 	
+	private static final int MINIMUM_PASSWORD_LENGTH = 6;
+	
 	@Override
 		public boolean supports(Class<?> arg0) {
 			
@@ -22,6 +24,14 @@ public class UserValidator implements Validator {
 			User user = (User) arg0;
 			
 			ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "password", "error.user.password.empty");
+			ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "userName", "error.user.username.empty");
+			
+			  if (user.getPassword().trim().length() < MINIMUM_PASSWORD_LENGTH) 
+			  {
+				 arg1.rejectValue("password", "error.user.password.tooshort");
+			  }
+		
+			
 			
 			System.out.println(user.toString());			
 		}
