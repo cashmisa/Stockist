@@ -29,7 +29,7 @@
 
 			<tr>
 				<td><spring:message code="fieldLabel.partNumber" /></td>
-				<td><form:input path="partNumber" type="tel" /></td>
+				<td><form:input path="partNumber" type="number" /></td>
 			</tr>
 
 			<tr>
