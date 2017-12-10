@@ -17,7 +17,7 @@
 </script>
 
 <form:form modelAttribute="emptyProductSearchDTO" method="post" action="${pageContext.request.contextPath}/catalogue">
-	<h3><spring:message code="fieldLabel.productCatalogue" /></h3>
+	<br/><h3><spring:message code="fieldLabel.productCatalogue" /></h3>
 	<div>
 
 		<table class="searchTable">

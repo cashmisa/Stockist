@@ -25,7 +25,7 @@
 	});
 </script>
 
-<h3><spring:message code="heading.productList" /></h3>
+<br/><h3><spring:message code="heading.productList" /></h3>
 <br>
 
 

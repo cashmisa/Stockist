@@ -7,7 +7,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>
-<spring:message code="heading.user.addUser" />
+<br/><spring:message code="heading.user.addUser" />
 </title>
 
 <h3><spring:message code="heading.user.addUser" /></h3>
