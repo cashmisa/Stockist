@@ -40,22 +40,23 @@
 
 </style>-->
 
-<a href="${pageContext.request.contextPath}/admin/supplier/create">Add Supplier</a>
+<a href="${pageContext.request.contextPath}/admin/supplier/create">
+<spring:message code="heading.supplier.addSupplier" /></a>
 <br>
 	
 	
 	<c:if test="${message != null}">
 	<div class="alert alert-primary" style="color:black" role="alert">
-  <h4 class="alert-heading">Success !!!</h4>
- ${message}
+  <h5>Great!</h5>
+ <h6>${message}</h6>
 
 </div>
 </c:if>
 
 	<c:if test="${errorMessage != null}">
-	<div class="alert alert-primary" style="color:red"  role="alert">
-  <h4 class="alert-heading" style="color:red" >Exception!!!</h4>
- ${errorMessage}
+	<div class="alert alert-primary" style="color:black"  role="alert">
+  <h5>Oops!</h5>
+<h6>${errorMessage}</h6>
  
 </div>
 </c:if>

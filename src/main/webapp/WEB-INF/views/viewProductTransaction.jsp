@@ -68,6 +68,10 @@
 			<td>${product.reOrderQty}</td>
 		</tr>
 		<tr>
+			<th><spring:message code="fieldLabel.partSupplierName" /></th>
+			<td>${product.supplier.supplierName}</td>
+		</tr>
+		<tr>
 			<th><spring:message code="fieldLabel.partSupplierContact" /></th>
 			<td>${product.supplier.contactName}</td>
 		</tr>
@@ -160,7 +164,7 @@
 				</c:when>
 				<c:otherwise>
 					<tr>
-						<td><spring:message code="Message.noTransactionFound" /></td>
+						<td><h6><spring:message code="Message.noTransactionFound" /></h6></td>
 					</tr>
 				</c:otherwise>
 			</c:choose>

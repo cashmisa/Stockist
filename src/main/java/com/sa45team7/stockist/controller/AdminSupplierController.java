@@ -70,7 +70,7 @@ public class AdminSupplierController {
 			return new ModelAndView("supplier-new");
 
 		ModelAndView view = new ModelAndView();
-		String message = "New Supplier <strong> " + supplier.getSupplierName() + " </strong> was successfully created.";
+		String message = "New Supplier <strong> "+ supplier.getSupplierName()  +" </strong>was successfully added.";
 
 		sService.createSupplier(supplier);
 		view.setViewName("redirect:/admin/supplier/list");

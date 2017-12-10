@@ -34,7 +34,15 @@
 <br/><h3><spring:message code="heading.productList" /></h3>
 <c:url var="add_url" value = "${pageContext.request.contextPath}/admin/product/create" />
 	<a href="${add_url}"><spring:message code="caption.product.add"/></a>	
-	<br/><br/>
+	<br/>
+	<c:if test="${message != null}">
+	<div class="alert alert-primary" style="color:black" role="alert">
+  <h5>Great!</h5>
+ <h6>${message}</h6>
+
+</div>
+</c:if>	
+	<br/>
 <c:if test="${fn:length(productList) gt 0}">
 	<table id="productTable" class="tablesorter">
 		<thead>

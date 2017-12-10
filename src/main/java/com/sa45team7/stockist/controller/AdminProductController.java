@@ -73,7 +73,7 @@ public class AdminProductController {
 		pService.createProduct(productDTO);
 		
 		mav.setViewName("redirect:/admin/product/list");
-		String message = "New product " + productDTO.getPartName() + " was successfully created.";
+		String message = "New Product <strong>"+ productDTO.getPartName()  +"</strong> was successfully added.";
 		redirectAttributes.addFlashAttribute("message", message);
 		
 		return mav;
@@ -103,7 +103,7 @@ public class AdminProductController {
 		
 		pService.updateProduct(productDTO);
 		
-		String message = "Product Details was successfully updated.";
+		String message = "Product <strong>"+ productDTO.getPartName()  +"</strong> was successfully updated.";
 		
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
@@ -118,7 +118,7 @@ public class AdminProductController {
 		Product product = pService.findProduct(id);
 		pService.deleteProduct(product);
 
-		String message = "The Product " + product.getPartName() + " was successfully deleted.";
+		String message = "Product <strong> " + product.getPartName() + "</strong> was successfully deleted.";
 
 		redirectAttributes.addFlashAttribute("message", message);
 		return view;
