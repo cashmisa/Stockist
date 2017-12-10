@@ -54,9 +54,9 @@
 			</tr>
 			
 			<tr>
-				<td><spring:message code="fieldLabel.supplierName" /></td>
-				<td><form:select path="supplierName">				
-				<form:options items="${suppliersList}" selected="${productDTO.supplierName}"/>
+				<td><spring:message code="fieldLabel.supplierId" /></td>
+				<td><form:select path="supplierId">				
+				<form:options items="${suppliersList}" selected="${productDTO.supplierId}"/>
 				</form:select></td>
 <%-- 				<td><form:errors path="supplier" cssStyle="color: red;" /></td> --%>
 			</tr>
