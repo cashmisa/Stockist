@@ -21,7 +21,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach var="reorder" items="${reorderList}">
+		<c:forEach var="reorder" items="${reorderMap}">
 			<tr class="listRecord">
 				<td>${reorder.key.supplier.supplierId}</td>
 				<td>${reorder.key.supplier.supplierName}</td>

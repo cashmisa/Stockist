@@ -1,6 +1,7 @@
 package com.sa45team7.stockist.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,33 +17,39 @@ public class ReorderServiceImpl implements ReorderService {
 	private ProductService pService;
 
 	/*
-	 * 1. ContainpartNumber, price, qty, reorderQty, minQty, orderAmount and price 
-	 * 2. If (reoderQty - qty < minQty) {orderAmount=minQty} else {orderAmount=reorderQty-qty}
-	 * 3. return a Map<Product, orderAmount> sorted by partNumber
-	 * 
+	 * If (reoderQty - qty < minQty) {orderAmount=minQty} else {orderAmount=reorderQty-qty}
+	 * return a Map<Product, orderAmount> sorted by partNumber
 	 */
 	
-	/* (non-Javadoc)
-	 * @see com.sa45team7.stockist.service.ReoderService#getReorderProductList()
-	 */
+	//jasper datasource
 	@Override
 	@Transactional
-	public LinkedHashMap<Product, Integer> getReorderProductList() {
-		return getReorderList(pService.getProductListSorted());
+	public Collection<Product> getReorderProductList() {
+		return pService.getProductListSorted();
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.sa45team7.stockist.service.ReoderService#getReoderProductListBySupplier(int)
-	 */
+	//jasper datasource
 	@Override
 	@Transactional
-	public LinkedHashMap<Product, Integer> getReoderProductListBySupplier(int id){
-		return getReorderList(pService.findProductBySupplierId(id));
+	public Collection<Product> getReorderProductListBySupplier(int id){
+		return pService.findProductBySupplierId(id);
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.sa45team7.stockist.service.ReoderService#getReorderSumPrice(java.util.LinkedHashMap)
-	 */
+	//jsp page
+	@Override
+	@Transactional
+	public LinkedHashMap<Product, Integer> getReorderProductMap() {
+		return getReorderMap(pService.getProductListSorted());
+	}
+	
+	//jsp page
+	@Override
+	@Transactional
+	public LinkedHashMap<Product, Integer> getReoderProductMapBySupplier(int id){
+		return getReorderMap(pService.findProductBySupplierId(id));
+	}
+	
+	//jsp page
 	@Override
 	@Transactional
 	public double getReorderSumPrice(LinkedHashMap<Product, Integer> map) {
@@ -58,18 +65,18 @@ public class ReorderServiceImpl implements ReorderService {
 	 * passing a list of (sorted) products, return products and its respective orderAmount
 	 * if it is 0, add it too
 	 */
-	private LinkedHashMap<Product, Integer> getReorderList(ArrayList<Product> pList){
-		LinkedHashMap<Product, Integer> rList = new LinkedHashMap<>();
+	private LinkedHashMap<Product, Integer> getReorderMap(ArrayList<Product> pList){
+		LinkedHashMap<Product, Integer> rMap = new LinkedHashMap<>();
 		for (Product p : pList) {
 			if (p.getQty() < p.getReOrderQty()) {
-				rList.put(p, (p.getReOrderQty() - p.getQty()) < p.getMinOrderQty() ? p.getMinOrderQty()
+				rMap.put(p, (p.getReOrderQty() - p.getQty()) < p.getMinOrderQty() ? p.getMinOrderQty()
 						: (p.getReOrderQty() - p.getQty()));
 			}
 			else {
-				rList.put(p, 0);
+				rMap.put(p, 0);
 			}
 		}
-		return rList;
+		return rMap;
 	}
 	
 	

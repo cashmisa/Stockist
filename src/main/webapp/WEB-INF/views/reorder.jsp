@@ -5,7 +5,8 @@
 <br />
 <h3>Supplier List for Reorder Report</h3>
 <a href="${pageContext.request.contextPath}/admin/report/all"><spring:message
-		code="caption.reorderReportAll" /></a>
+		code="caption.reorderReportAll" /></a><br/>
+		<a href="${pageContext.request.contextPath}/admin/report/allpdf">view PDF report</a>
 <c:if test="${supplierList.size() gt 0}">
 	<br />
 	<table id="supplierTable" class="tablesorter">
