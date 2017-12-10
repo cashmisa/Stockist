@@ -60,7 +60,6 @@
 <script>
 $(document).ready(function() {
 	$("#userTable").tablesorter({
-		widthFixed : true,
 		widgets : [ 'zebra' ],
 		headers : {
 			3 : {

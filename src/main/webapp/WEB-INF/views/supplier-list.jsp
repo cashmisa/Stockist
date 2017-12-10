@@ -3,13 +3,31 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
-<script src="/js/jquery.tablesorter.js"></script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>
 <spring:message code="heading.supplier.supplierList" />
 </title>
 </head>
+<script src="/js/jquery.tablesorter.js"></script>
+
+<script>
+	$(document).ready(function() {
+		$("#supplierTable").tablesorter({
+			widthFixed : true,
+			widgets : [ 'zebra' ],
+			headers : {
+				6 : {
+					sorter : false
+				},
+
+				7 : {
+					sorter : false
+				}
+			}
+		});
+	});
+</script>
 <br/><h3><spring:message code="heading.supplier.supplierList" /></h3>
 
 <!--  <style>
@@ -44,8 +62,7 @@
 	
 	<br> 
 <c:if test="${fn:length(supplierList) gt 0}">
-<div class="container table-responsive">
-	<table class="table table-bordered table-hover" id="supplier-table">
+	<table id="supplierTable" class="tablesorter">
 		<thead>
 			<tr class="listHeading">
 				<th><spring:message code="fieldLabel.supplierId" /></th>
@@ -54,8 +71,8 @@
 				<th><spring:message code="fieldLabel.phoneNo" /></th>
 				<th><spring:message code="fieldLabel.email" /></th>
 				<th><spring:message code="fieldLabel.website" /></th>
-				<th><spring:message code="caption.edit" /></th>
-				<th><spring:message code="caption.delete" /></th>
+				<th> </th>
+				<th> </th>
 			</tr>
 		</thead>
 		<tbody>
@@ -77,5 +94,4 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	</div>
 </c:if>

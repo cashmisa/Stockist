@@ -114,7 +114,7 @@ public class AdminProductController {
 	public ModelAndView deleteProduct(@PathVariable Integer id, final RedirectAttributes redirectAttributes)
 			throws ProductNotFound {
 
-		ModelAndView view = new ModelAndView("redirect:/admin/Product/list");
+		ModelAndView view = new ModelAndView("redirect:/admin/product/");
 		Product product = pService.findProduct(id);
 		pService.deleteProduct(product);
 

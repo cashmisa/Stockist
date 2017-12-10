@@ -12,6 +12,7 @@
 <script>
 	$(document).ready(function() {
 		$("#productTable").tablesorter({
+			widgets : [ 'zebra' ],
 			headers : {
 				9 : {
 					sorter : false
