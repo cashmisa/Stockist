@@ -112,18 +112,12 @@
 							id="example-date-input" type="date" name="endDateA" /></td>
 				</tr>
 				<tr>
-<<<<<<< HEAD
 					<td><div class="div-emptyspace"></div>
 				<tr>
 					<td></td>
 					<td><form:errors path="startDate" cssStyle="color: red;" /></td>
 					<td></td>
 					<td><form:errors path="endDate" cssStyle="color: red;" /></td>
-=======
-					
-					<td colspan="2"><form:errors path="startDate" cssStyle="color: red;" /></td>
-					<td colspan="5"><form:errors path="endDate" cssStyle="color: red;" /></td>
->>>>>>> branch 'master' of https://github.com/e0224917/Stockist.git
 				</tr>
 			</table>
 
@@ -172,15 +166,13 @@
 					</form:button></td>
 			</tr>
 			<tr>
-				<td><div class="div-smallemptyspace"></div></td></tr>
+				<td><div class="div-smallemptyspace"></div>
 		</c:when>
 		<c:otherwise>
 			<table style="cellspacing: 2; cellpadding: 2; border: 1;">
 				<tr>
 					<td><spring:message code="Message.noPreviousTransaction" /></td>
 				</tr>
-							<tr>
-				<td><div class="div-emptyspace"></div></td></tr>
 			</table>
 		</c:otherwise>
 	</c:choose>
