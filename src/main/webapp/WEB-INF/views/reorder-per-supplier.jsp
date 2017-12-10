@@ -13,7 +13,7 @@
 <h3 align="center"><spring:message code="caption.reorderOverviewSupplier" />: ${supplierName }</h3>
 <hr />
 <p><a target="_blank"
-						href="${pageContext.request.contextPath}/admin/report/supplierpdf/${supplierId}.pdf"><Strong>View PDF Report</Strong></a></p>
+						href="${pageContext.request.contextPath}/admin/report/supplierpdf/${supplierId}.pdf"><Strong><spring:message code="report.viewReport"></spring:message></Strong></a></p>
 <table id="reorder-table" class="tablesorter">
 	<thead>
 		<tr class="listHeading">
