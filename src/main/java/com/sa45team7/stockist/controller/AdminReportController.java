@@ -45,11 +45,12 @@ public class AdminReportController {
 	 */
 
 	@RequestMapping(value = "/supplier/{supplierId}", method = RequestMethod.GET)
-	public ModelAndView ReorderListBySupplier(@PathVariable("supplierId") int id) {
+	public ModelAndView reorderListBySupplier(@PathVariable("supplierId") int id) {
 		ModelAndView mav = new ModelAndView("reorder-per-supplier");
 		LinkedHashMap<Product, Integer> reorderList = reorderService.getReoderProductMapBySupplier(id);
 		mav.addObject("reorderList", reorderList);
 		mav.addObject("supplierName", supplierService.findSupplier(id).getSupplierName());
+		mav.addObject("supplierId", id);
 		mav.addObject("sumPrice", reorderService.getReorderSumPrice(reorderList));
 		return mav;
 	}
@@ -58,28 +59,29 @@ public class AdminReportController {
 	 * click on "full reorder list" and display all
 	 */
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
-	public ModelAndView ReorderListAllProducts() {
+	public ModelAndView reorderListAllProducts() {
 		ModelAndView mav = new ModelAndView("reorder-all-products");
 		LinkedHashMap<Product, Integer> reorderMap = reorderService.getReorderProductMap();
 		mav.addObject("reorderMap", reorderMap);
 		mav.addObject("sumPrice", reorderService.getReorderSumPrice(reorderMap));
 		return mav;
 	}
-
-	/*@RequestMapping(value = "/allpdf", method = RequestMethod.GET)
-	public ModelAndView reorderReportAllPdf() {
+	
+	@RequestMapping(value = "/allpdf", method = RequestMethod.GET)
+	public ModelAndView reorderPdfAllProducts() {
 	    JasperReportsPdfView view = new JasperReportsPdfView();
 	    view.setUrl("classpath:ReorderReport.jrxml");
 	    view.setApplicationContext(appContext);
-	    return new ModelAndView(view, "datasource", reorderService.getReorderProductList());
-	}*/
-	
-	@RequestMapping(value = "/allpdf", method = RequestMethod.GET)
-	public ModelAndView reorderReportAllPdf() {
-	    JasperReportsPdfView view = new JasperReportsPdfView();
-	    view.setUrl("classpath:Report.jrxml");
-	    view.setApplicationContext(appContext);
 	    JRBeanCollectionDataSource jrds = new JRBeanCollectionDataSource(reorderService.getReorderProductList());
+	    return new ModelAndView(view, "productData", jrds);
+	}
+	
+	@RequestMapping(value = "/supplierpdf/{supplierId}", method = RequestMethod.GET)
+	public ModelAndView ReorderPdftBySupplier(@PathVariable("supplierId") int id) {
+		JasperReportsPdfView view = new JasperReportsPdfView();
+	    view.setUrl("classpath:ReorderReportPerSupplier.jrxml");
+	    view.setApplicationContext(appContext);
+	    JRBeanCollectionDataSource jrds = new JRBeanCollectionDataSource(reorderService.getReorderProductListBySupplier(id));
 	    return new ModelAndView(view, "productData", jrds);
 	}
 }

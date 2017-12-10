@@ -5,7 +5,8 @@
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
 <br />
 <h3 align="center"><spring:message code="heading.report.all" /></h3><hr/>
-<br />
+<p><a target="_blank" href="${pageContext.request.contextPath}/admin/report/allpdf"><Strong>View PDF report</Strong></a>
+<br /></p>
 <table id="reorder-table-all" class="tablesorter">
 	<thead>
 		<tr class="listHeading">
@@ -47,8 +48,7 @@
 	</tfoot>
 </table>
 <hr/>
-<h3 align="center"><spring:message code="caption.endOfReport" /></h3>
-<p align="center"><a href="${pageContext.request.contextPath }/admin/report/list"> <spring:message
+<p><a href="${pageContext.request.contextPath }/admin/report/list"> <spring:message
 		code="caption.back" /></a></p>
 <script src="/js/jquery.tablesorter.js"></script>
 <script>

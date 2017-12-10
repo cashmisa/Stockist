@@ -2,10 +2,13 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
-<h3><spring:message code="heading.report.supplierList" /></h3>
-<a href="${pageContext.request.contextPath}/admin/report/all" target="_blank"><spring:message
-		code="caption.reorderReportAll" /></a><br/>
-		<a href="${pageContext.request.contextPath}/admin/report/allpdf">view PDF report</a>
+<br />
+<h3>
+	<spring:message code="heading.report.supplierList" />
+</h3>
+<a href="${pageContext.request.contextPath}/admin/report/all"><spring:message
+		code="caption.reorderOverviewAll" /></a>
+<br />
 <c:if test="${supplierList.size() gt 0}">
 	<br />
 	<table id="supplierTable" class="tablesorter">
@@ -17,7 +20,8 @@
 				<th><spring:message code="fieldLabel.phoneNo" /></th>
 				<th><spring:message code="fieldLabel.email" /></th>
 				<th><spring:message code="fieldLabel.website" /></th>
-				<th><spring:message code="caption.reorderReport" /></th>
+				<th><spring:message code="caption.reorderOverview" /></th>
+				<th>PDF</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -31,7 +35,9 @@
 					<td>${supplier.website}</td>
 					<td align="center"><a
 						href="${pageContext.request.contextPath}/admin/report/supplier/${supplier.supplierId}.html"><spring:message
-								code="caption.reorderReport" /></a></td>
+								code="caption.reorderOverview" /></a></td>
+					<td align="center"><a target="_blank"
+						href="${pageContext.request.contextPath}/admin/report/supplierpdf/${supplier.supplierId}.pdf">PDF</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -45,7 +51,7 @@
 			widthFixed : true,
 			widgets : [ 'zebra' ],
 			headers : {
-				6: {
+				6 : {
 					sorter : false
 				}
 			}

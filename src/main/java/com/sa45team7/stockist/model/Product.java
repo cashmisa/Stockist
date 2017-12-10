@@ -35,7 +35,7 @@ public class Product implements Serializable {
 	private String shelfLocation;
 
 	//bi-directional many-to-one association to Supplier
-	@ManyToOne
+	@ManyToOne (fetch=FetchType.LAZY)
 	@JoinColumn(name="supplierId")
 	private Supplier supplier;
 

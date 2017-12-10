@@ -4,10 +4,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
 <br />
-<br />
-<h3 align="center"><spring:message code="caption.reorderReportSupplier" />: ${supplierName }</h3>
+<h3 align="center"><spring:message code="caption.reorderOverviewSupplier" />: ${supplierName }</h3>
 <hr />
-<br />
+<p><a target="_blank"
+						href="${pageContext.request.contextPath}/admin/report/supplierpdf/${supplierId}.pdf"><Strong>View PDF Report</Strong></a></p>
 <table id="reorder-table" class="tablesorter">
 	<thead>
 		<tr class="listHeading">
@@ -45,8 +45,7 @@
 	</tfoot>
 </table>
 <hr />
-<h3 align="center"><spring:message code="caption.endOfReport" /></h3>
-<p align="center">
+<p>
 	<a href="${pageContext.request.contextPath }/admin/report/list"> <spring:message
 			code="caption.back" /></a>
 </p>
