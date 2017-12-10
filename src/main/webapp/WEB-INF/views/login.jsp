@@ -1,4 +1,6 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <html>
 
 <head>
@@ -18,6 +20,15 @@
 			<form class="card-body" action="<spring:url value="/login"/>"
 				method="post">
 
+				<c:if test="${param.logout ne null}">
+					<div class="alert alert-primary" role="alert">You have been
+						logged out.</div>
+				</c:if>
+				<c:if test="${param.error ne null}">
+					<div class="alert alert-danger" role="alert">Wrong username
+						or password. Please try again.</div>
+				</c:if>
+				
 				<div class="ht-tm-element ht-tm-element-inner">
 					<spring:message code="login.username-label" var="un" />
 					<input type="text" class="form-control" id="username"

@@ -23,9 +23,7 @@ $( "#target5" ).keypress(function() {
 });
 
 </script>
-<br>
-<br>
-<h3>Edit Supplier page</h3>
+<h3><spring:message code="heading.supplier.editSupplier" /></h3>
 
 <div class="col-md-4">
 	<form:form method="POST" modelAttribute="supplier"

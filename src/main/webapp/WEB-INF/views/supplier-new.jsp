@@ -24,10 +24,7 @@ $( "#target5" ).keypress(function() {
 });
 
 </script>
-<br>
-<br>
-
-<h3>New Supplier page</h3>
+<h3><spring:message code="heading.supplier.addSupplier" /></h3>
 <br>
 <br>
 

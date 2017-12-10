@@ -15,9 +15,8 @@
 	});
 </script>
 
-
 <form:form modelAttribute="emptyProductSearchDTO" method="post" action="${pageContext.request.contextPath}/catalogue">
-	<h1><spring:message code="fieldLabel.productCatalogue" /></h1>
+	<h3><spring:message code="fieldLabel.productCatalogue" /></h3>
 	<div>
 
 		<table class="searchTable">
@@ -55,9 +54,13 @@
 	<br>
 
 	<c:if test="${productList == null}">
-		<h5>
+		<h6>
 			<spring:message code="message.startSearch" />
-		</h5>
+			<br/>
+			<spring:message code="message.browseAll" />
+			<br/>
+			<spring:message code="message.reset" />
+		</h6>
 	</c:if>
 
 	<c:if test="${productList.size() == 0}">

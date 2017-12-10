@@ -21,7 +21,7 @@ $(document).ready(function() {
 });	       
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<h3>User List</h3>
+<h3><spring:message code="heading.user.userList" /></h3>
 	
 	<c:url var="add_url" value = "${pageContext.request.contextPath}/admin/user/create" />
 	<a href="${add_url}"><spring:message code="caption.user.add"/></a>

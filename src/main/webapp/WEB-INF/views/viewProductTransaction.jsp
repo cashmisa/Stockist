@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -50,6 +52,19 @@
 			<td><spring:message code="fieldLabel.partLocation" /></td>
 			<td>${product.shelfLocation}</td>
 		</tr>
+		<tr>
+			<sec:authorize access="hasAuthority('admin')">
+				<td><a
+					href="${pageContext.request.contextPath}/admin/product/edit/${product.partNumber}"
+					class="btn btn-outline-primary"><spring:message
+							code="caption.edit" /></a></td>
+				<td><a
+					href="${pageContext.request.contextPath}/admin/product/delete/${product.partNumber}"
+					class="btn btn-outline-primary"><spring:message
+							code="caption.delete" /></a></td>
+			</sec:authorize>
+		</tr>
+
 	</table>
 
 	<br>
@@ -119,9 +134,11 @@
 				</tr>
 			</c:otherwise>
 		</c:choose>
-		<tr><td><a href="${pageContext.request.contextPath}/catalogue"
-			class="btn btn-outline-primary"><spring:message
-				code="button.returnToCatalogue" /></a></td></tr>
+		<tr>
+			<td><a href="${pageContext.request.contextPath}/catalogue"
+				class="btn btn-outline-primary"><spring:message
+						code="button.returnToCatalogue" /></a></td>
+		</tr>
 
 	</table>
 </form:form>

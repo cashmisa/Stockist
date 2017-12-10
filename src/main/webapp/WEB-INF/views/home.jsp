@@ -17,11 +17,5 @@
 			<button id="logout">Sign out</button>
 		</form>
 	</sec:authorize>
-
-	<sec:authorize access="isAuthenticated()">
-		<form action="/logout" method="post">
-			<button id="logout">Sign out</button>
-		</form>
-	</sec:authorize>
 </body>
 </html>

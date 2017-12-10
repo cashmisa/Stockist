@@ -19,12 +19,13 @@
 			<%@ include file="/WEB-INF/decorators/menu-top.jsp"%>
 		</div>
 		<div class="jumbotron text-center">
-			<h1 class="display-3">500</h1>
+			<h1 class="display-3">500: Internal Server Error</h1>
 			<p class="lead">Well, this is embarrassing.</p>
 		</div>
 	</div>
 	<div style="display: none;">
 		<p>Failed URL: ${url}</p>
+		<p></p>
 	</div>
 </body>
 </html>

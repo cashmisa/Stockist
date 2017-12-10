@@ -2,8 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
-<br />
-<h3>Supplier List for Reorder Report</h3>
+<h3><spring:message code="heading.report.supplierList" /></h3>
 <a href="${pageContext.request.contextPath}/admin/report/all"><spring:message
 		code="caption.reorderReportAll" /></a><br/>
 		<a href="${pageContext.request.contextPath}/admin/report/allpdf">view PDF report</a>

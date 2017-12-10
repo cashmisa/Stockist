@@ -3,7 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-<h3>New Product page</h3>
+<h3><spring:message code="heading.product.addProduct"/></h3>
 <form:form method="POST" modelAttribute="productDTO"
 	action="${pageContext.request.contextPath}/admin/product/create">
 	<table>
@@ -29,24 +29,24 @@
 
 			<tr>
 				<td><spring:message code="fieldLabel.partQty" /></td>
-				<td><form:input path="qty" /></td>
+				<td><form:input type="number" path="qty" /></td>
 				<td><form:errors path="qty" cssStyle="color: red;" /></td>
 			</tr>
 
 			<tr>
 				<td><spring:message code="fieldLabel.partMOQ" /></td>
-				<td><form:input path="minOrderQty" /></td>
+				<td><form:input type="number" path="minOrderQty" /></td>
 				<td><form:errors path="minOrderQty" cssStyle="color: red;" /></td>
 			</tr>
 
 			<tr>
 				<td><spring:message code="fieldLabel.partROQ" /></td>
-				<td><form:input path="reOrderQty" /></td>
+				<td><form:input type="number" path="reOrderQty" /></td>
 				<td><form:errors path="reOrderQty" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.partPrice" /></td>
-				<td>$<form:input path="price" /></td>
+				<td>$<form:input type="number" path="price" /></td>
 				<td><form:errors path="price" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
