@@ -2579,6 +2579,8 @@ tbody.collapse.show {
   -webkit-transition: height 0.35s ease;
   -o-transition: height 0.35s ease;
   transition: height 0.35s ease; }
+  
+
 
 .dropup,
 .dropdown {
@@ -7231,3 +7233,25 @@ a.text-dark:focus, a.text-dark:hover {
 
 .btn-outline-light:hover {
   background-color: rgba(255, 255, 255, 0.2); }
+  
+  
+  
+ /*  MG sizing */
+  .div-smallemptyspace{
+ height: 10px;
+ }
+  
+ .div-emptyspace{
+ height: 25px;
+ }
+ .div-largeemptyspace{
+ height: 50px;
+ }
+ 
+ .txnHead{
+ width: 200px;
+ }
+ .tborder{
+/*  border: 1px solid black;
+ border-color: 	#0099ff; */
+ }
