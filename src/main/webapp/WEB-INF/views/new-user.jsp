@@ -7,10 +7,10 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>
-<br/><spring:message code="heading.user.addUser" />
+<spring:message code="heading.user.addUser" />
 </title>
 
-<h3><spring:message code="heading.user.addUser" /></h3>
+<br/><h3><spring:message code="heading.user.addUser" /></h3>
 <form:form method="POST" modelAttribute="user" action="${pageContext.request.contextPath}/admin/user/create">
 	<table>
 			<tr>

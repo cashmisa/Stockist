@@ -26,10 +26,9 @@
 </script>
 
 <br/><h3><spring:message code="heading.productList" /></h3>
-<br>
-
-
-
+<c:url var="add_url" value = "${pageContext.request.contextPath}/admin/product/create" />
+	<a href="${add_url}"><spring:message code="caption.product.add"/></a>	
+	<br/>
 <c:if test="${fn:length(productList) gt 0}">
 	<table id="productTable" class="tablesorter">
 		<thead>
