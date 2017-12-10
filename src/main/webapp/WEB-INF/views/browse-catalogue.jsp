@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
 
 <script src="/js/jquery.tablesorter.js"></script>
+
 <script>
 	$(document).ready(function() {
 		$("#productTable").tablesorter({
@@ -14,10 +15,14 @@
 		});
 	});
 </script>
-
-
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+<spring:message code="fieldLabel.productCatalogue" />
+</title>
+</head>
 <form:form modelAttribute="emptyProductSearchDTO" method="post" action="${pageContext.request.contextPath}/catalogue">
-	<h1><spring:message code="fieldLabel.productCatalogue" /></h1>
+	<br/><h3><spring:message code="fieldLabel.productCatalogue" /></h3>
 	<div>
 
 		<table class="searchTable">
@@ -55,23 +60,27 @@
 	<br>
 
 	<c:if test="${productList == null}">
-		<h5>
+		<h6>
 			<spring:message code="message.startSearch" />
-		</h5>
+			<br/>
+			<spring:message code="message.browseAll" />
+			<br/>
+			<spring:message code="message.reset" />
+		</h6>
 	</c:if>
 
 	<c:if test="${productList.size() == 0}">
-		<h5>
+		<h6>
 			<spring:message code="message.pleaseRefineSearch" />
-		</h5>
+		</h6>
 	</c:if>
 
 	<c:if test="${productList.size() > 0}">
 		<%-- Display product info --%>
-		<h5>
+		<h6>
 			<spring:message code="message.showResult" arguments="${productList.size()};${productList.size()}" htmlEscape="false"
 				argumentSeparator=";" />
-		</h5>
+		</h6>
 		<br>
 		<h6><strong>TIP!</strong> <spring:message code="message.tip" /></h6>
 		<table id="productTable" class="tablesorter">

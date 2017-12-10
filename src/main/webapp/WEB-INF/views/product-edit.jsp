@@ -2,13 +2,23 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
-<h3>Edit Supplier page</h3>
-<form:form method="POST" modelAttribute="product"
-	action="${pageContext.request.contextPath}/admin/product/edit/${product.partNumber}">
-	<table>
+<link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
+<html>
+<head>
+<title>
+<spring:message code="heading.product.editProduct" />
+</title>
+</head>
+<br/><h3><spring:message code="heading.product.editProduct" /></h3>
+<form:form method="POST" modelAttribute="productDTO"
+	action="${pageContext.request.contextPath}/admin/product/edit/${productDTO.partNumber}">
+	<table class="searchTable">
 		<tbody>
-			
+			<tr>
+				<td><spring:message code="fieldLabel.partNumber" /></td>
+				<td><form:input path="partNumber" readonly="true"/></td>
+				<td><form:errors path="partNumber" cssStyle="color: red;" /></td>
+			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.partName" /></td>
 				<td><form:input path="partName" /></td>
@@ -16,13 +26,13 @@
 			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.partBrand" /></td>
-				<td><form:input path="Brand" /></td>
-				<td><form:errors path="Brand" cssStyle="color: red;" /></td>
+				<td><form:input path="brand" /></td>
+				<td><form:errors path="brand" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.partPrice" /></td>
-				<td><form:input path="Price" /></td>
-				<td><form:errors path="Price" cssStyle="color: red;" /></td>
+				<td>$<form:input path="price" /></td>
+				<td><form:errors path="price" cssStyle="color: red;" /></td>
 			</tr>
 
 			<tr>
@@ -45,9 +55,8 @@
 			
 			<tr>
 				<td><spring:message code="fieldLabel.supplierId" /></td>
-				<td><form:select path="supplier">
-				<form:option value="${product.supplier}"></form:option>
-				<form:options items="${suppliersList}" itemValue="supplierId" itemLabel="supplierName"></form:options>
+				<td><form:select path="supplierId">				
+				<form:options items="${suppliersList}" selected="${productDTO.supplierId}"/>
 				</form:select></td>
 <%-- 				<td><form:errors path="supplier" cssStyle="color: red;" /></td> --%>
 			</tr>
@@ -59,11 +68,11 @@
 			</tr>
 			
 			<tr>
-				<td><input type="submit" value="Update" />
+				<td colspan="2"><form:button type="submit" class="btn btn-outline-primary" id="allButton"><spring:message code="button.saveChanges" /></form:button>
+				<form:button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/admin/product/list'"><spring:message code="button.cancel" /></form:button>
 				</td>
-				<td></td>
-				<td></td>
 			</tr>
 		</tbody>
 	</table>
 </form:form>
+</html>

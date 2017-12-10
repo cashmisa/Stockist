@@ -1,7 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
@@ -10,28 +12,29 @@
 <script>
 	$(document).ready(function() {
 		$("#productTable").tablesorter({
+			widgets : [ 'zebra' ],
 			headers : {
-				5 : {
+				9 : {
 					sorter : false
 				},
 
-				6 : {
-					sorter : false
-				},
-
-				7 : {
+				10 : {
 					sorter : false
 				}
 			}
 		});
 	});
 </script>
-
-<h3>Product List page</h3>
-<br>
-
-
-
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+<spring:message code="heading.productList" />
+</title>
+</head>
+<br/><h3><spring:message code="heading.productList" /></h3>
+<c:url var="add_url" value = "${pageContext.request.contextPath}/admin/product/create" />
+	<a href="${add_url}"><spring:message code="caption.product.add"/></a>	
+	<br/><br/>
 <c:if test="${fn:length(productList) gt 0}">
 	<table id="productTable" class="tablesorter">
 		<thead>
@@ -39,14 +42,15 @@
 				<th><spring:message code="fieldLabel.partNumber" /></th>
 				<th><spring:message code="fieldLabel.partName" /></th>
 				<th><spring:message code="fieldLabel.partBrand" /></th>
-				<th><spring:message code="fieldLabel.supplierId" /></th>
-				<th><spring:message code="fieldLabel.partPrice" /></th>
+				<th><spring:message code="fieldLabel.supplierName" /></th>
 				<th><spring:message code="fieldLabel.partQty" /></th>
 				<th><spring:message code="fieldLabel.partMOQ" /></th>
 				<th><spring:message code="fieldLabel.partROQ" /></th>
 				<th><spring:message code="fieldLabel.partPrice" /></th>
 				<th><spring:message code="fieldLabel.partLocation" /></th>
-				
+				<th> </th>
+				<th> </th>
+
 			</tr>
 		</thead>
 		<tbody>
@@ -55,16 +59,18 @@
 					<td>${product.partNumber}</td>
 					<td>${product.partName}</td>
 					<td>${product.brand}</td>
-					<td>${product.supplier}</td>
+					<td>${product.supplier.supplierName}</td>
 					<td>${product.qty}</td>
 					<td>${product.minOrderQty}</td>
 					<td>${product.reOrderQty}</td>
-					<td>${product.price}</td>
+					<td><fmt:formatNumber type="currency" currencySymbol="$"
+							value="${product.price}" /></td>
 					<td>${product.shelfLocation}</td>
 					<td align="center"><a
 						href="${pageContext.request.contextPath}/admin/product/edit/${product.partNumber}"><spring:message
 								code="caption.edit" /></a></td>
-					<td><a href="${pageContext.request.contextPath}/admin/product/delete/${product.partNumber}"><spring:message
+					<td><a
+						href="${pageContext.request.contextPath}/admin/product/delete/${product.partNumber}"><spring:message
 								code="caption.delete" /></a></td>
 				</tr>
 			</c:forEach>

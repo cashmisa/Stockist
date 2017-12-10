@@ -7,6 +7,9 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sa45team7.stockist.service.UserService;
+
+import com.sa45team7.stockist.validator.UserValidator;
 
 import com.sa45team7.stockist.model.User;
 
@@ -27,6 +32,15 @@ public class AdminUserController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private UserValidator userValidator;
+	
+	@InitBinder("user")
+	private void initUserBinder(WebDataBinder binder) {
+		binder.addValidators(userValidator);
+	}
+	
+	
 	@RequestMapping(value ={"", "/listuser"}, method = RequestMethod.GET) //admin/user/listuser
 	public ModelAndView listUser() 
 	{
@@ -37,7 +51,8 @@ public class AdminUserController {
 	}
 	
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView createNewUser() {
+	public ModelAndView createNewUser() 
+	{
 		ModelAndView modelAndView = new ModelAndView("new-user", "user", new User()); //viewname, modelname, modelobject
 		ArrayList<String> roleList = userService.findAllRoles();
 		modelAndView.addObject("roleList", roleList);
@@ -45,9 +60,17 @@ public class AdminUserController {
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST) //admin/user/create
-	public ModelAndView createdUser(@ModelAttribute @Valid User user,
+	public ModelAndView createdUser(@ModelAttribute @Valid User user, BindingResult result,
 			final RedirectAttributes redirectAttributes) 
 	{
+		if (result.hasErrors())
+		{
+			ModelAndView modelAndView = new ModelAndView("new-user");
+			ArrayList<String> roleList = userService.findAllRoles();
+			modelAndView.addObject("roleList", roleList);
+			return modelAndView;
+		}
+		
 		userService.createUser(user);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("redirect:/admin/user/listuser");
@@ -69,13 +92,21 @@ public class AdminUserController {
 	}
 	
 	@RequestMapping(value = "/edituser/{userName}", method = RequestMethod.POST) //admin/edituser/whicheveruser
-	public ModelAndView editUser(@ModelAttribute @Valid User user, @PathVariable String userName,
+	public ModelAndView editUser(@ModelAttribute @Valid User user, BindingResult result, @PathVariable String userName,
 			final RedirectAttributes redirectAttributes)
 	{
+		if (result.hasErrors())
+		{
+			ModelAndView modelAndView = new ModelAndView("edit-user");
+			ArrayList<String> roleList = userService.findAllRoles();
+			modelAndView.addObject("roleList", roleList);
+			return modelAndView;
+		}
+		
 		userService.changeUser(user);	
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("redirect:/admin/user/listuser");
-		String updatedUser = "Updated user: " + user.getUsername();
+		String updatedUser = "Updated User: " + user.getUsername();
 
 		redirectAttributes.addFlashAttribute("updatedUser", updatedUser);
 		return modelAndView;
@@ -87,7 +118,7 @@ public class AdminUserController {
 		ModelAndView modelAndView = new ModelAndView("redirect:/admin/user/listuser");
 		User user = userService.findUser(userName);
 		userService.removeUser(user);
-		String deletedUser = "Deleted user: " + user.getUsername();	
+		String deletedUser = "Deleted User: " + user.getUsername();	
 		
 		redirectAttributes.addFlashAttribute("deletedUser", deletedUser);
 		return modelAndView;

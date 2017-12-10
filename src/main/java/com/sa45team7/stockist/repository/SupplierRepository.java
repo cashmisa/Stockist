@@ -10,8 +10,8 @@ import com.sa45team7.stockist.model.Supplier;
 
 public interface SupplierRepository extends JpaRepository<Supplier, Integer > {
 	
-	//@Query("SELECT s FROM Supplier s where s.supplierName = :name")
 	
+	//@Query("SELECT s FROM Supplier s where s.supplierName = :name")
 	
 	@Query("SELECT s FROM Supplier s WHERE s.supplierName LIKE CONCAT('%',:name,'%')")
 	ArrayList<Supplier> findSupplierByName(@Param("name") String name);
@@ -31,6 +31,13 @@ public interface SupplierRepository extends JpaRepository<Supplier, Integer > {
 	@Query("SELECT DISTINCT s.supplierId FROM Supplier s")
 	ArrayList<Integer>findAllSupplierIDs();
 
+	//query for reordering report usecase
+	@Query(value="SELECT s FROM Supplier s WHERE s.supplierId IN (SELECT DISTINCT p.supplierId FROM Product p)", nativeQuery=true)
+	ArrayList<Supplier> findSuppliersWithProducts();
+	
+	//query for reordering report usecase
+	@Query("SELECT s FROM Supplier s WHERE s.supplierId IN ?1")
+	ArrayList<Supplier> findSuppliersByIdList(ArrayList<Integer> ids);
 	
 }
 

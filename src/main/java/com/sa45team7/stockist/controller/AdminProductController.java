@@ -1,6 +1,5 @@
 package com.sa45team7.stockist.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -19,106 +18,106 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sa45team7.exception.ProductNotFound;
 import com.sa45team7.stockist.model.Product;
+import com.sa45team7.stockist.model.ProductDTO;
 import com.sa45team7.stockist.service.ProductService;
 import com.sa45team7.stockist.service.SupplierService;
 import com.sa45team7.stockist.validator.ProductValidator;
 
-
 @RequestMapping("/admin/product")
 @Controller
 public class AdminProductController {
-	
-	//RAJE
-	
+
+	// RAJE
+
 	@Autowired
 	private ProductService pService;
-	
+
 	@Autowired
 	private SupplierService sService;
-	
+
 	@Autowired
 	private ProductValidator pValidator;
+
 	@InitBinder("product")
-	
-	private void InitProductBinder(WebDataBinder binder)
-	{
+
+	private void InitProductBinder(WebDataBinder binder) {
 		binder.setValidator(pValidator);
 	}
-	
-	//product CRUD  OPERATIONS
-	
-	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+
+	// product CRUD OPERATIONS
+
+	@RequestMapping(value = { "", "/list" }, method = RequestMethod.GET)
 	public ModelAndView ProductListPage() {
 		ModelAndView mav = new ModelAndView("product-list");
 		List<Product> productList = pService.getProductList();
 		mav.addObject("productList", productList);
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView newProductPage()
-	 {
-		ModelAndView mav = new ModelAndView("product-new", "product", new Product());
+	public ModelAndView newProductPage() {
+		ModelAndView mav = new ModelAndView("product-new", "productDTO", new ProductDTO());
 		mav.addObject("suppliersList", sService.findAllSuppliers());
 		return mav;
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public ModelAndView createNewProduct(@ModelAttribute  @Valid Product product, BindingResult result,
+	public ModelAndView createNewProduct(@ModelAttribute @Valid ProductDTO productDTO, BindingResult result,
 			final RedirectAttributes redirectAttributes) {
 
 		if (result.hasErrors())
 			return new ModelAndView("product-new");
 
 		ModelAndView mav = new ModelAndView();
-		String message = "New product " + product.getPartName() + " was successfully created.";
-       
-		pService.createProduct(product);
-		mav.setViewName("redirect:admin/product/list");
-
+		
+		pService.createProduct(productDTO);
+		
+		mav.setViewName("redirect:/admin/product/list");
+		String message = "New product " + productDTO.getPartName() + " was successfully created.";
 		redirectAttributes.addFlashAttribute("message", message);
+		
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-	public ModelAndView editProductPage(@PathVariable Integer id) 
-	{
+	public ModelAndView editProductPage(@PathVariable Integer id) {
 		ModelAndView mav = new ModelAndView("product-edit");
-		Product product = pService.findProduct(id);
-		mav.addObject("product", product);
+		ProductDTO productDTO = new ProductDTO(pService.findProduct(id));
+		mav.addObject("productDTO", productDTO);
 		mav.addObject("suppliersList", sService.findAllSuppliers());
 		return mav;
-
 	}
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-	public ModelAndView editProduct(@ModelAttribute @Valid Product product, BindingResult result,
-			@PathVariable Integer id, final RedirectAttributes redirectAttributes)throws ProductNotFound{
+	public ModelAndView editProduct(@ModelAttribute("productDTO") @Valid ProductDTO productDTO, BindingResult result,
+			@PathVariable Integer id, final RedirectAttributes redirectAttributes) throws ProductNotFound {
 
-	   if (result.hasErrors())
-		return new ModelAndView("product-edit");
+		if (result.hasErrors()) {
+			
+			ModelAndView mav = new ModelAndView("product-edit");
+			mav.addObject("suppliersList", sService.findAllSuppliers());
+			return mav;
+		}
 
 		ModelAndView mav = new ModelAndView("redirect:/admin/product/list");
 		
+		pService.updateProduct(productDTO);
+		
 		String message = "Product Details was successfully updated.";
 		
-		//product.setSupplier(sService.findSupplier(product.getSupplier().getSupplierId()));
-	
-		pService.updateProduct(product);
-
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
 	}
+	
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public ModelAndView deleteProduct(@PathVariable Integer id, final RedirectAttributes redirectAttributes)
 			throws ProductNotFound {
 
-		ModelAndView view = new ModelAndView("redirect:/admin/Product/list");
+		ModelAndView view = new ModelAndView("redirect:/admin/product/");
 		Product product = pService.findProduct(id);
 		pService.deleteProduct(product);
-		
+
 		String message = "The Product " + product.getPartName() + " was successfully deleted.";
 
 		redirectAttributes.addFlashAttribute("message", message);
