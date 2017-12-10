@@ -4,7 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page session="false"%>
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
-	<h3>Hello <spring:message code="world"/>!</h3>
+	<br/><h3>Hello <spring:message code="world"/>!</h3>
 
 	<P>The time on the server is ${serverTime}.</P>
 

@@ -24,9 +24,8 @@ $( "#target5" ).keypress(function() {
 });
 
 </script>
-<h3><spring:message code="heading.supplier.addSupplier" /></h3>
-<br>
-<br>
+<br/><h3><spring:message code="heading.supplier.addSupplier" /></h3>
+
 
 <div class="col-md-4">
 	<form:form method="POST" modelAttribute="supplier" action="${pageContext.request.contextPath}/admin/supplier/create">

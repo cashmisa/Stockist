@@ -10,7 +10,7 @@
 </title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<h3><spring:message code="heading.user.editUser" /></h3>
+<br/><h3><spring:message code="heading.user.editUser" /></h3>
 <form:form method="POST" commandName="user"
 	action="${pageContext.request.contextPath}/admin/user/edituser/${user.userName}">
 <table>
