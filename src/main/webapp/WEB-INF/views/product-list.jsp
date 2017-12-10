@@ -13,15 +13,11 @@
 	$(document).ready(function() {
 		$("#productTable").tablesorter({
 			headers : {
-				5 : {
+				9 : {
 					sorter : false
 				},
 
-				6 : {
-					sorter : false
-				},
-
-				7 : {
+				10 : {
 					sorter : false
 				}
 			}
@@ -47,6 +43,8 @@
 				<th><spring:message code="fieldLabel.partROQ" /></th>
 				<th><spring:message code="fieldLabel.partPrice" /></th>
 				<th><spring:message code="fieldLabel.partLocation" /></th>
+				<th> </th>
+				<th> </th>
 
 			</tr>
 		</thead>

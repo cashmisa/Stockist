@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
 
 <script src="/js/jquery.tablesorter.js"></script>
+
 <script>
 	$(document).ready(function() {
 		$("#productTable").tablesorter({
@@ -64,17 +65,17 @@
 	</c:if>
 
 	<c:if test="${productList.size() == 0}">
-		<h5>
+		<h6>
 			<spring:message code="message.pleaseRefineSearch" />
-		</h5>
+		</h6>
 	</c:if>
 
 	<c:if test="${productList.size() > 0}">
 		<%-- Display product info --%>
-		<h5>
+		<h6>
 			<spring:message code="message.showResult" arguments="${productList.size()};${productList.size()}" htmlEscape="false"
 				argumentSeparator=";" />
-		</h5>
+		</h6>
 		<br>
 		<h6><strong>TIP!</strong> <spring:message code="message.tip" /></h6>
 		<table id="productTable" class="tablesorter">

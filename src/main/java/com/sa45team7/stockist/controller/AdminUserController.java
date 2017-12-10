@@ -106,7 +106,7 @@ public class AdminUserController {
 		userService.changeUser(user);	
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("redirect:/admin/user/listuser");
-		String updatedUser = "Updated user: " + user.getUsername();
+		String updatedUser = "Updated User: " + user.getUsername();
 
 		redirectAttributes.addFlashAttribute("updatedUser", updatedUser);
 		return modelAndView;
@@ -118,7 +118,7 @@ public class AdminUserController {
 		ModelAndView modelAndView = new ModelAndView("redirect:/admin/user/listuser");
 		User user = userService.findUser(userName);
 		userService.removeUser(user);
-		String deletedUser = "Deleted user: " + user.getUsername();	
+		String deletedUser = "Deleted User: " + user.getUsername();	
 		
 		redirectAttributes.addFlashAttribute("deletedUser", deletedUser);
 		return modelAndView;

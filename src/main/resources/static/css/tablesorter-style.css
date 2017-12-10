@@ -20,12 +20,41 @@ table.searchTable td {
 	padding-right: 18px;
 }
 
+#allButton{
+	margin-right: 6px;
+}
+
+h3{
+	font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+		"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif,
+		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-size: 2rem;
+	font-weight: 300;	
+}
+
+
+h6{
+	font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+		"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif,
+		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-size: 1rem;
+	font-weight: 200;	
+}
+
+td{
+	font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+		"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif,
+		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-size: 1rem;
+	font-weight: 200;	
+}
+
 table.tablesorter {
 	font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont,
 		"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif,
 		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	font-size: 1rem;
-	font-weight: 400;
+	font-weight: 200;
 	line-height: 1.5;
 	border: 1px solid #FFF;
 	width: 90%;
@@ -33,8 +62,10 @@ table.tablesorter {
 }
 
 table.tablesorter thead tr th, table.tablesorter tfoot tr th {
-	background-color: #e6EEEE;
+	background-color: #266cd8;
 	border: 1px solid #FFF;
+	font-weight: 200;
+	color: #FFF;
 	font-size: 1rem;
 	padding: 4px;
 }

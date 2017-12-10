@@ -2,7 +2,13 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
+<link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
+<html>
+<head>
+<title>
+<spring:message code="heading.user.editUser" />
+</title>
+</head>
 <h3><spring:message code="heading.product.editProduct" /></h3>
 <form:form method="POST" modelAttribute="productDTO"
 	action="${pageContext.request.contextPath}/admin/product/edit/${productDTO.partNumber}">
@@ -62,11 +68,11 @@
 			</tr>
 			
 			<tr>
-				<td><input type="submit" value="Update" />
+				<td colspan="2"><form:button type="submit" class="btn btn-outline-primary" id="allButton"><spring:message code="button.saveChanges" /></form:button>
+				<form:button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/admin/product/list'"><spring:message code="button.cancel" /></form:button>
 				</td>
-				<td></td>
-				<td></td>
 			</tr>
 		</tbody>
 	</table>
 </form:form>
+</html>
