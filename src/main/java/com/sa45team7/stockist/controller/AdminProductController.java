@@ -92,8 +92,12 @@ public class AdminProductController {
 	public ModelAndView editProduct(@ModelAttribute("productDTO") @Valid ProductDTO productDTO, BindingResult result,
 			@PathVariable Integer id, final RedirectAttributes redirectAttributes) throws ProductNotFound {
 
-		if (result.hasErrors())
-			return new ModelAndView("product-edit");
+		if (result.hasErrors()) {
+			
+			ModelAndView mav = new ModelAndView("product-edit");
+			mav.addObject("suppliersList", sService.findAllSuppliers());
+			return mav;
+		}
 
 		ModelAndView mav = new ModelAndView("redirect:/admin/product/list");
 		
@@ -104,6 +108,7 @@ public class AdminProductController {
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
 	}
+	
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public ModelAndView deleteProduct(@PathVariable Integer id, final RedirectAttributes redirectAttributes)

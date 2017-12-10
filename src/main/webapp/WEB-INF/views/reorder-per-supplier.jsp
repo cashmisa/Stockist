@@ -3,6 +3,12 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+<spring:message code="caption.reorderOverviewSupplier" />: ${supplierName }
+</title>
+</head>
 <br />
 <h3 align="center"><spring:message code="caption.reorderOverviewSupplier" />: ${supplierName }</h3>
 <hr />

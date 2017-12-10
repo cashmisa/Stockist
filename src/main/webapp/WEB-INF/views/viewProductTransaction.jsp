@@ -9,7 +9,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
-
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+<spring:message code="fieldLabel.viewProduct" />
+</title>
+</head>
 <script src="/js/jquery.tablesorter.js"></script>
 <script>
 	$(document).ready(function() {
@@ -72,18 +77,20 @@
 		</tr>
 	</table>
 	<table>
-			<tr>
+		<tr>
 			<td><div class="div-emptyspace"></div></td>
 		</tr>
 		<tr>
 			<sec:authorize access="hasAuthority('admin')">
-				<td><a
-					href="${pageContext.request.contextPath}/admin/product/edit/${product.partNumber}"
-					class="btn btn-outline-primary" id="allButton"><spring:message
-							code="caption.edit" /></a> <a
-					href="${pageContext.request.contextPath}/admin/product/delete/${product.partNumber}"
-					class="btn btn-outline-primary"><spring:message
-							code="caption.delete" /></a></td>
+				<c:if test="${not empty product}">
+					<td><a
+						href="${pageContext.request.contextPath}/admin/product/edit/${product.partNumber}"
+						class="btn btn-outline-primary txnButton" id="allButton"><spring:message
+								code="caption.edit" /></a> <a
+						href="${pageContext.request.contextPath}/admin/product/delete/${product.partNumber}"
+						class="btn btn-outline-primary txnButton"><spring:message
+								code="caption.delete" /></a></td>
+				</c:if>
 
 			</sec:authorize>
 		</tr>
@@ -161,25 +168,41 @@
 				<td><div class="div-emptyspace"></div>
 			<tr>
 				<td colspan="2" align="left"><form:button type="submit"
-						class="btn btn-outline-primary" style="width:150px">
+						class="btn btn-outline-primary txnButton">
 						<spring:message code="button.filter" />
 					</form:button></td>
 			</tr>
 			<tr>
-				<td><div class="div-smallemptyspace"></div>
+				<td><div class="div-smallemptyspace"></div></td>
+			</tr>
 		</c:when>
 		<c:otherwise>
 			<table style="cellspacing: 2; cellpadding: 2; border: 1;">
 				<tr>
 					<td><spring:message code="Message.noPreviousTransaction" /></td>
 				</tr>
+				<tr>
+				<td><div class="div-emptyspace"></div></td>
+				</tr>
 			</table>
 		</c:otherwise>
 	</c:choose>
 	<tr>
 		<td><a href="${pageContext.request.contextPath}/catalogue/all"
-			class="btn btn-outline-primary" style="width:150px"><spring:message
+			class="btn btn-outline-primary txnButton"><spring:message
 					code="button.returnToCatalogue" /></a></td>
+	</tr>
+	<tr>
+		<td><div class="div-smallemptyspace"></div></td>
+	</tr>
+
+	<tr>
+		<sec:authorize access="hasAuthority('admin')">
+			<td><a href="${pageContext.request.contextPath}/admin/product/"
+				class="btn btn-outline-primary txnButton"><spring:message
+						code="caption.adminProductPage" /></a></td>
+
+		</sec:authorize>
 	</tr>
 
 </form:form>

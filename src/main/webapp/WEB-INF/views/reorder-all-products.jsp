@@ -3,6 +3,12 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+<spring:message code="heading.report.all" />
+</title>
+</head>
 <br />
 <h3 align="center"><spring:message code="heading.report.all" /></h3><hr/>
 <p><a target="_blank" href="${pageContext.request.contextPath}/admin/report/allpdf"><Strong>View PDF report</Strong></a>

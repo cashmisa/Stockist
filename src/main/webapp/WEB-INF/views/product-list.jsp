@@ -24,12 +24,16 @@
 		});
 	});
 </script>
-
-<h3><spring:message code="heading.productList" /></h3>
-<br>
-
-
-
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+<spring:message code="heading.productList" />
+</title>
+</head>
+<br/><h3><spring:message code="heading.productList" /></h3>
+<c:url var="add_url" value = "${pageContext.request.contextPath}/admin/product/create" />
+	<a href="${add_url}"><spring:message code="caption.product.add"/></a>	
+	<br/><br/>
 <c:if test="${fn:length(productList) gt 0}">
 	<table id="productTable" class="tablesorter">
 		<thead>

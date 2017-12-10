@@ -12,10 +12,11 @@
 </title>
 </head>
 
-<h3><spring:message code="heading.user.userList" /></h3>
+<br/><h3><spring:message code="heading.user.userList" /></h3>
 	
 	<c:url var="add_url" value = "${pageContext.request.contextPath}/admin/user/create" />
 	<a href="${add_url}"><spring:message code="caption.user.add"/></a>
+	
 	<br/>
 	<c:if test="${createdUser != null}">
 	<div id="createdUser" style="color:#000000">${createdUser}</div>
@@ -26,7 +27,7 @@
 	<c:if test="${deletedUser != null}">
 	<div id="updatedUser" style="color:#000000">${deletedUser}</div>
 	</c:if> 
-	
+	<br/>
 	<table id="userTable" class="tablesorter">
 	<thead>
 			<tr>

@@ -2,6 +2,12 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+<spring:message code="heading.report.supplierList" />
+</title>
+</head>
 <br />
 <h3>
 	<spring:message code="heading.report.supplierList" />
@@ -53,6 +59,10 @@
 			headers : {
 				6 : {
 					sorter : false
+				},
+		
+				7: {
+					sorter: false
 				}
 			}
 		});

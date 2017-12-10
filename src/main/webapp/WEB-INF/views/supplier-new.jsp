@@ -2,7 +2,12 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+<spring:message code="heading.supplier.addSupplier" />
+</title>
+</head>
 
 <script>
 $(document).ready(function() {
@@ -24,9 +29,8 @@ $( "#target5" ).keypress(function() {
 });
 
 </script>
-<h3><spring:message code="heading.supplier.addSupplier" /></h3>
-<br>
-<br>
+<br/><h3><spring:message code="heading.supplier.addSupplier" /></h3>
+
 
 <div class="col-md-4">
 	<form:form method="POST" modelAttribute="supplier" action="${pageContext.request.contextPath}/admin/supplier/create">
