@@ -10,7 +10,7 @@
 <link href="/css/blurred-bg.css" rel="stylesheet" type="text/css" />
 
 <title>
-<spring:message code="home" />
+<spring:message code="login.header" />
 </title>
 
 </head>
