@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -116,14 +117,7 @@ public class ProductServiceImpl implements ProductService
 	}
 	
 	public Product convertToProduct(Product product, ProductDTO productDTO) {
-		product.setPartNumber(productDTO.getPartNumber());
-		product.setPartName(productDTO.getPartName());
-		product.setBrand(productDTO.getBrand());
-		product.setMinOrderQty(productDTO.getMinOrderQty());
-		product.setPrice(productDTO.getPrice());
-		product.setQty(productDTO.getQty());
-		product.setReOrderQty(productDTO.getReOrderQty());
-		product.setShelfLocation(productDTO.getShelfLocation());
+		BeanUtils.copyProperties(productDTO, product);
 		Supplier supplier = supplierRepository.findOne(productDTO.getSupplierId());
 		product.setSupplier(supplier);
 		return product;

@@ -5,9 +5,11 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomNumberEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.sa45team7.exception.ProductNotFound;
+import com.sa45team7.stockist.exception.ProductNotFound;
 import com.sa45team7.stockist.model.Product;
 import com.sa45team7.stockist.model.ProductDTO;
 import com.sa45team7.stockist.service.ProductService;
@@ -38,15 +40,14 @@ public class AdminProductController {
 	@Autowired
 	private ProductValidator pValidator;
 
-	@InitBinder("product")
-
+	@InitBinder("productDTO")
 	private void InitProductBinder(WebDataBinder binder) {
 		binder.setValidator(pValidator);
 	}
 
 	// product CRUD OPERATIONS
 
-	@RequestMapping(value = { "", "/list" }, method = RequestMethod.GET)
+	@GetMapping(value = { "", "/list" })
 	public ModelAndView ProductListPage() {
 		ModelAndView mav = new ModelAndView("product-list");
 		List<Product> productList = pService.getProductList();
@@ -110,7 +111,7 @@ public class AdminProductController {
 	}
 	
 
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	@GetMapping(value = "/delete/{id}")
 	public ModelAndView deleteProduct(@PathVariable Integer id, final RedirectAttributes redirectAttributes)
 			throws ProductNotFound {
 
