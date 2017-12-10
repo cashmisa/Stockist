@@ -33,7 +33,7 @@
 					<textElement>
 						<font size="18" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Inventory Reorder Report For Supplier ]]></text>
+					<text><![CDATA[Inventory Reorder Report For Supplier -]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="417246c8-27f8-44bc-af2d-734b10afa16d"/>

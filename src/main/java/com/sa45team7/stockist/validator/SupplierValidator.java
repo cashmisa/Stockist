@@ -24,7 +24,7 @@ public class SupplierValidator implements Validator {
 		// TODO Auto-generated method stub
 		Supplier supplier = (Supplier) arg0;
 
-		ValidationUtils.rejectIfEmpty(arg1, "supplierName", "error.supplier.supplierName.empty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "supplierName", "error.supplier.supplierName.empty");
 
 		ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "contactName", "error.supplier.contactName.empty");
 

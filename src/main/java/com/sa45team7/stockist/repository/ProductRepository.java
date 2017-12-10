@@ -9,6 +9,11 @@ import com.sa45team7.stockist.model.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Integer>
 {
+	//reorder report usecase
+	@Query (value="SELECT DISTINCT p.supplierId FROM Product p", nativeQuery=true)
+	ArrayList<Integer> findSupplierIdsWithProducts();
+	
+	
 	@Query("SELECT p FROM Product p where p.partNumber = :id")
 	Product findProductByPartNumber(@Param("id") Integer id);
 	

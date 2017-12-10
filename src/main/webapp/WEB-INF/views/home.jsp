@@ -7,16 +7,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>
-<spring:message code="login.header" />
+<spring:message code="home" />
 </title>
 </head>
 	<br/><h3>Hello <spring:message code="world"/>!</h3>
 
 	<P>The time on the server is ${serverTime}.</P>
-
+<!--  
 	<sec:authorize access="hasAnyAuthority('admin', 'mechanic')">
 		<form action="/logout" method="post">
 			<button id="logout">Sign out</button>
 		</form>
 	</sec:authorize>
+	-->
 

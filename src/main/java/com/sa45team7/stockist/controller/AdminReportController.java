@@ -22,10 +22,10 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 public class AdminReportController {
 
 	@Autowired
-	ReorderService reorderService;
+	ReorderService rService;
 
 	@Autowired
-	SupplierService supplierService;
+	SupplierService sService;
 	
 	@Autowired
 	ApplicationContext appContext;
@@ -36,7 +36,7 @@ public class AdminReportController {
 	@RequestMapping(value = { "", "/list" }, method = RequestMethod.GET)
 	public ModelAndView ReorderListPage() {
 		ModelAndView mav = new ModelAndView("reorder");
-		mav.addObject("supplierList", supplierService.findAllSuppliers());
+		mav.addObject("supplierList", rService.getSuppliersWithProducts());
 		return mav;
 	}
 
@@ -47,11 +47,11 @@ public class AdminReportController {
 	@RequestMapping(value = "/supplier/{supplierId}", method = RequestMethod.GET)
 	public ModelAndView reorderListBySupplier(@PathVariable("supplierId") int id) {
 		ModelAndView mav = new ModelAndView("reorder-per-supplier");
-		LinkedHashMap<Product, Integer> reorderList = reorderService.getReoderProductMapBySupplier(id);
+		LinkedHashMap<Product, Integer> reorderList = rService.getReoderProductMapBySupplier(id);
 		mav.addObject("reorderList", reorderList);
-		mav.addObject("supplierName", supplierService.findSupplier(id).getSupplierName());
+		mav.addObject("supplierName", sService.findSupplier(id).getSupplierName());
 		mav.addObject("supplierId", id);
-		mav.addObject("sumPrice", reorderService.getReorderSumPrice(reorderList));
+		mav.addObject("sumPrice", rService.getReorderSumPrice(reorderList));
 		return mav;
 	}
 
@@ -61,9 +61,9 @@ public class AdminReportController {
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public ModelAndView reorderListAllProducts() {
 		ModelAndView mav = new ModelAndView("reorder-all-products");
-		LinkedHashMap<Product, Integer> reorderMap = reorderService.getReorderProductMap();
+		LinkedHashMap<Product, Integer> reorderMap = rService.getReorderProductMap();
 		mav.addObject("reorderMap", reorderMap);
-		mav.addObject("sumPrice", reorderService.getReorderSumPrice(reorderMap));
+		mav.addObject("sumPrice", rService.getReorderSumPrice(reorderMap));
 		return mav;
 	}
 	
@@ -72,7 +72,7 @@ public class AdminReportController {
 	    JasperReportsPdfView view = new JasperReportsPdfView();
 	    view.setUrl("classpath:ReorderReport.jrxml");
 	    view.setApplicationContext(appContext);
-	    JRBeanCollectionDataSource jrds = new JRBeanCollectionDataSource(reorderService.getReorderProductList());
+	    JRBeanCollectionDataSource jrds = new JRBeanCollectionDataSource(rService.getReorderProductList());
 	    return new ModelAndView(view, "productData", jrds);
 	}
 	
@@ -81,7 +81,7 @@ public class AdminReportController {
 		JasperReportsPdfView view = new JasperReportsPdfView();
 	    view.setUrl("classpath:ReorderReportPerSupplier.jrxml");
 	    view.setApplicationContext(appContext);
-	    JRBeanCollectionDataSource jrds = new JRBeanCollectionDataSource(reorderService.getReorderProductListBySupplier(id));
+	    JRBeanCollectionDataSource jrds = new JRBeanCollectionDataSource(rService.getReorderProductListBySupplier(id));
 	    return new ModelAndView(view, "productData", jrds);
 	}
 }

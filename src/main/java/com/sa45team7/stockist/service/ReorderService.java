@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 
 
 import com.sa45team7.stockist.model.Product;
+import com.sa45team7.stockist.model.Supplier;
 
 public interface ReorderService {
 
@@ -18,6 +19,7 @@ public interface ReorderService {
 
 	Collection<Product> getReorderProductListBySupplier(int id);
 
+	Collection<Supplier> getSuppliersWithProducts();
 
 
 	

@@ -13,7 +13,7 @@
 <br/><h3><spring:message code="heading.user.editUser" /></h3>
 <form:form method="POST" commandName="user"
 	action="${pageContext.request.contextPath}/admin/user/edituser/${user.userName}">
-<table>
+<table class="searchTable">
 			<tr>
 				<td><spring:message code="fieldLabel.user.userName" /></td>	
 				<td><form:input path="userName" readonly="true" /></td>
@@ -27,7 +27,7 @@
 			<tr>
 				<td><spring:message code="fieldLabel.user.password" /></td>
 		 		<td><form:password path="password" /></td>
-		 		<td><form:errors path="password" /></td>
+		 		<td><form:errors path="password" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
 				<td colspan="2"><form:button type="submit" class="btn btn-outline-primary" id="allButton"><spring:message code="button.saveChanges" /></form:button>

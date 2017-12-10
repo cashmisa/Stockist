@@ -19,7 +19,6 @@ INSERT INTO user VALUES ('nathan','mechanic','npass');
 INSERT INTO user VALUES ('raji','mechanic','rajipass');
 INSERT INTO user VALUES ('xiaowen','mechanic','xwpass');
 INSERT INTO user VALUES ('zinko','mechanic','maypass');
-INSERT INTO user VALUES ('dummy', 'admin', 'dummypass');
 
 CREATE TABLE IF NOT EXISTS `stockist`.`supplier` (     
 `supplierId` INT NOT NULL AUTO_INCREMENT,   
@@ -127,14 +126,25 @@ CREATE TABLE IF NOT EXISTS `stockist`.`transaction` (
 `transactionId` INT NOT NULL AUTO_INCREMENT,     
 `userName` VARCHAR( 20 ) NOT NULL,     
 `partNumber` INT NOT NULL,     
-`qty` INT NOT NULL,      
+`qty` INT NOT NULL,     
 `transactionType` VARCHAR( 20 ) NOT NULL,     
 `date` DATETIME NOT NULL,     
 `customer` VARCHAR( 45 ) NULL,     
 `remarks` VARCHAR( 255 ) NULL,          
 PRIMARY KEY (`transactionId`),
 FOREIGN KEY (`userName`) REFERENCES `user` (`userName`) ON UPDATE CASCADE ON DELETE CASCADE,
-FOREIGN KEY (`partNumber`) REFERENCES `product` (`partNumber`) ON UPDATE CASCADE, 
+FOREIGN KEY (`partNumber`) REFERENCES `product` (`partNumber`) ON UPDATE CASCADE ON DELETE CASCADE,
 INDEX `transactionId` (`transactionId`))
 ENGINE=INNODB
 DEFAULT CHARACTER SET = utf8;
+
+INSERT INTO transaction (`userName`,`partNumber`,`qty`,`transactionType`,`date`,`customer`,`remarks`) VALUES ('nathan',1007,2,'used','2017-10-17 14:14:14','lim',NULL);
+INSERT INTO transaction (`userName`,`partNumber`,`qty`,`transactionType`,`date`,`customer`,`remarks`) VALUES ('admin1',1024,10,'received','2017-10-18 14:14:15',NULL,NULL);
+INSERT INTO transaction (`userName`,`partNumber`,`qty`,`transactionType`,`date`,`customer`,`remarks`) VALUES ('chunket',1032,1,'used','2017-10-19 14:14:16','hock',NULL);
+INSERT INTO transaction (`userName`,`partNumber`,`qty`,`transactionType`,`date`,`customer`,`remarks`) VALUES ('xiaowen',1003,2,'used','2017-10-20 14:14:17','adrian',NULL);
+INSERT INTO transaction (`userName`,`partNumber`,`qty`,`transactionType`,`date`,`customer`,`remarks`) VALUES ('mengguan',1049,2,'used','2017-10-21 14:14:18','zaidin',NULL);
+INSERT INTO transaction (`userName`,`partNumber`,`qty`,`transactionType`,`date`,`customer`,`remarks`) VALUES ('gray',1019,1,'used','2017-10-22 14:14:19','tan',NULL);
+INSERT INTO transaction (`userName`,`partNumber`,`qty`,`transactionType`,`date`,`customer`,`remarks`) VALUES ('zinko',1012,1,'used','2017-10-23 14:14:20','peter',NULL);
+INSERT INTO transaction (`userName`,`partNumber`,`qty`,`transactionType`,`date`,`customer`,`remarks`) VALUES ('raji',1011,1,'used','2017-10-24 14:14:21','rami',NULL);
+INSERT INTO transaction (`userName`,`partNumber`,`qty`,`transactionType`,`date`,`customer`,`remarks`) VALUES ('admin2',1009,1,'returned','2017-10-25 14:14:22',NULL,'received as damaged');
+INSERT INTO transaction (`userName`,`partNumber`,`qty`,`transactionType`,`date`,`customer`,`remarks`) VALUES ('nathan',1038,3,'used','2017-10-26 14:14:23','lim',NULL);

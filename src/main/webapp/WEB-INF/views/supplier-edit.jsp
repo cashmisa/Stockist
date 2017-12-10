@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
 
 <script>
 $(document).ready(function() {
@@ -21,7 +22,6 @@ $( "#target5" ).keypress(function() {
 	$("#error5").html("");
 });
 });
-
 </script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -31,59 +31,52 @@ $( "#target5" ).keypress(function() {
 </head>
 <br/><h3><spring:message code="heading.supplier.editSupplier" /></h3>
 
-<div class="col-md-4">
 	<form:form method="POST" modelAttribute="supplier"
 		action="${pageContext.request.contextPath}/admin/supplier/edit/${supplier.supplierId}">
+<table class="searchTable">
+		<tbody>
+			<tr>
+			<td><spring:message code="fieldLabel.supplierId" /></td>
+			<td><form:input path="supplierId" readonly="true" /></td>
+			</tr>
 
-		<div class="form-group">
+			<tr>
+			<td><spring:message code="fieldLabel.supplierName" /></td>
+			<td><form:input id="target1" path="supplierName" class="form-control" /></td>
+			<td><form:errors id="error1" path="supplierName" cssStyle="color: red;" /></td>
+			</tr>
 
-			<spring:message code="fieldLabel.supplierId" />
-			<form:input path="supplierId" class="form-control" readonly="true" />
+			<tr>
+			<td><spring:message code="fieldLabel.contactName" /></td>
+			<td><form:input id="target2" path="contactName" class="form-control target" /></td>
+			<td><form:errors id="error2" path="contactName" cssStyle="color: red;" /></td>
+	
+			<tr>
+			<td><spring:message code="fieldLabel.phoneNo" /></td>
+			<td><form:input id="target3" path="phoneNumber" class="form-control target" /></td>
+			<td><form:errors id="error3" path="phoneNumber" cssStyle="color: red;" /></td>
+			</tr>
 
-		</div>
+			<tr>
+			<td><spring:message code="fieldLabel.email" /></td>
+			<td><form:input id="target4" path="email" class="form-control target" /></td>
+			<td><form:errors id="error4" path="email" cssStyle="color: red;" /></td>
+			</tr>
 
-		<div class="form-group">
+			<tr>
+			<td><spring:message code="fieldLabel.website" /></td>
+			<td><form:input id="target5" path="website" class="form-control target" /></td>
+			<td><form:errors id="error5" path="website" cssStyle="color: red;" /></td>
+			</tr>
 
-			<spring:message code="fieldLabel.supplierName" />
-			<form:input id="target1" path="supplierName" class="form-control" />
-			<form:errors id="error1" path="supplierName" cssStyle="color: red;" />
-
-
-		</div>
-		<div class="form-group">
-			<spring:message code="fieldLabel.contactName" />
-			<form:input id="target2" path="contactName" class="form-control target" />
-			<form:errors id="error2" path="contactName" cssStyle="color: red;" />
-		</div>
-		<div class="form-group">
-			<spring:message code="fieldLabel.phoneNo" />
-			<form:input id="target3" path="phoneNumber" class="form-control target" />
-			<form:errors id="error3" path="phoneNumber" cssStyle="color: red;" />
-		</div>
-		<div class="form-group">
-			<spring:message code="fieldLabel.email" />
-			<form:input id="target4" path="email" class="form-control target" />
-			<form:errors id="error4" path="email" cssStyle="color: red;" />
-		</div>
-
-		<div class="form-group">
-			<spring:message code="fieldLabel.website" />
-			<form:input id="target5" path="website" class="form-control target" />
-			<form:errors id="error5" path="website" cssStyle="color: red;" />
-		</div>
-
-		<div class="container">
-			<button class="btn btn-primary" type="submit" >Update</button>
-			
-			<a class="btn btn-primary" href="${pageContext.request.contextPath}/admin/supplier">
-			Cancel
-			</a> 
-		
-		</div>
-
-
+			<tr>
+			<td colspan="2"><form:button type="submit" class="btn btn-outline-primary" id="allButton"><spring:message code="button.saveChanges" /></form:button>
+				<form:button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/admin/supplier'"><spring:message code="button.cancel" /></form:button>
+				</td>
+			</tr>
+	</tbody>
+	</table>
 	</form:form>
-</div>
 
 
 
