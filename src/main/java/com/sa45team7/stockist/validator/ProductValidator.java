@@ -22,25 +22,24 @@ public class ProductValidator implements Validator {
 			// TODO Auto-generated method stub
 			Product product = (Product) arg0;
 			
-			ValidationUtils.rejectIfEmpty(arg1, "partName", "error.product.partName.empty");
+			ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "partName", "error.product.partName.empty");
 			
-			ValidationUtils.rejectIfEmpty(arg1, "brand", "error.product.brand.empty");
+			ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "brand", "error.product.brand.empty");
 			
-			ValidationUtils.rejectIfEmpty(arg1, "supplierId", "error.product.supplierId.empty");
+			ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "supplierId", "error.product.supplierId.empty");
 			
-			ValidationUtils.rejectIfEmpty(arg1, "qty", "error.product.qty.empty");
+			ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "qty", "error.product.qty.empty");
 			
-			ValidationUtils.rejectIfEmpty(arg1, "minOrderQty", "error.product.minOrderQty.empty");
+			ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "minOrderQty", "error.product.minOrderQty.empty");
 			
-            ValidationUtils.rejectIfEmpty(arg1, "reOrderQty", "error.product.reOrderQty.empty");
+            ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "reOrderQty", "error.product.reOrderQty.empty");
 			
-			ValidationUtils.rejectIfEmpty(arg1, "price", "error.product.price.empty");
+			ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "price", "error.product.price.empty");
 			
-			ValidationUtils.rejectIfEmpty(arg1, "shelfLocation", "error.product.shelfLocation.empty");
-			
+			ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "shelfLocation", "error.product.shelfLocation.empty");
+
 			System.out.println(product.toString());
 		}
 
-	}
-
+}
 
