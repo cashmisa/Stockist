@@ -119,7 +119,7 @@ public class AdminProductController {
 		Product product = pService.findProduct(id);
 		pService.deleteProduct(product);
 
-		String message = "Product <strong> " + product.getPartName() + "</strong> was successfully deleted.";
+		String message = "Product <strong>" + product.getPartName() + "</strong> was successfully deleted.";
 
 		redirectAttributes.addFlashAttribute("message", message);
 		return view;

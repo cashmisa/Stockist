@@ -19,13 +19,22 @@
 	
 	<br/>
 	<c:if test="${createdUser != null}">
-	<div id="createdUser" style="color:#000000">${createdUser}</div>
+	<div class="alert alert-primary" style="color:black" role="alert" id="createdUser">
+	<h5>Great!</h5>
+	<h6>${createdUser}</h6>
+	</div>
 	</c:if> 
 	<c:if test="${updatedUser != null}">
-	<div id="updatedUser" style="color:#000000">${updatedUser}</div>
+	<div class="alert alert-primary" style="color:black" role="alert" id="updatedUser">
+	<h5>Great!</h5>
+	<h6>${updatedUser}</h6>
+	</div>
 	</c:if> 
 	<c:if test="${deletedUser != null}">
-	<div id="updatedUser" style="color:#000000">${deletedUser}</div>
+	<div class="alert alert-primary" style="color:black" role="alert" id="updatedUser">
+	<h5>Great!</h5>
+	<h6>${deletedUser}</h6>
+	</div>
 	</c:if> 
 	<br/>
 	<table id="userTable" class="tablesorter">
