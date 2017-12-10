@@ -17,7 +17,6 @@
 			<tr>
 				<td><spring:message code="fieldLabel.partNumber" /></td>
 				<td><form:input path="partNumber" readonly="true"/></td>
-				<td><form:errors path="partNumber" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.partName" /></td>
@@ -31,7 +30,7 @@
 			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.partPrice" /></td>
-				<td>$<form:input path="price" /></td>
+				<td><form:input path="price" /></td>
 				<td><form:errors path="price" cssStyle="color: red;" /></td>
 			</tr>
 
@@ -54,11 +53,11 @@
 			</tr>
 			
 			<tr>
-				<td><spring:message code="fieldLabel.supplierId" /></td>
+				<td><spring:message code="fieldLabel.supplierName" /></td>
 				<td><form:select path="supplierId">				
-				<form:options items="${suppliersList}" selected="${productDTO.supplierId}"/>
+				<form:options items="${suppliersList}" itemLabel="supplierName" selected="${productDTO.supplierId}"/>
 				</form:select></td>
-<%-- 				<td><form:errors path="supplier" cssStyle="color: red;" /></td> --%>
+				<td><a href="${pageContext.request.contextPath}/admin/supplier/create">Add supplier</a></td>
 			</tr>
 			
 			<tr>

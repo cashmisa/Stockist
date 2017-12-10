@@ -20,30 +20,25 @@
 </head>
 <body>
 	<div>
-
 		<!-- /top menu -->
-		<div id="m_menu_top">
+		<div id="m_menu_top" style="position: fixed; top: 0; width: 100%">
 			<%@ include file="menu-top.jsp"%>
 		</div>
 
-		<div id="m_container">
-			<div id="content">
-				<div class="row" style="margin-right: 0px">
-					<div class="col-sm-2">
-						<%@ include file="sidebar.jsp"%>
+		<div id="m_container" style="margin-top: 56px">
+			<div class="row" style="margin-right: 0px">
+				<div class="col-md-2" style="position: relative">
+					<%@ include file="sidebar.jsp"%>
+					<div id="m_footer" style="bottom:0;position:fixed">
+						<%@ include file="footer.jsp"%>
 					</div>
-					<div class="col-sm-10">
-						<dec:body />
-					</div>
+				</div>
+				<div class="col-md-10" style="position: static">
+					<dec:body />
 				</div>
 			</div>
 		</div>
 		<!-- /main -->
-		<div id="m_footer">
-			<%@ include file="footer.jsp"%>
-		</div>
-		<!-- /footer -->
 	</div>
-
 </body>
 </html>

@@ -44,7 +44,7 @@
 	
 	<br> 
 <c:if test="${fn:length(supplierList) gt 0}">
-<div class="container table-responsive">
+<div class="table-responsive">
 	<table class="table table-bordered table-hover" id="supplier-table">
 		<thead>
 			<tr class="listHeading">

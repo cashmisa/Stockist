@@ -18,7 +18,7 @@
     });        
 </script>
 
-<div class="card">
+<div class="card" style="position:fixed">
 
 	<nav id="sidebar">
 		<!-- Sidebar Links -->
