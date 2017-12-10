@@ -3,12 +3,8 @@
 	prefix="sec"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page session="false"%>
-<html>
-<head>
-<title>Home</title>
-</head>
-<body>
-	<h1>Hello <spring:message code="world"/>!</h1>
+<link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
+	<h3>Hello <spring:message code="world"/>!</h3>
 
 	<P>The time on the server is ${serverTime}.</P>
 
@@ -17,5 +13,4 @@
 			<button id="logout">Sign out</button>
 		</form>
 	</sec:authorize>
-</body>
-</html>
+

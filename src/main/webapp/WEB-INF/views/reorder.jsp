@@ -42,7 +42,12 @@
 	$(document).ready(function() {
 		$("#supplierTable").tablesorter({
 			widthFixed : true,
-			widgets : [ 'zebra' ]
+			widgets : [ 'zebra' ],
+			headers : {
+				6: {
+					sorter : false
+				}
+			}
 		});
 	});
 </script>

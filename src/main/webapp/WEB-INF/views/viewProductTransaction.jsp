@@ -7,8 +7,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
 <form:form modelAttribute="transactionSearchHelper" method="post"
 	action="${pageContext.request.contextPath}/viewproduct/${id}">
 	<h3>
@@ -45,7 +44,7 @@
 			<td>${product.reOrderQty}</td>
 		</tr>
 		<tr>
-			<td><spring:message code="fieldLabel.partSupplier" /></td>
+			<td><spring:message code="fieldLabel.partSupplierContact" /></td>
 			<td>${product.supplier.contactName}</td>
 		</tr>
 		<tr>
@@ -56,9 +55,9 @@
 			<sec:authorize access="hasAuthority('admin')">
 				<td><a
 					href="${pageContext.request.contextPath}/admin/product/edit/${product.partNumber}"
-					class="btn btn-outline-primary"><spring:message
-							code="caption.edit" /></a></td>
-				<td><a
+					class="btn btn-outline-primary" id="allButton"><spring:message
+							code="caption.edit" /></a>
+				<a
 					href="${pageContext.request.contextPath}/admin/product/delete/${product.partNumber}"
 					class="btn btn-outline-primary"><spring:message
 							code="caption.delete" /></a></td>
@@ -68,17 +67,18 @@
 	</table>
 
 	<br>
+	<h3><spring:message code="heading.transaction" /></h3>
 	<table style="cellspacing: 2; cellpadding: 2; border: 1;">
 		<c:choose>
 			<c:when test="${fn:length(transactionL) gt 0}">
 
 				<tr>
-					<td><spring:message code="fieldLabel.startDate" /></td>
+					<td colspan="2"><spring:message code="fieldLabel.startDate" />
 
-					<td><form:input path="startDate" class="form-control" value=""
+					<form:input path="startDate" class="form-control" value=""
 							id="example-date-input" type="date" name="startDateA" /></td>
-					<td><spring:message code="fieldLabel.endDate" /></td>
-					<td><form:input path="endDate" class="form-control" value=""
+					<td colspan="5"><spring:message code="fieldLabel.endDate" />
+					<form:input path="endDate" class="form-control" value=""
 							id="example-date-input" type="date" name="endDateA" /></td>
 				</tr>
 				<tr>
@@ -121,7 +121,7 @@
 					</c:otherwise>
 				</c:choose>
 				<tr>
-					<td colspan="2" align="left"><br></br> <form:button
+					<td colspan="2" align="left"><form:button
 							type="submit" class="btn btn-outline-primary">
 							<spring:message code="button.filter" />
 						</form:button></td>
@@ -135,12 +135,10 @@
 			</c:otherwise>
 		</c:choose>
 		<tr>
-			<td><a href="${pageContext.request.contextPath}/catalogue"
+			<td><a href="${pageContext.request.contextPath}/catalogue/all"
 				class="btn btn-outline-primary"><spring:message
 						code="button.returnToCatalogue" /></a></td>
 		</tr>
 
 	</table>
 </form:form>
-
-</html>
