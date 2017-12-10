@@ -175,7 +175,9 @@
 			<table style="cellspacing: 2; cellpadding: 2; border: 1;">
 				<tr>
 					<td><spring:message code="Message.noPreviousTransaction" /></td>
-					<td><div class="div-emptyspace"></div></td>
+				</tr>
+				<tr>
+				<td><div class="div-emptyspace"></div></td>
 				</tr>
 			</table>
 		</c:otherwise>
