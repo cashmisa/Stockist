@@ -77,9 +77,9 @@ public class AdminReportController {
 	@RequestMapping(value = "/allpdf", method = RequestMethod.GET)
 	public ModelAndView reorderReportAllPdf() {
 	    JasperReportsPdfView view = new JasperReportsPdfView();
-	    view.setUrl("classpath:ReorderReport.jrxml");
+	    view.setUrl("classpath:Report.jrxml");
 	    view.setApplicationContext(appContext);
 	    JRBeanCollectionDataSource jrds = new JRBeanCollectionDataSource(reorderService.getReorderProductList());
-	    return new ModelAndView(view, "myBeanData", jrds);
+	    return new ModelAndView(view, "productData", jrds);
 	}
 }

@@ -3,10 +3,6 @@ package com.sa45team7.stockist.model;
 import java.io.Serializable;
 import javax.persistence.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.sa45team7.stockist.service.SupplierService;
-
 import java.util.List;
 
 

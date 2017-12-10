@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
 <h3><spring:message code="heading.report.supplierList" /></h3>
-<a href="${pageContext.request.contextPath}/admin/report/all"><spring:message
+<a href="${pageContext.request.contextPath}/admin/report/all" target="_blank"><spring:message
 		code="caption.reorderReportAll" /></a><br/>
 		<a href="${pageContext.request.contextPath}/admin/report/allpdf">view PDF report</a>
 <c:if test="${supplierList.size() gt 0}">
