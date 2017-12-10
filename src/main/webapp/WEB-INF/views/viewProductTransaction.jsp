@@ -82,10 +82,9 @@
 							id="example-date-input" type="date" name="endDateA" /></td>
 				</tr>
 				<tr>
-					<td></td>
-					<td><form:errors path="startDate" cssStyle="color: red;" /></td>
-					<td></td>
-					<td><form:errors path="endDate" cssStyle="color: red;" /></td>
+					
+					<td colspan="2"><form:errors path="startDate" cssStyle="color: red;" /></td>
+					<td colspan="5"><form:errors path="endDate" cssStyle="color: red;" /></td>
 				</tr>
 
 
