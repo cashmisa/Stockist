@@ -9,7 +9,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
-
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+<spring:message code="fieldLabel.viewProduct" />
+</title>
+</head>
 <script src="/js/jquery.tablesorter.js"></script>
 <script>
 	$(document).ready(function() {

@@ -2,7 +2,12 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+<spring:message code="heading.product.addProduct" />
+</title>
+</head>
 <br/><h3><spring:message code="heading.product.addProduct"/></h3>
 <form:form method="POST" modelAttribute="productDTO"
 	action="${pageContext.request.contextPath}/admin/product/create">

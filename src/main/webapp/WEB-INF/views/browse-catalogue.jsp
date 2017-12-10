@@ -15,7 +15,12 @@
 		});
 	});
 </script>
-
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+<spring:message code="fieldLabel.productCatalogue" />
+</title>
+</head>
 <form:form modelAttribute="emptyProductSearchDTO" method="post" action="${pageContext.request.contextPath}/catalogue">
 	<br/><h3><spring:message code="fieldLabel.productCatalogue" /></h3>
 	<div>

@@ -8,6 +8,11 @@
 	type="text/css" />
 <link href="/css/bootstrap-themes.css" rel="stylesheet" type="text/css" />
 <link href="/css/blurred-bg.css" rel="stylesheet" type="text/css" />
+
+<title>
+<spring:message code="home" />
+</title>
+
 </head>
 <body>
 	<div class="background-image"></div>

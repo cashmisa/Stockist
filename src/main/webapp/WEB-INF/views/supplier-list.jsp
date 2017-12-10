@@ -4,9 +4,15 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
 <script src="/js/jquery.tablesorter.js"></script>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+<spring:message code="heading.supplier.supplierList" />
+</title>
+</head>
 <br/><h3><spring:message code="heading.supplier.supplierList" /></h3>
 
-<style>
+<!--  <style>
 
  table th {
     
@@ -14,12 +20,10 @@
     color: white;
 }
 
-</style>
-<br>
+</style>-->
 
 <a href="${pageContext.request.contextPath}/admin/supplier/create">Add Supplier</a>
 <br>
-	<br>
 	
 	
 	<c:if test="${message != null}">

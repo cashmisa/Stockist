@@ -4,6 +4,12 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page session="false"%>
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+<spring:message code="login.header" />
+</title>
+</head>
 	<br/><h3>Hello <spring:message code="world"/>!</h3>
 
 	<P>The time on the server is ${serverTime}.</P>

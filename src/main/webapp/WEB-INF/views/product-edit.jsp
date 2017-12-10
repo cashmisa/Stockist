@@ -6,7 +6,7 @@
 <html>
 <head>
 <title>
-<spring:message code="heading.user.editUser" />
+<spring:message code="heading.product.editProduct" />
 </title>
 </head>
 <br/><h3><spring:message code="heading.product.editProduct" /></h3>
