@@ -34,7 +34,7 @@
 				<td>${reorder.key.supplier.supplierName}</td>
 				<td><fmt:formatNumber value="${reorder.key.partNumber}"
 						pattern="##0000"></fmt:formatNumber></td>
-				<td align="right"><fmt:formatNumber value="${reorder.key.price}"
+				<td><fmt:formatNumber value="${reorder.key.price}"
 						pattern="0.00"></fmt:formatNumber></td>
 				<td>${reorder.key.qty}</td>
 				<td>${reorder.key.reOrderQty}</td>
@@ -48,7 +48,7 @@
 	<tfoot>
 		<tr>
 			<th id="total" colspan="8">TOTAL</th>
-			<td><strong><fmt:formatNumber value="${sumPrice}"
+			<td align="right"><strong><fmt:formatNumber value="${sumPrice}"
 						pattern="0.00"></fmt:formatNumber></strong></td>
 		</tr>
 	</tfoot>
