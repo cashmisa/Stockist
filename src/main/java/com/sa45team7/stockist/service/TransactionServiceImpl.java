@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sa45team7.stockist.model.Transaction;
 import com.sa45team7.stockist.repository.TransactionRepository;
 
+import antlr.collections.List;
+
 
 @Service
 public class TransactionServiceImpl implements TransactionService {
@@ -50,5 +52,14 @@ public class TransactionServiceImpl implements TransactionService {
 		return transactionRepository.findTransactionByPartNumberAndDate(partNumber, startDate, endDate);
 	}
 	
+	@Transactional
+	public ArrayList<String> findAllTransactionType(){
+		
+			ArrayList<String> listOfTypes = new ArrayList<String>();
+			listOfTypes.add("Used");
+			listOfTypes.add("Received");
+			listOfTypes.add("Returned");
+			return listOfTypes;
+	}
 
 }

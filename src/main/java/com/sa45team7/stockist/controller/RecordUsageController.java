@@ -1,9 +1,13 @@
 package com.sa45team7.stockist.controller;
+import static org.assertj.core.api.Assertions.useDefaultDateFormatsOnly;
+
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -40,23 +44,39 @@ public class RecordUsageController {
 		ModelAndView mav = new ModelAndView("create-record", "transaction", new Transaction());
 		//ArrayList<Integer> productList = productService.findAllPartNumber();
 		//mav.addObject("productList", productList);
+		ArrayList<String> typelist = transactionService.findAllTransactionType();
+		mav.addObject("typelist", typelist);
 		return mav;
 	}
 	
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public ModelAndView createUsage(@ModelAttribute @Valid Transaction transaction,@RequestParam("partNumber") Integer partNumber, BindingResult result,
-			final RedirectAttributes redirectAttributes)
+			final RedirectAttributes redirectAttributes, HttpServletRequest request)
 	{
 		//需要获取填好后的transaction object
 		//把这个trans 存入数据库
 		//跳转页面到xxxx
+		if (result.hasErrors())
+		{
+			ModelAndView modelAndView = new ModelAndView("create-record");
+			ArrayList<String> typelist = transactionService.findAllTransactionType();
+			modelAndView.addObject("typelist", typelist);
+			return modelAndView;
+		}
 		
 		ModelAndView mav = new ModelAndView();
 		transactionService.createTransaction(transaction);
+		
+		//根据partNumber找到product，将product放入transaction
 		Product product = PService.findProduct(partNumber);
 		transaction.setProduct(product);
 		
+		//根据userName找到user，将user放入transaction
+		String userName = (String) request.getAttribute("userName");
+		User user = UService.findUser(userName);
+		transaction.setUser(user);
+				
 		mav.setViewName("redirect:/viewproduct/{transaction.partNumber}");		
 		String message = "New transaction " + transaction.getTransactionId() + " was successfully created.";
 		mav.addObject("transaction", transaction);
