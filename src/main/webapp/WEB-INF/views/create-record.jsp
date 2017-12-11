@@ -3,8 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri="http://www.springframework.org/security/tags"
-	prefix="sec"%>
+
 	
 <html>
 <head>
@@ -13,40 +12,33 @@
 </head>
 <body>
 <h1>Create Record page</h1>
-<form:form method="POST" modelAttribute="transaction" action="${pageContext.request.contextPath}/admin/transaction/create">
+<form:form method="POST" modelAttribute="transaction" action="${pageContext.request.contextPath}/usage/create">
 	<table>
 	        <tr>
 				<td><spring:message code="fieldLabel.partNumber" /></td>
-				<td><input type="text" name="partNumber"></td>
+				<td><input type="number" name="partNumber"> ${errorMsg} </td>
 			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.transactionQty" /></td>
-				<td><form:input path="qty" /></td>
+				<td><form:input path="qty" type="number" /></td>
 			</tr>
 			<tr>
-				<td><spring:message code="fieldlabel.transactionType" /></td>
-				<td><form:input path="transactionType" /></td>
+				<td><spring:message code="fieldLabel.transactionType" /></td>
+				<td><form:select path="transactionType" items="${typelist}"/>
 			</tr>
-			<tr>
-			    <td colspan="2"><spring:message code="fieldLabel.transactionDate" />
 
-						<form:input path="date" class="form-control" value=""
-							id="example-date-input" type="date" name="date" /></td>
-			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.transactionCustomer" /></td>
-				<td><form:password path="customer" /></td>
+				<td><form:input path="customer" /></td>
 			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.transactionRemarks" /></td>
-				<td><form:password path="remarks" /></td>
+				<td><form:input path="remarks" /></td>
 			</tr>
 			<tr>
 				<td colspan="2"><form:button type="submit"> Create New Record </form:button></td>
 				<td></td>
 			</tr>
-			
-			<c:set scope="request" var="userName" value="<sec:authentication property="principal.username" />"/>
 			
 			
 	</table>
