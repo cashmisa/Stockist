@@ -60,13 +60,29 @@ public class RecordUsageController {
 	
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public ModelAndView createUsage(@ModelAttribute @Valid Transaction transaction, @RequestParam("partNumber") Integer partNumber, BindingResult result,
+	public ModelAndView createUsage(@ModelAttribute @Valid Transaction transaction,
+			BindingResult result,
 			final RedirectAttributes redirectAttributes, HttpServletRequest request) throws Exception
 	{
-		// 
+		// @RequestParam(value="partNumber") Integer partNumber
 		//需要获取填好后的transaction object
 		//把这个trans 存入数据库
 		//跳转页面到xxxx
+		Integer partNumber = 0;
+		
+		if(request.getParameter("partNumber") != "")
+		{
+		   partNumber = Integer.parseInt(request.getParameter("partNumber"));
+		}
+		else 
+			{
+			
+				ModelAndView modelAndView = new ModelAndView("create-record");
+				ArrayList<String> typelist = transactionService.findAllTransactionType();
+				modelAndView.addObject("typelist", typelist);
+				return modelAndView;	
+		}
+		
 		if (result.hasErrors())
 		{
 			ModelAndView modelAndView = new ModelAndView("create-record");
@@ -78,18 +94,38 @@ public class RecordUsageController {
 		ModelAndView mav = new ModelAndView();
 		
 		//根据partNumber找到product，将product放入transaction
-
+		
 		Product product = PService.findProduct(partNumber);
 		if(product == null)
 		{
 			ModelAndView modelAndView = new ModelAndView("create-record", "transaction", new Transaction());
 			ArrayList<String> typelist = transactionService.findAllTransactionType();
 			modelAndView.addObject("typelist", typelist);
-			modelAndView.addObject("errorMsg", "Product not found");
+			modelAndView.addObject("producterrorMsg", "Product not found");
 			return modelAndView;
 		}
-		transaction.setProduct(product);
 		
+		Integer newqty;
+		if(transaction.getTransactionType().equals("Received")) 
+		{
+		    newqty = product.getQty()+transaction.getQty();
+		
+		}else
+		{
+			newqty = product.getQty()-transaction.getQty();
+			if(newqty<0) 
+			{
+				ModelAndView modelAndView = new ModelAndView("create-record", "transaction", new Transaction());
+				ArrayList<String> typelist = transactionService.findAllTransactionType();
+				modelAndView.addObject("typelist", typelist);
+				modelAndView.addObject("qtyerrorMsg", "Inventory shortage");
+				return modelAndView;
+			}
+		}
+		product.setQty(newqty);	
+		
+		
+		transaction.setProduct(product);
 		//根据userName找到user，将user放入transaction
 		//String userName = (String) request.getAttribute("userName");
 		
