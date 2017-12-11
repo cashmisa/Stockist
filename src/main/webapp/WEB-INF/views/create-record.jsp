@@ -3,8 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
-	
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -38,7 +36,8 @@
 				<td><form:input path="remarks" /></td>
 			</tr>
 			<tr>
-				<td colspan="2"><form:button type="submit"> Create New Record </form:button></td>
+				<td colspan="2"><form:button type="submit" class="btn btn-outline-primary" id="allButton"><spring:message code="button.addNew" /></form:button>
+				<form:button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/catalogue/all'"><spring:message code="button.cancel" /></form:button></td>
 				<td></td>
 			</tr>
 			
