@@ -16,15 +16,17 @@
 	<table>
 	        <tr>
 				<td><spring:message code="fieldLabel.partNumber" /></td>
-				<td><input type="number" name="partNumber"> ${errorMsg} </td>
+				<td><input type="number" name="partNumber"> ${producterrorMsg} </td>
 			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.transactionQty" /></td>
-				<td><form:input path="qty" type="number" /></td>
+				<td><form:input path="qty" type="number" /> ${qtyerrorMsg}</td>
+				<td><form:errors path="qty" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.transactionType" /></td>
 				<td><form:select path="transactionType" items="${typelist}"/>
+				<td><form:errors path="transactionType" cssStyle="color: red;" /></td>
 			</tr>
 
 			<tr>
