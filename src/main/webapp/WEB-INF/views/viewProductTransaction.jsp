@@ -150,7 +150,7 @@
 							<c:forEach var="transaction" items="${transactionList}">
 								<tr class="listRecord">
 									<td>${transaction.transactionId}</td>
-									<td>${transaction.date}</td>
+									<td><fmt:formatDate type="both" value="${transaction.date}" /></td>
 									<td>${transaction.customer}</td>
 									<td>${transaction.qty}</td>
 									<td>${transaction.transactionType}</td>

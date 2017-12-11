@@ -6,9 +6,10 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.sa45team7.stockist.model.Transaction;
-import com.sa45team7.stockist.model.User;
 @Component
 public class TransactionValidator implements Validator{
+	
+	
 	@Override
 	public boolean supports(Class<?> arg0) {
 		
@@ -25,7 +26,7 @@ public class TransactionValidator implements Validator{
 		
 		  if (transaction.getQty() <= 0) 
 		  {
-			 arg1.rejectValue("qty", "error.product.qty.empty");
+			 arg1.rejectValue("qty", "error.product.qty.lessthan1");
 		  }
 	
 		
