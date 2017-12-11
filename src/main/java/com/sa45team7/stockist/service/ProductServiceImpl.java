@@ -194,4 +194,10 @@ public class ProductServiceImpl implements ProductService
 		return resultList;
 	}
 	
+	@Override
+	@Transactional
+	public ArrayList<Integer> findAllPartNumber() {
+		return productRepository.findPartNumber();
+	}
+	
 }
