@@ -13,8 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.sa45team7.stockist.model.Product;
 import com.sa45team7.stockist.model.Transaction;
+import com.sa45team7.stockist.model.User;
+import com.sa45team7.stockist.service.ProductService;
 import com.sa45team7.stockist.service.TransactionService;
+import com.sa45team7.stockist.service.UserService;
 
 
 
@@ -27,7 +31,8 @@ public class RecordUsageController {
 	
 	@Autowired
 	TransactionService transactionService;
-	
+	ProductService PService;
+	UserService UService;
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	//需要返还一个view的名字，对应空的页面
 	//需要返回一个新的 空的transaction object
@@ -49,8 +54,12 @@ public class RecordUsageController {
 		
 		ModelAndView mav = new ModelAndView();
 		transactionService.createTransaction(transaction);
+		Product product = PService.findProduct(partNumber);
+		transaction.setProduct(product);
+		
 		mav.setViewName("redirect:/viewproduct/{transaction.partNumber}");		
 		String message = "New transaction " + transaction.getTransactionId() + " was successfully created.";
+		
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;	
 	}
