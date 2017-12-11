@@ -5,19 +5,19 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.sa45team7.stockist.helper.TransactionSearchHelper;
+import com.sa45team7.stockist.model.StartEndDate;
 
 @Component
 public class TransactionSearchHelperValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> arg0) {
-		return TransactionSearchHelper.class.isAssignableFrom(arg0);
+		return StartEndDate.class.isAssignableFrom(arg0);
 	}
 
 	@Override
 	public void validate(Object arg0, Errors arg1) {
-		TransactionSearchHelper transactionSearchHelper = (TransactionSearchHelper) arg0;
+		StartEndDate transactionSearchHelper = (StartEndDate) arg0;
 		if ((transactionSearchHelper.getStartDate() != null && transactionSearchHelper.getEndDate() != null)
 				&& (transactionSearchHelper.getStartDate()).after(transactionSearchHelper.getEndDate())) {
 			arg1.reject("endDate");

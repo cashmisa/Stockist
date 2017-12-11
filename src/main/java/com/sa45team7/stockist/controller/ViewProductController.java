@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sa45team7.stockist.helper.TransactionSearchHelper;
 import com.sa45team7.stockist.model.Product;
 import com.sa45team7.stockist.model.Transaction;
+import com.sa45team7.stockist.model.StartEndDate;
 import com.sa45team7.stockist.service.ProductService;
 import com.sa45team7.stockist.service.TransactionService;
 import com.sa45team7.stockist.validator.TransactionSearchHelperValidator;
@@ -53,9 +53,9 @@ public class ViewProductController {
 	
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ModelAndView viewProductPage(@ModelAttribute("transactionSearchHelper") TransactionSearchHelper transactionSearchHelper,  @PathVariable String id) {
+	public ModelAndView viewProductPage(@ModelAttribute("transactionSearchHelper") StartEndDate transactionSearchHelper,  @PathVariable String id) {
 		Integer idi = Integer.parseInt(id); 
-		ModelAndView mav = new ModelAndView("viewProductTransaction", "transactionSearchHelper", new TransactionSearchHelper());
+		ModelAndView mav = new ModelAndView("viewProductTransaction", "transactionSearchHelper", new StartEndDate());
 		Product product = pService.findProduct(idi);
 		ArrayList<Transaction> transactions = tService.findTransactionByPartNo(idi);
 		ArrayList<Transaction> transactionsL = transactions;
@@ -66,7 +66,7 @@ public class ViewProductController {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
-	public ModelAndView viewProduct(@Valid @ModelAttribute("transactionSearchHelper") TransactionSearchHelper transactionSearchHelper, BindingResult result,
+	public ModelAndView viewProduct(@Valid @ModelAttribute("transactionSearchHelper") StartEndDate transactionSearchHelper, BindingResult result,
 			@PathVariable String id) throws ParseException {		
 		Integer idi = Integer.parseInt(id);
 		ModelAndView mav = new ModelAndView("viewProductTransaction");
