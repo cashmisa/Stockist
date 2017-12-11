@@ -67,7 +67,7 @@ public class AdminReportController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/allpdf", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/allpdf", method = RequestMethod.GET)
 	public ModelAndView reorderPdfAllProducts() {
 	    JasperReportsPdfView view = new JasperReportsPdfView();
 	    view.setUrl("classpath:ReorderReport.jrxml");
@@ -82,6 +82,24 @@ public class AdminReportController {
 	    view.setUrl("classpath:ReorderReportPerSupplier.jrxml");
 	    view.setApplicationContext(appContext);
 	    JRBeanCollectionDataSource jrds = new JRBeanCollectionDataSource(rService.getReorderProductListBySupplier(id));
+	    return new ModelAndView(view, "productData", jrds);
+	}*/
+	
+	@RequestMapping(value = "/allpdf", method = RequestMethod.GET)
+	public ModelAndView reorderPdfAllProducts() {
+	    JasperReportsPdfView view = new JasperReportsPdfView();
+	    view.setUrl("classpath:ReorderReport.jrxml");
+	    view.setApplicationContext(appContext);
+	    JRBeanCollectionDataSource jrds = new JRBeanCollectionDataSource(rService.getReorderReportList());
+	    return new ModelAndView(view, "productData", jrds);
+	}
+	
+	@RequestMapping(value = "/supplierpdf/{supplierId}", method = RequestMethod.GET)
+	public ModelAndView ReorderPdftBySupplier(@PathVariable("supplierId") int id) {
+		JasperReportsPdfView view = new JasperReportsPdfView();
+	    view.setUrl("classpath:ReorderReportPerSupplier.jrxml");
+	    view.setApplicationContext(appContext);
+	    JRBeanCollectionDataSource jrds = new JRBeanCollectionDataSource(rService.getReorderReportListBySupplier(id));
 	    return new ModelAndView(view, "productData", jrds);
 	}
 }

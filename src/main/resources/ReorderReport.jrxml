@@ -10,16 +10,14 @@
 	<field name="qty" class="java.lang.Integer"/>
 	<field name="reOrderQty" class="java.lang.Integer"/>
 	<field name="minOrderQty" class="java.lang.Integer"/>
-	<field name="supplier.supplierId" class="java.lang.Integer"/>
-	<field name="supplier.supplierName" class="java.lang.String"/>
-	<variable name="orderQty" class="java.lang.Integer">
-		<variableExpression><![CDATA[$F{qty} < $F{reOrderQty}? ($F{reOrderQty} - $F{qty} < $F{minOrderQty} ? $F{minOrderQty} : $F{reOrderQty} - $F{qty}) : 0]]></variableExpression>
-	</variable>
-	<variable name="orderPrice" class="java.lang.Double">
-		<variableExpression><![CDATA[$V{orderQty} * $F{price}]]></variableExpression>
+	<field name="supplierId" class="java.lang.Integer"/>
+	<field name="supplierName" class="java.lang.String"/>
+	<field name="qtyToReorder" class="java.lang.Integer"/>
+	<variable name="reorderPrice" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{qtyToReorder} * $F{price}]]></variableExpression>
 	</variable>
 	<variable name="Total" class="java.lang.Double" calculation="Sum">
-		<variableExpression><![CDATA[$V{orderPrice}]]></variableExpression>
+		<variableExpression><![CDATA[$V{reorderPrice}]]></variableExpression>
 	</variable>
 	<background>
 		<band/>
@@ -49,7 +47,7 @@
 		<band height="13"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="35">
+		<band height="41">
 			<line>
 				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="35da0815-3616-4342-bbc0-7e377c422e66"/>
 			</line>
@@ -106,13 +104,6 @@
 				<text><![CDATA[Order Qty]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="473" y="0" width="73" height="21" uuid="5e285ce2-2638-4800-bc3b-35d47ca00fb6"/>
-				<textElement textAlignment="Right">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Price]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="1" y="0" width="70" height="20" uuid="3da13d4d-5ab8-4557-afd1-1b605b3e3521">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1a27c8a9-ffd6-41e5-bdad-70305a32720f"/>
 				</reportElement>
@@ -124,10 +115,17 @@
 			<line>
 				<reportElement x="-20" y="-9" width="595" height="1" forecolor="#666666" uuid="fdb57057-39b3-4f9c-8647-2e959768a95b"/>
 			</line>
+			<staticText>
+				<reportElement x="493" y="0" width="66" height="20" uuid="92f5bc18-fdb5-4318-a068-68b58c7c65d8"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Price]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="40">
+		<band height="41">
 			<textField pattern="#0000">
 				<reportElement x="87" y="0" width="55" height="20" uuid="5c608688-a8b2-4738-ac13-6f2216e16525">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a26dd28b-c27f-46bb-aa72-21a0408391ff"/>
@@ -166,19 +164,19 @@
 			<textField>
 				<reportElement x="409" y="0" width="54" height="20" uuid="7eb1d72d-eb69-491d-ab21-b70f7231b61e"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA[$V{orderQty}]]></textFieldExpression>
-			</textField>
-			<textField pattern="$#,##0.00">
-				<reportElement x="474" y="0" width="73" height="20" uuid="e8a8cece-0af2-447c-bba4-5575bd85f4cd"/>
-				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA[$V{orderPrice}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{qtyToReorder}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="13" y="0" width="70" height="20" uuid="889ec3c1-36a7-4bc9-853e-f5c56d54cc8f">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1a27c8a9-ffd6-41e5-bdad-70305a32720f"/>
 				</reportElement>
 				<textElement textAlignment="Left"/>
-				<textFieldExpression><![CDATA[$F{supplier.supplierId}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{supplierId}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$#,##0.00">
+				<reportElement x="474" y="1" width="70" height="30" uuid="5279e5af-6976-41dc-a225-9d660512a049"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{reorderPrice}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -207,11 +205,6 @@
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="10" width="555" height="1" uuid="0c8d6c00-b01b-4fc0-b299-1a868b12ca1e"/>
 			</line>
-			<textField pattern="$#,##0.00">
-				<reportElement x="486" y="11" width="50" height="30" uuid="84eb6b0a-97de-4e9d-9c97-62654d0fb538"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$V{Total}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="365" y="11" width="100" height="30" uuid="ab216a0d-333c-450b-9787-7bbd9f86a2b4"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
@@ -229,6 +222,11 @@
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="41" width="555" height="1" uuid="4a02e644-3525-4a68-bafe-5c54aee77fed"/>
 			</line>
+			<textField pattern="$#,##0.00">
+				<reportElement x="471" y="11" width="75" height="30" uuid="9051b5b3-c8ee-4e5b-b014-cf470d899ff8"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{Total}]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>

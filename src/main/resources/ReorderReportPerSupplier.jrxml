@@ -10,13 +10,11 @@
 	<field name="qty" class="java.lang.Integer"/>
 	<field name="reOrderQty" class="java.lang.Integer"/>
 	<field name="minOrderQty" class="java.lang.Integer"/>
-	<field name="supplier.supplierId" class="java.lang.Integer"/>
-	<field name="supplier.supplierName" class="java.lang.String"/>
-	<variable name="orderQty" class="java.lang.Integer">
-		<variableExpression><![CDATA[$F{qty} < $F{reOrderQty}? ($F{reOrderQty} - $F{qty} < $F{minOrderQty} ? $F{minOrderQty} : $F{reOrderQty} - $F{qty}) : 0]]></variableExpression>
-	</variable>
+	<field name="supplierId" class="java.lang.Integer"/>
+	<field name="supplierName" class="java.lang.String"/>
+	<field name="qtyToReorder" class="java.lang.Integer"/>
 	<variable name="orderPrice" class="java.lang.Double">
-		<variableExpression><![CDATA[$V{orderQty} * $F{price}]]></variableExpression>
+		<variableExpression><![CDATA[$F{qtyToReorder} * $F{price}]]></variableExpression>
 	</variable>
 	<variable name="Total" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$V{orderPrice}]]></variableExpression>
@@ -47,7 +45,7 @@
 					<textElement>
 						<font size="18" isBold="true" isItalic="true" isUnderline="false"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{supplier.supplierName}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{supplierName}]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
@@ -113,7 +111,7 @@
 				<text><![CDATA[Order Qty]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="473" y="0" width="73" height="21" uuid="5e285ce2-2638-4800-bc3b-35d47ca00fb6"/>
+				<reportElement x="470" y="0" width="73" height="21" uuid="5e285ce2-2638-4800-bc3b-35d47ca00fb6"/>
 				<textElement textAlignment="Right">
 					<font isBold="true"/>
 				</textElement>
@@ -171,12 +169,14 @@
 				<textFieldExpression><![CDATA[$F{minOrderQty}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="409" y="0" width="54" height="20" uuid="7eb1d72d-eb69-491d-ab21-b70f7231b61e"/>
+				<reportElement x="420" y="0" width="50" height="30" uuid="cbfe5e0b-083f-4ff9-8ed0-4f03101230d6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4fb414d8-f62a-429a-bfac-fc08d25e8e87"/>
+				</reportElement>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA[$V{orderQty}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{qtyToReorder}]]></textFieldExpression>
 			</textField>
 			<textField pattern="$#,##0.00">
-				<reportElement x="474" y="0" width="73" height="20" uuid="e8a8cece-0af2-447c-bba4-5575bd85f4cd"/>
+				<reportElement x="473" y="0" width="73" height="20" uuid="e8a8cece-0af2-447c-bba4-5575bd85f4cd"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$V{orderPrice}]]></textFieldExpression>
 			</textField>
@@ -185,7 +185,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1a27c8a9-ffd6-41e5-bdad-70305a32720f"/>
 				</reportElement>
 				<textElement textAlignment="Left"/>
-				<textFieldExpression><![CDATA[$F{supplier.supplierId}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{supplierId}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -215,7 +215,7 @@
 				<reportElement positionType="FixRelativeToBottom" x="0" y="10" width="555" height="1" uuid="0c8d6c00-b01b-4fc0-b299-1a868b12ca1e"/>
 			</line>
 			<textField pattern="$#,##0.00">
-				<reportElement x="486" y="11" width="50" height="30" uuid="84eb6b0a-97de-4e9d-9c97-62654d0fb538"/>
+				<reportElement x="493" y="11" width="50" height="30" uuid="84eb6b0a-97de-4e9d-9c97-62654d0fb538"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{Total}]]></textFieldExpression>
 			</textField>
