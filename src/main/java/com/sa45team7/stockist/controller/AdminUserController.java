@@ -20,7 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.sa45team7.stockist.service.UserService;
 
 import com.sa45team7.stockist.validator.UserValidator;
-
+import com.sa45team7.stockist.exception.UserNotFound;
 import com.sa45team7.stockist.model.User;
 
 @RequestMapping("/admin/user")
@@ -81,7 +81,7 @@ public class AdminUserController {
 	}
 	
 	@RequestMapping(value = "/edituser/{userName}", method = RequestMethod.GET)
-	public ModelAndView editUser(@PathVariable String userName) 
+	public ModelAndView editUser(@PathVariable String userName) throws UserNotFound
 	{
 		ModelAndView modelAndView = new ModelAndView("edit-user");
 		User user = userService.findUser(userName);
@@ -113,7 +113,7 @@ public class AdminUserController {
 	}
 	
 	@RequestMapping(value = "deleteuser/{userName}", method = RequestMethod.GET)
-	public ModelAndView delete(@PathVariable String userName, final RedirectAttributes redirectAttributes)
+	public ModelAndView delete(@PathVariable String userName, final RedirectAttributes redirectAttributes) throws UserNotFound
 	{	
 		ModelAndView modelAndView = new ModelAndView("redirect:/admin/user/listuser");
 		User user = userService.findUser(userName);

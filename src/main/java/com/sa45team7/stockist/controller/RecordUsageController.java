@@ -1,6 +1,4 @@
 package com.sa45team7.stockist.controller;
-import static org.assertj.core.api.Assertions.useDefaultDateFormatsOnly;
-
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,15 +7,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -27,8 +25,7 @@ import com.sa45team7.stockist.model.User;
 import com.sa45team7.stockist.service.ProductService;
 import com.sa45team7.stockist.service.TransactionService;
 import com.sa45team7.stockist.service.UserService;
-
-
+import com.sa45team7.stockist.validator.TransactionValidator;
 
 
 @RequestMapping("/usage")
@@ -45,6 +42,13 @@ public class RecordUsageController {
 	
 	@Autowired
 	UserService UService;
+	
+	@Autowired
+	private TransactionValidator transValidator;
+	@InitBinder("transaction")
+	private void initTransactionBinder(WebDataBinder binder) {
+		binder.setValidator(transValidator);
+	}
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	//需要返还一个view的名字，对应空的页面
@@ -85,10 +89,16 @@ public class RecordUsageController {
 		
 		if (result.hasErrors())
 		{
+			if(request.getParameter("partNumber") != "")
+			{
+			   partNumber = Integer.parseInt(request.getParameter("partNumber"));
+			
 			ModelAndView modelAndView = new ModelAndView("create-record");
 			ArrayList<String> typelist = transactionService.findAllTransactionType();
 			modelAndView.addObject("typelist", typelist);
+			modelAndView.addObject("partNumber", partNumber);
 			return modelAndView;
+			}
 		}
 		
 		ModelAndView mav = new ModelAndView();
@@ -106,7 +116,7 @@ public class RecordUsageController {
 		}
 		
 		Integer newqty;
-		if(transaction.getTransactionType().equals("Received")) 
+		if(transaction.getTransactionType().equals("received")) 
 		{
 		    newqty = product.getQty()+transaction.getQty();
 		

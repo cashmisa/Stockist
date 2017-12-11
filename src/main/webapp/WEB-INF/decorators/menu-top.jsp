@@ -1,6 +1,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="sec"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>	
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 	<button class="navbar-toggler navbar-toggler-right" type="button"
 		data-toggle="collapse" data-target="#navbarTogglerDemo03"
@@ -18,8 +19,8 @@
 		</ul>
 		<div class="navbar-nav my-2 my-lg-0">
 			<button class="btn btn-primary">
-				Welcome,
-				<sec:authentication property="principal.username" />
+				Welcome, 
+				<sec:authentication property="principal.username" />			
 			</button>
 			<form action="/logout" method="post">
 				<button id="logout" class="btn btn-primary">Sign out</button>

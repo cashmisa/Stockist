@@ -56,9 +56,9 @@ public class TransactionServiceImpl implements TransactionService {
 	public ArrayList<String> findAllTransactionType(){
 		
 			ArrayList<String> listOfTypes = new ArrayList<String>();
-			listOfTypes.add("Used");
-			listOfTypes.add("Received");
-			listOfTypes.add("Returned");
+			listOfTypes.add("used");
+			listOfTypes.add("received");
+			listOfTypes.add("returned");
 			return listOfTypes;
 	}
 
