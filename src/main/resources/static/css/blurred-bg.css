@@ -6,8 +6,8 @@
   background-image: url('/images/bg.jpeg');
   background-size: cover;
   display: block;
-  filter: blur(5px);
-  -webkit-filter: blur(5px);
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
   height: 800px;
   left: 0;
   position: fixed;

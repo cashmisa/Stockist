@@ -17,8 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.sa45team7.exception.SupplierNotFound;
-
+import com.sa45team7.stockist.exception.SupplierNotFound;
 import com.sa45team7.stockist.model.Supplier;
 import com.sa45team7.stockist.service.ProductService;
 import com.sa45team7.stockist.service.SupplierService;
@@ -71,7 +70,7 @@ public class AdminSupplierController {
 			return new ModelAndView("supplier-new");
 
 		ModelAndView view = new ModelAndView();
-		String message = "New Supplier " + supplier.getSupplierName() + " was successfully created.";
+		String message = "New Supplier <strong>"+ supplier.getSupplierName()  +"</strong> was successfully added.";
 
 		sService.createSupplier(supplier);
 		view.setViewName("redirect:/admin/supplier/list");
@@ -102,7 +101,7 @@ public class AdminSupplierController {
 		return new ModelAndView("supplier-edit");
 
 		ModelAndView view = new ModelAndView("redirect:/admin/supplier/list");
-		String message = "Supplier was successfully updated.";
+		String message = "Supplier <strong>"+ supplier.getSupplierName()  +"</strong> was successfully updated.";
 
 		sService.changeSupplier(supplier);
 
@@ -119,15 +118,17 @@ public class AdminSupplierController {
 		String message;
 	if(supplier.getProducts().size()>0)
 	{
-		 message= "The supplier cannot be deleted.";
+		 String errorMessage= "Supplier <strong>"+ supplier.getSupplierName() +"</strong> cannot be deleted.";
+		 redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
 	}
 	else
 	{
 		sService.removeSupplier(supplier);
-		 message = "The supplier " + supplier.getSupplierName() + " was successfully deleted.";
+		 message = "Supplier <strong> " + supplier.getSupplierName() + "</strong> was successfully deleted.";
+		 redirectAttributes.addFlashAttribute("message", message);
 	}
 		
-		redirectAttributes.addFlashAttribute("message", message);
+		
 		return view;
 	}
 

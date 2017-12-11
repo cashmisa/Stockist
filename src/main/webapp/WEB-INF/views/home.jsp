@@ -3,25 +3,21 @@
 	prefix="sec"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page session="false"%>
-<html>
+<link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
 <head>
-<title>Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+<spring:message code="home" />
+</title>
 </head>
-<body>
-	<h1>Hello <spring:message code="world"/>!</h1>
+	<br/><h3>Hello <spring:message code="world"/>!</h3>
 
 	<P>The time on the server is ${serverTime}.</P>
-
+<!--  
 	<sec:authorize access="hasAnyAuthority('admin', 'mechanic')">
 		<form action="/logout" method="post">
 			<button id="logout">Sign out</button>
 		</form>
 	</sec:authorize>
+	-->
 
-	<sec:authorize access="isAuthenticated()">
-		<form action="/logout" method="post">
-			<button id="logout">Sign out</button>
-		</form>
-	</sec:authorize>
-</body>
-</html>

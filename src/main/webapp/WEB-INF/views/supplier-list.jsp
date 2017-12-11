@@ -2,31 +2,68 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+<spring:message code="heading.supplier.supplierList" />
+</title>
+</head>
+<script src="/js/jquery.tablesorter.js"></script>
 
-<h3>Supplier List page</h3>
-<style>
+<script>
+	$(document).ready(function() {
+		$("#supplierTable").tablesorter({
+			widthFixed : true,
+			widgets : [ 'zebra' ],
+			headers : {
+				6 : {
+					sorter : false
+				},
 
-table th {
+				7 : {
+					sorter : false
+				}
+			}
+		});
+	});
+</script>
+<br/><h3><spring:message code="heading.supplier.supplierList" /></h3>
+
+<!--  <style>
+
+ table th {
     
-    background-color: #4CAF50;
+    background-color: #007bff;
     color: white;
 }
 
+</style>-->
 
-</style>
+<a href="${pageContext.request.contextPath}/admin/supplier/create">
+<spring:message code="heading.supplier.addSupplier" /></a>
 <br>
+	
+	
+	<c:if test="${message != null}">
+	<div class="alert alert-primary" style="color:black" role="alert">
+  <h5>Great!</h5>
+ <h6>${message}</h6>
 
-<a href="${pageContext.request.contextPath}/admin/supplier/create">Add Supplier</a>
+</div>
+</c:if>
 
-	<br>
-	<br>
-	<br>
-	<c:if test="${message != null}"><div id="message" style="color:#0000ff">${message}</div></c:if>
+	<c:if test="${errorMessage != null}">
+	<div class="alert alert-primary" style="color:black"  role="alert">
+  <h5>Oops!</h5>
+<h6>${errorMessage}</h6>
+ 
+</div>
+</c:if>
 	
 	<br> 
 <c:if test="${fn:length(supplierList) gt 0}">
-<div class="container table-responsive">
-	<table class="table table-bordered table-hover" id="supplier-table">
+	<table id="supplierTable" class="tablesorter">
 		<thead>
 			<tr class="listHeading">
 				<th><spring:message code="fieldLabel.supplierId" /></th>
@@ -35,8 +72,8 @@ table th {
 				<th><spring:message code="fieldLabel.phoneNo" /></th>
 				<th><spring:message code="fieldLabel.email" /></th>
 				<th><spring:message code="fieldLabel.website" /></th>
-				<th><spring:message code="caption.edit" /></th>
-				<th><spring:message code="caption.delete" /></th>
+				<th> </th>
+				<th> </th>
 			</tr>
 		</thead>
 		<tbody>
@@ -58,5 +95,4 @@ table th {
 			</c:forEach>
 		</tbody>
 	</table>
-	</div>
 </c:if>

@@ -30,9 +30,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
+            		.antMatchers("/css/**", "/js/**", "/images/**").permitAll()
             		.antMatchers("/admin/**").access("hasAuthority('admin')")
-            		.antMatchers("/mechanic/**").access("hasAuthority('mechanic')")
-                .antMatchers("/", "/home", "/css/**", "/js/**", "/images/**").permitAll() //allowing home and localhost:XXXX
+            		.antMatchers("/**").access("isAuthenticated()")
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						if(roles.contains("admin")) {
 							response.sendRedirect("/admin/user");
 						} else if(roles.contains("mechanic")) {
-							response.sendRedirect("/viewproduct");
+							response.sendRedirect("/catalogue");
 						}
 					}
 				})

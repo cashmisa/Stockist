@@ -2,6 +2,7 @@ package com.sa45team7.stockist.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -34,7 +35,7 @@ public class Product implements Serializable {
 	private String shelfLocation;
 
 	//bi-directional many-to-one association to Supplier
-	@ManyToOne
+	@ManyToOne (fetch=FetchType.LAZY)
 	@JoinColumn(name="supplierId")
 	private Supplier supplier;
 
@@ -137,6 +138,28 @@ public class Product implements Serializable {
 		transaction.setProduct(null);
 
 		return transaction;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + partNumber;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Product other = (Product) obj;
+		if (partNumber != other.partNumber)
+			return false;
+		return true;
 	}
 
 }

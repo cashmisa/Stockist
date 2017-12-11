@@ -1,106 +1,212 @@
+
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<form:form method="post"
+<link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+<spring:message code="fieldLabel.viewProduct" />
+</title>
+</head>
+<script src="/js/jquery.tablesorter.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#productTable").tablesorter({
+			headers : {
+				9 : {
+					sorter : false
+				},
+
+				10 : {
+					sorter : false
+				}
+			}
+		});
+	});
+</script>
+
+<form:form modelAttribute="transactionSearchHelper" method="post"
 	action="${pageContext.request.contextPath}/viewproduct/${id}">
 	<h3>
 		<spring:message code="fieldLabel.viewProduct" />
 	</h3>
-	<table>
+	<table class="tborder">
 		<tr>
-			<td><spring:message code="fieldLabel.partNumber" /></td>
+			<th><spring:message code="fieldLabel.partNumber" /></th>
 			<td>${product.partNumber}</td>
 		</tr>
 
 		<tr>
-			<td><spring:message code="fieldLabel.partName" /></td>
+			<th><spring:message code="fieldLabel.partName" /></th>
 			<td>${product.partName}</td>
 		</tr>
 		<tr>
-			<td><spring:message code="fieldLabel.partPrice" /></td>
+			<th><spring:message code="fieldLabel.partPrice" /></th>
 			<td>${product.price}</td>
 		</tr>
 		<tr>
-			<td><spring:message code="fieldLabel.partBrand" /></td>
+			<th><spring:message code="fieldLabel.partBrand" /></th>
 			<td>${product.brand}</td>
 		</tr>
 		<tr>
-			<td><spring:message code="fieldLabel.partQty" /></td>
+			<th><spring:message code="fieldLabel.partQty" /></th>
 			<td>${product.qty}</td>
 		</tr>
 		<tr>
-			<td><spring:message code="fieldLabel.partMOQ" /></td>
+			<th><spring:message code="fieldLabel.partMOQ" /></th>
 			<td>${product.minOrderQty}</td>
 		</tr>
 		<tr>
-			<td><spring:message code="fieldLabel.partROQ" /></td>
+			<th><spring:message code="fieldLabel.partROQ" /></th>
 			<td>${product.reOrderQty}</td>
 		</tr>
 		<tr>
-			<td><spring:message code="fieldLabel.partSupplier" /></td>
+			<th><spring:message code="fieldLabel.partSupplierName" /></th>
+			<td>${product.supplier.supplierName}</td>
+		</tr>
+		<tr>
+			<th><spring:message code="fieldLabel.partSupplierContact" /></th>
 			<td>${product.supplier.contactName}</td>
 		</tr>
 		<tr>
-			<td><spring:message code="fieldLabel.partLocation" /></td>
+			<th><spring:message code="fieldLabel.partLocation" /></th>
 			<td>${product.shelfLocation}</td>
 		</tr>
 	</table>
-	<br>
-	<table style="cellspacing: 2; cellpadding: 2; border: 1;">
+	<table>
 		<tr>
-			<td><spring:message code="fieldLabel.startDate" /></td>
-			
-			<td><input class="form-control" value="${startDate != null ? startDate : 'yyyy-mm-dd'}"
-				id="example-date-input" type="date" name="startDate"></td>
-			<td><spring:message code="fieldLabel.endDate" /></td>
-			<td><input class="form-control" value="${endDate != null ? endDate : 'yyyy-mm-dd'}"
-				id="example-date-input" type="date" name="endDate"></td>
-			<tr><td><span>${errorInvalidDate == "InvalidDate" ? 'Error: Invalid Date(s), please verify' : '' }
-			</span><span>${error == "date" ? 'Error: Start date is after end date' : '' }</span><td></td>	
+			<td><div class="div-emptyspace"></div></td>
 		</tr>
-		
-		<c:choose>
-			<c:when test="${fn:length(transactionList) gt 0}">
-				<tr class="listHeading">
-					<th><spring:message code="fieldLabel.transactionId" /></th>
-					<th><spring:message code="fieldLabel.transactionDate" /></th>
-					<th><spring:message code="fieldLabel.transactionCustomer" /></th>
-					<th><spring:message code="fieldLabel.transactionQty" /></th>
-					<th><spring:message code="fieldLabel.transactionType" /></th>
-					<th><spring:message code="fieldLabel.transactionUser" /></th>
-					<th><spring:message code="fieldLabel.transactionRemarks" /></th>
-				</tr>
-				<c:forEach var="transaction" items="${transactionList}">
-					<tr class="listRecord">
-						<td>${transaction.transactionId}</td>
-						<td>${transaction.date}</td>
-						<td>${transaction.customer}</td>
-						<td>${transaction.qty}</td>
-						<td>${transaction.transactionType}</td>
-						<td>${transaction.user.userName}</td>
-						<td>${transaction.remarks}</td>
-					</tr>
-				</c:forEach>
-				<br>
-			</c:when>
-			<c:otherwise>
-				<tr>
-					<td><spring:message code="fieldLabel.transactionNotFound" /></td>
-				</tr>
-			</c:otherwise>
-		</c:choose>
 		<tr>
-			<td>&nbsp;</td>
-			<td colspan="2" align="left"><br></br> <input type="submit"
-				value="Filter"></td>
+			<sec:authorize access="hasAuthority('admin')">
+				<c:if test="${not empty product}">
+					<td><a
+						href="${pageContext.request.contextPath}/admin/product/edit/${product.partNumber}"
+						class="btn btn-outline-primary txnButton" id="allButton"><spring:message
+								code="caption.edit" /></a> <a
+						href="${pageContext.request.contextPath}/admin/product/delete/${product.partNumber}"
+						class="btn btn-outline-primary txnButton"><spring:message
+								code="caption.delete" /></a></td>
+				</c:if>
+
+			</sec:authorize>
+		</tr>
+		<tr>
+			<td><div class="div-emptyspace"></div></td>
 		</tr>
 	</table>
-</form:form>
 
-</html>
+	<br>
+	<h3>
+		<spring:message code="heading.transaction" />
+	</h3>
+	<c:choose>
+		<c:when test="${fn:length(transactionL) gt 0}">
+			<table style="cellspacing: 2; cellpadding: 2; border: 1;">
+				<tr>
+					<td><div class="div-emptyspace"></div></td>
+				</tr>
+				<tr>
+					<td colspan="2"><spring:message code="fieldLabel.startDate" />
+
+						<form:input path="startDate" class="form-control" value=""
+							id="example-date-input" type="date" name="startDateA" /></td>
+					<td colspan="5"><spring:message code="fieldLabel.endDate" />
+						<form:input path="endDate" class="form-control" value=""
+							id="example-date-input" type="date" name="endDateA" /></td>
+				</tr>
+				<tr>
+					<td><div class="div-emptyspace"></div>
+				<tr>
+					<td></td>
+					<td><form:errors path="startDate" cssStyle="color: red;" /></td>
+					<td></td>
+					<td><form:errors path="endDate" cssStyle="color: red;" /></td>
+				</tr>
+			</table>
+
+
+			<c:choose>
+				<c:when test="${fn:length(transactionList) gt 0}">
+					<table id="productTable" class="tablesorter">
+						<thead>
+							<tr class="listHeading">
+								<th><spring:message code="fieldLabel.transactionId" /></th>
+								<th><spring:message code="fieldLabel.transactionDate" /></th>
+								<th><spring:message code="fieldLabel.transactionCustomer" /></th>
+								<th><spring:message code="fieldLabel.transactionQty" /></th>
+								<th><spring:message code="fieldLabel.transactionType" /></th>
+								<th><spring:message code="fieldLabel.transactionUser" /></th>
+								<th><spring:message code="fieldLabel.transactionRemarks" /></th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="transaction" items="${transactionList}">
+								<tr class="listRecord">
+									<td>${transaction.transactionId}</td>
+									<td>${transaction.date}</td>
+									<td>${transaction.customer}</td>
+									<td>${transaction.qty}</td>
+									<td>${transaction.transactionType}</td>
+									<td>${transaction.user.userName}</td>
+									<td>${transaction.remarks}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</c:when>
+				<c:otherwise>
+					<tr>
+						<td><h6><spring:message code="Message.noTransactionFound" /></h6></td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
+			<tr>
+				<td><div class="div-emptyspace"></div>
+			<tr>
+				<td colspan="2" align="left"><form:button type="submit"
+						class="btn btn-outline-primary txnButton">
+						<spring:message code="button.filter" />
+					</form:button></td>
+			</tr>
+			<tr>
+				<td><div class="div-smallemptyspace"></div></td>
+			</tr>
+		</c:when>
+		<c:otherwise>
+			<table style="cellspacing: 2; cellpadding: 2; border: 1;">
+				<tr>
+					<td><spring:message code="Message.noPreviousTransaction" /></td>
+				</tr>
+				<tr>
+				<td><div class="div-emptyspace"></div></td>
+				</tr>
+			</table>
+		</c:otherwise>
+	</c:choose>
+	<tr>
+		<td><a href="${pageContext.request.contextPath}/catalogue/all"
+			class="btn btn-outline-primary txnButton"><spring:message
+					code="button.returnToCatalogue" /></a></td>
+	</tr>
+	<tr>
+		<td><div class="div-smallemptyspace"></div></td>
+	</tr>
+
+	<tr>
+		<sec:authorize access="hasAuthority('admin')">
+			<td><a href="${pageContext.request.contextPath}/admin/product/"
+				class="btn btn-outline-primary txnButton"><spring:message
+						code="caption.adminProductPage" /></a></td>
+
+		</sec:authorize>
+	</tr>
+
+</form:form>

@@ -25,9 +25,23 @@
 		<jstl.tag.version>1.1.2</jstl.tag.version>
 		<!-- Sitemesh -->
 		<sitemesh.version>2.4.2</sitemesh.version>
+		<!-- Jasper Report -->
+		<jasper.version>6.4.1</jasper.version>
 	</properties>
-
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>${jasper.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-config-server</artifactId>
@@ -96,7 +110,7 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
-			</dependency>
+		</dependency>
 		<!-- Site Mesh -->
 		<dependency>
 			<groupId>opensymphony</groupId>
