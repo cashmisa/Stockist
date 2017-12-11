@@ -34,13 +34,13 @@
 				<td>${reorder.key.supplier.supplierName}</td>
 				<td><fmt:formatNumber value="${reorder.key.partNumber}"
 						pattern="##0000"></fmt:formatNumber></td>
-				<td><fmt:formatNumber value="${reorder.key.price}"
+				<td align="right"><fmt:formatNumber value="${reorder.key.price}"
 						pattern="0.00"></fmt:formatNumber></td>
 				<td>${reorder.key.qty}</td>
 				<td>${reorder.key.reOrderQty}</td>
 				<td>${reorder.key.minOrderQty}</td>
 				<td>${reorder.value}</td>
-				<td><fmt:formatNumber
+				<td align="right"><fmt:formatNumber
 						value="${reorder.key.price * reorder.value}" pattern="0.00"></fmt:formatNumber></td>
 			</tr>
 		</c:forEach>

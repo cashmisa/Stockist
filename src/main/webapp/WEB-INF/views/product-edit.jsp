@@ -34,7 +34,7 @@
 			</tr>
 
 			<tr>
-				<td><spring:message code="fieldLabel.supplierName" /></td>
+				<td><spring:message code="fieldLabel.supplier" /></td>
 				<td><form:select path="supplierId">
 						<form:options items="${suppliersList}" itemLabel="supplierName"
 							selected="${productDTO.supplierId}" />
