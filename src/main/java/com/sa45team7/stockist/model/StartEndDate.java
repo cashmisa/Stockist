@@ -1,17 +1,17 @@
-package com.sa45team7.stockist.helper;
+package com.sa45team7.stockist.model;
 
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class TransactionSearchHelper {
+public class StartEndDate {
 	
 	@DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
 	private Date startDate;
 	@DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
 	private Date endDate;
 	
-	public TransactionSearchHelper() {
+	public StartEndDate() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

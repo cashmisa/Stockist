@@ -66,8 +66,12 @@ public class AdminProductController {
 	public ModelAndView createNewProduct(@ModelAttribute @Valid ProductDTO productDTO, BindingResult result,
 			final RedirectAttributes redirectAttributes) {
 
-		if (result.hasErrors())
-			return new ModelAndView("product-new");
+		if (result.hasErrors()) {
+			ModelAndView mav = new ModelAndView("product-new");
+			mav.addObject("suppliersList", sService.findAllSuppliers());
+			return mav;
+		}
+		
 
 		ModelAndView mav = new ModelAndView();
 		
@@ -79,6 +83,7 @@ public class AdminProductController {
 		
 		return mav;
 	}
+	
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
 	public ModelAndView editProductPage(@PathVariable Integer id) {

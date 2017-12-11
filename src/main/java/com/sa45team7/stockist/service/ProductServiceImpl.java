@@ -7,6 +7,8 @@ import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -35,13 +37,13 @@ public class ProductServiceImpl implements ProductService
 		return (ArrayList<Product>) productRepository.findAll();
 	}
 	
+	
 	@Override
 	@Transactional
 	public ArrayList<Product> getProductListSorted()
 	{
 		return (ArrayList<Product>) productRepository.findAll(new Sort("partNumber"));
 	}
-	
 	
 	
 	@Override
@@ -83,6 +85,7 @@ public class ProductServiceImpl implements ProductService
 		return productRepository.saveAndFlush(product);
 	}
 	
+	
 	@Override
 	@Transactional
 	public Product createProduct(ProductDTO productDTO)
@@ -108,96 +111,72 @@ public class ProductServiceImpl implements ProductService
 		return productRepository.saveAndFlush(product);
 	}
 	
+	
 	@Override
 	@Transactional
-	public Product updateProduct(ProductDTO productDTO) {
+	public Product updateProduct(ProductDTO productDTO)
+	{
 		Product product = productRepository.findOne(productDTO.getPartNumber());
 		product = convertToProduct(product, productDTO);
 		return productRepository.saveAndFlush(product);
 	}
 	
-	public Product convertToProduct(Product product, ProductDTO productDTO) {
+	
+	public Product convertToProduct(Product product, ProductDTO productDTO)
+	{
 		BeanUtils.copyProperties(productDTO, product);
 		Supplier supplier = supplierRepository.findOne(productDTO.getSupplierId());
 		product.setSupplier(supplier);
 		return product;
 	}
 	
+	
 	@Override
-	public ArrayList<Product> findProductByCriteria(ProductSearchDTO productSearchDTO)
+	@Transactional
+	public ArrayList<Integer> findAllPartNumber()
+	{
+		return productRepository.findPartNumber();
+	}
+	
+	
+	@Override
+	@Transactional
+	public ArrayList<Product> findProductByExample(ProductSearchDTO productSearchDTO)
 	{
 		ArrayList<Product> resultList = null;
 		
-		boolean first = true;
+		if (productSearchDTO.getPartName() != "" || productSearchDTO.getBrand() != "" || productSearchDTO.getShelfLocation() != "")
+		{
+			Product product = new Product();
+			
+			product.setPartName(productSearchDTO.getPartName().trim());
+			product.setBrand(productSearchDTO.getBrand().trim());
+			product.setShelfLocation(productSearchDTO.getShelfLocation().trim());
+			
+			ExampleMatcher matcher = ExampleMatcher.matching().withIgnorePaths("partNumber", "minOrderQty", "price", "qty", "reOrderQty").withMatcher("partName", match -> match.ignoreCase().contains()).withMatcher("brand", match -> match.ignoreCase().contains())
+			                                       .withMatcher("shelfLocation", match -> match.ignoreCase().contains());
+			
+			Example<Product> example = Example.of(product, matcher);
+			
+			resultList = (ArrayList<Product>) productRepository.findAll(example);
+		}
 		
 		if (productSearchDTO.getPartNumber() != "")
 		{
 			String partNumber = productSearchDTO.getPartNumber().toLowerCase().trim();
 			
-			if (first)
+			if (resultList == null) // if no result from ExampleQuery, use partNumber for query
 			{
 				resultList = productRepository.findByPartNumberContaining(partNumber);
-				first = false;
+			}
+			else // filter current resultList with partNumber
+			{
+				Predicate<Product> filterByPartNumber = p -> !String.valueOf(p.getPartNumber()).contains(partNumber);
+				resultList.removeIf(filterByPartNumber);
 			}
 		}
 		
-		if (productSearchDTO.getPartName() != "")
-		{
-			String partName = productSearchDTO.getPartName().toLowerCase().trim();
-			
-			if (first)
-			{
-				resultList = productRepository.findByPartNameContaining(partName);
-				first = false;
-			}
-			else
-			{
-				Predicate<Product> filterByPartName = p -> !p.getPartName().toLowerCase().trim().contains(partName);
-				resultList.removeIf(filterByPartName);
-			}
-		}
-		
-		if (productSearchDTO.getBrand() != "")
-		{
-			String brand = productSearchDTO.getBrand().toLowerCase().trim();
-			
-			if (first)
-			{
-				resultList = productRepository.findByBrandContaining(brand);
-				first = false;
-			}
-			else
-			{
-				Predicate<Product> filterByBrand = p -> !p.getBrand().toLowerCase().trim().contains(brand);
-				resultList.removeIf(filterByBrand);
-			}
-		}
-		
-		
-		if (productSearchDTO.getShelfLocation() != "")
-		{
-			String shelfLocation = productSearchDTO.getShelfLocation().toLowerCase().trim();
-			
-			if (first)
-			{
-				resultList = productRepository.findByShelfLocationContaining(shelfLocation);
-				first = false;
-			}
-			else
-			{
-				Predicate<Product> filterByShelf = p -> !p.getShelfLocation().toLowerCase().trim().contains(shelfLocation);
-				resultList.removeIf(filterByShelf);
-			}
-		}
-		
-			
-		return resultList;
-	}
-	
-	@Override
-	@Transactional
-	public ArrayList<Integer> findAllPartNumber() {
-		return productRepository.findPartNumber();
+		return resultList;		
 	}
 	
 }

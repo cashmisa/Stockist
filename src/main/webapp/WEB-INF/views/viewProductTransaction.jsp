@@ -68,7 +68,7 @@
 			<td>${product.reOrderQty}</td>
 		</tr>
 		<tr>
-			<th><spring:message code="fieldLabel.partSupplierName" /></th>
+			<th><spring:message code="fieldLabel.partSupplier" /></th>
 			<td>${product.supplier.supplierName}</td>
 		</tr>
 		<tr>
@@ -123,7 +123,6 @@
 							id="example-date-input" type="date" name="endDateA" /></td>
 				</tr>
 				<tr>
-					<td><div class="div-emptyspace"></div>
 				<tr>
 					<td></td>
 					<td><form:errors path="startDate" cssStyle="color: red;" /></td>

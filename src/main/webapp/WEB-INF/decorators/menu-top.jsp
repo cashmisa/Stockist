@@ -19,9 +19,6 @@
 			<li class="nav-item"><a class="nav-link disabled" href="#!">Disabled</a>
 			</li>
 		</ul>
-		<form class="form-inline my-2 my-lg-0">
-			<input class="form-control mr-sm-2" placeholder="Search" type="text">
-		</form>
 		<div class="navbar-nav my-2 my-lg-0">
 			<button class="btn btn-primary">
 				Welcome,

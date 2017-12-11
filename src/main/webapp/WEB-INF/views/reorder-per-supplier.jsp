@@ -37,7 +37,7 @@
 				<td>${reorder.key.reOrderQty}</td>
 				<td>${reorder.key.minOrderQty}</td>
 				<td>${reorder.value}</td>
-				<td><fmt:formatNumber
+				<td align="right"><fmt:formatNumber
 						value="${reorder.key.price * reorder.value}" pattern="0.00"></fmt:formatNumber></td>
 			</tr>
 		</c:forEach>
@@ -45,7 +45,7 @@
 	<tfoot>
 		<tr>
 			<th id="total" colspan="6">TOTAL</th>
-			<td><strong><fmt:formatNumber value="${sumPrice}"
+			<td align="right"><strong><fmt:formatNumber value="${sumPrice}"
 						pattern="0.00"></fmt:formatNumber></strong></td>
 		</tr>
 	</tfoot>
