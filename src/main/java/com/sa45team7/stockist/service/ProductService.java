@@ -27,11 +27,11 @@ public interface ProductService {
 	
 	Product updateProduct(ProductDTO productDTO);
 	
-	ArrayList<Product> findProductByCriteria(ProductSearchDTO productSearchDTO);
-	
 	ArrayList<Integer> findAllPartNumber();
 
 	ArrayList<Product> getProductListSorted();
+	
+	ArrayList<Product> findProductByExample(ProductSearchDTO productSearchDTO);
 
 	
 

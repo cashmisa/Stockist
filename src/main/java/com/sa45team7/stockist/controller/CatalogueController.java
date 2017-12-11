@@ -16,48 +16,38 @@ import com.sa45team7.stockist.service.ProductService;
 @RequestMapping(value = "/catalogue")
 public class CatalogueController {
 	//view all catalog and be able to search based on the criteria given
-	//CHUAN KET
-	
+
 	@Autowired
 	ProductService productService;
 	
 	@RequestMapping(value= {"", "/reset"}, method = RequestMethod.GET)
 	public ModelAndView createNewBrowseCatalog()
 	{
-		ModelAndView view = new ModelAndView("browse-catalogue");
+		ModelAndView mav = new ModelAndView("browse-catalogue");
+		mav.addObject("productSearchDTO", new ProductSearchDTO());
 		
-		ProductSearchDTO productSearchDTO = new ProductSearchDTO();
-		view.addObject("emptyProductSearchDTO", productSearchDTO);
-		
-		return view;
+		return mav;
 	}
 	
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView browseCatalog(@ModelAttribute("emptyProductSearchDTO") ProductSearchDTO productSearchDTO, BindingResult bindingResult)
+	public ModelAndView browseCatalog(@ModelAttribute ProductSearchDTO productSearchDTO)
 	{
-		ModelAndView view = new ModelAndView("browse-catalogue");
+		ModelAndView mav = new ModelAndView("browse-catalogue");
+	
+		mav.addObject("productList", productService.findProductByExample(productSearchDTO));
 		
-		if(bindingResult.hasErrors())
-		{
-			return view;
-		}
-		
-		view.addObject("productList", productService.findProductByCriteria(productSearchDTO));
-		
-		return view;
+		return mav;
 	}
 	
 	@RequestMapping(value= {"/all"}, method = RequestMethod.GET)
 	public ModelAndView showAllProduct()
 	{
-		ModelAndView view = new ModelAndView("browse-catalogue");
+		ModelAndView mav = new ModelAndView("browse-catalogue");
+
+		mav.addObject("productSearchDTO", new ProductSearchDTO());
+		mav.addObject("productList", productService.getProductList());
 		
-		ProductSearchDTO productSearchDTO = new ProductSearchDTO();
-		
-		view.addObject("emptyProductSearchDTO", productSearchDTO);
-		view.addObject("productList", productService.getProductList());
-		
-		return view;
+		return mav;
 	}
 }

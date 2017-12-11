@@ -2,12 +2,13 @@ package com.sa45team7.stockist.repository;
 
 import java.util.ArrayList;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.sa45team7.stockist.model.Product;
 
-public interface ProductRepository extends JpaRepository<Product, Integer>
+public interface ProductRepository extends JpaRepository<Product, Integer> , JpaSpecificationExecutor<Product>
 {
 	//reorder report usecase
 	@Query (value="SELECT DISTINCT p.supplierId FROM Product p", nativeQuery=true)
