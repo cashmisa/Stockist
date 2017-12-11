@@ -9,9 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sa45team7.stockist.model.Transaction;
 import com.sa45team7.stockist.repository.TransactionRepository;
 
-import antlr.collections.List;
-
-
 @Service
 public class TransactionServiceImpl implements TransactionService {
 	@Resource

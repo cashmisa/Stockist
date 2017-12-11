@@ -1,6 +1,6 @@
 package com.sa45team7.stockist.controller;
 
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -31,23 +31,22 @@ public class AdminReportController {
 	ApplicationContext appContext;
 
 	/*
-	 * display a list of suppliers
+	 * display a list of active suppliers (who has products with us)
 	 */
 	@RequestMapping(value = { "", "/list" }, method = RequestMethod.GET)
 	public ModelAndView ReorderListPage() {
 		ModelAndView mav = new ModelAndView("reorder");
-		mav.addObject("supplierList", rService.getSuppliersWithProducts());
+		mav.addObject("supplierList", rService.findSuppliersWithProducts());
 		return mav;
 	}
 
 	/*
-	 * click on to generate reorder report for selected supplier
+	 * display reorder overview for a given supplier
 	 */
-
 	@RequestMapping(value = "/supplier/{supplierId}", method = RequestMethod.GET)
 	public ModelAndView reorderListBySupplier(@PathVariable("supplierId") int id) {
 		ModelAndView mav = new ModelAndView("reorder-per-supplier");
-		LinkedHashMap<Product, Integer> reorderList = rService.getReoderProductMapBySupplier(id);
+		Map<Product, Integer> reorderList = rService.findReoderQtyMapBySupplier(id);
 		mav.addObject("reorderList", reorderList);
 		mav.addObject("supplierName", sService.findSupplier(id).getSupplierName());
 		mav.addObject("supplierId", id);
@@ -56,50 +55,38 @@ public class AdminReportController {
 	}
 
 	/*
-	 * click on "full reorder list" and display all
+	 * display all products' reorder overview
 	 */
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public ModelAndView reorderListAllProducts() {
 		ModelAndView mav = new ModelAndView("reorder-all-products");
-		LinkedHashMap<Product, Integer> reorderMap = rService.getReorderProductMap();
+		Map<Product, Integer> reorderMap = rService.findReorderQtyMap();
 		mav.addObject("reorderMap", reorderMap);
 		mav.addObject("sumPrice", rService.getReorderSumPrice(reorderMap));
 		return mav;
 	}
 	
-	/*@RequestMapping(value = "/allpdf", method = RequestMethod.GET)
-	public ModelAndView reorderPdfAllProducts() {
-	    JasperReportsPdfView view = new JasperReportsPdfView();
-	    view.setUrl("classpath:ReorderReport.jrxml");
-	    view.setApplicationContext(appContext);
-	    JRBeanCollectionDataSource jrds = new JRBeanCollectionDataSource(rService.getReorderProductList());
-	    return new ModelAndView(view, "productData", jrds);
-	}
-	
-	@RequestMapping(value = "/supplierpdf/{supplierId}", method = RequestMethod.GET)
-	public ModelAndView ReorderPdftBySupplier(@PathVariable("supplierId") int id) {
-		JasperReportsPdfView view = new JasperReportsPdfView();
-	    view.setUrl("classpath:ReorderReportPerSupplier.jrxml");
-	    view.setApplicationContext(appContext);
-	    JRBeanCollectionDataSource jrds = new JRBeanCollectionDataSource(rService.getReorderProductListBySupplier(id));
-	    return new ModelAndView(view, "productData", jrds);
-	}*/
-	
+	/*
+	 * providing pdf report for all products' reorder
+	 */
 	@RequestMapping(value = "/allpdf", method = RequestMethod.GET)
 	public ModelAndView reorderPdfAllProducts() {
 	    JasperReportsPdfView view = new JasperReportsPdfView();
 	    view.setUrl("classpath:ReorderReport.jrxml");
 	    view.setApplicationContext(appContext);
-	    JRBeanCollectionDataSource jrds = new JRBeanCollectionDataSource(rService.getReorderReportList());
+	    JRBeanCollectionDataSource jrds = new JRBeanCollectionDataSource(rService.findReorderDTOList());
 	    return new ModelAndView(view, "productData", jrds);
 	}
 	
+	/*
+	 * providing pdf report for products' reorder for a given supplier
+	 */
 	@RequestMapping(value = "/supplierpdf/{supplierId}", method = RequestMethod.GET)
-	public ModelAndView ReorderPdftBySupplier(@PathVariable("supplierId") int id) {
+	public ModelAndView reorderPdftBySupplier(@PathVariable("supplierId") int id) {
 		JasperReportsPdfView view = new JasperReportsPdfView();
 	    view.setUrl("classpath:ReorderReportPerSupplier.jrxml");
 	    view.setApplicationContext(appContext);
-	    JRBeanCollectionDataSource jrds = new JRBeanCollectionDataSource(rService.getReorderReportListBySupplier(id));
+	    JRBeanCollectionDataSource jrds = new JRBeanCollectionDataSource(rService.findReorderDTOListBySupplier(id));
 	    return new ModelAndView(view, "productData", jrds);
 	}
 }

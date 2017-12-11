@@ -7,7 +7,7 @@ import com.sa45team7.stockist.model.ProductSearchDTO;
 
 public interface ProductService {
 
-	ArrayList<Product> getProductList();
+	ArrayList<Product> findProductList();
 
 	Product findProduct(Integer id);
 
@@ -29,7 +29,7 @@ public interface ProductService {
 	
 	ArrayList<Integer> findAllPartNumber();
 
-	ArrayList<Product> getProductListSorted();
+	ArrayList<Product> findProductListSorted();
 	
 	ArrayList<Product> findProductByExample(ProductSearchDTO productSearchDTO);
 

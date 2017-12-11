@@ -11,32 +11,16 @@
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>
-<spring:message code="fieldLabel.viewProduct" />
-</title>
+<title><spring:message code="fieldLabel.viewProduct" /></title>
 </head>
-<script src="/js/jquery.tablesorter.js"></script>
-<script>
-	$(document).ready(function() {
-		$("#productTable").tablesorter({
-			headers : {
-				9 : {
-					sorter : false
-				},
 
-				10 : {
-					sorter : false
-				}
-			}
-		});
-	});
-</script>
 
 <form:form modelAttribute="transactionSearchHelper" method="post"
 	action="${pageContext.request.contextPath}/viewproduct/${id}">
 	<h3>
 		<spring:message code="fieldLabel.viewProduct" />
 	</h3>
+	<hr />
 	<table class="tborder">
 		<tr>
 			<th><spring:message code="fieldLabel.partNumber" /></th>
@@ -150,7 +134,8 @@
 							<c:forEach var="transaction" items="${transactionList}">
 								<tr class="listRecord">
 									<td>${transaction.transactionId}</td>
-									<td><fmt:formatDate type="both" value="${transaction.date}" /></td>
+									<td><fmt:formatDate type="both"
+											value="${transaction.date}" /></td>
 									<td>${transaction.customer}</td>
 									<td>${transaction.qty}</td>
 									<td>${transaction.transactionType}</td>
@@ -163,7 +148,9 @@
 				</c:when>
 				<c:otherwise>
 					<tr>
-						<td><h6><spring:message code="Message.noTransactionFound" /></h6></td>
+						<td><h6>
+								<spring:message code="Message.noTransactionFound" />
+							</h6></td>
 					</tr>
 				</c:otherwise>
 			</c:choose>
@@ -185,7 +172,7 @@
 					<td><spring:message code="Message.noPreviousTransaction" /></td>
 				</tr>
 				<tr>
-				<td><div class="div-emptyspace"></div></td>
+					<td><div class="div-emptyspace"></div></td>
 				</tr>
 			</table>
 		</c:otherwise>
@@ -209,3 +196,20 @@
 	</tr>
 
 </form:form>
+
+<script src="/js/jquery.tablesorter.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#productTable").tablesorter({
+			headers : {
+				9 : {
+					sorter : false
+				},
+
+				10 : {
+					sorter : false
+				}
+			}
+		});
+	});
+</script>

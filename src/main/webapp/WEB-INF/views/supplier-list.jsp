@@ -5,30 +5,14 @@
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>
-<spring:message code="heading.supplier.supplierList" />
+<title><spring:message code="heading.supplier.supplierList" />
 </title>
 </head>
-<script src="/js/jquery.tablesorter.js"></script>
 
-<script>
-	$(document).ready(function() {
-		$("#supplierTable").tablesorter({
-			widthFixed : true,
-			widgets : [ 'zebra' ],
-			headers : {
-				6 : {
-					sorter : false
-				},
-
-				7 : {
-					sorter : false
-				}
-			}
-		});
-	});
-</script>
-<br/><h3><spring:message code="heading.supplier.supplierList" /></h3>
+<br />
+<h3>
+	<spring:message code="heading.supplier.supplierList" />
+</h3><hr/>
 
 <!--  <style>
 
@@ -41,27 +25,28 @@
 </style>-->
 
 <a href="${pageContext.request.contextPath}/admin/supplier/create">
-<spring:message code="heading.supplier.addSupplier" /></a>
+	<spring:message code="heading.supplier.addSupplier" />
+</a>
 <br>
-	
-	
-	<c:if test="${message != null}">
-	<div class="alert alert-primary" style="color:black" role="alert">
-  <h5>Great!</h5>
- <h6>${message}</h6>
 
-</div>
+
+<c:if test="${message != null}">
+	<div class="alert alert-primary" style="color: black" role="alert">
+		<h5>Great!</h5>
+		<h6>${message}</h6>
+
+	</div>
 </c:if>
 
-	<c:if test="${errorMessage != null}">
-	<div class="alert alert-primary" style="color:black"  role="alert">
-  <h5>Oops!</h5>
-<h6>${errorMessage}</h6>
- 
-</div>
+<c:if test="${errorMessage != null}">
+	<div class="alert alert-primary" style="color: black" role="alert">
+		<h5>Oops!</h5>
+		<h6>${errorMessage}</h6>
+
+	</div>
 </c:if>
-	
-	<br> 
+
+<br>
 <c:if test="${fn:length(supplierList) gt 0}">
 	<table id="supplierTable" class="tablesorter">
 		<thead>
@@ -72,8 +57,8 @@
 				<th><spring:message code="fieldLabel.phoneNo" /></th>
 				<th><spring:message code="fieldLabel.email" /></th>
 				<th><spring:message code="fieldLabel.website" /></th>
-				<th> </th>
-				<th> </th>
+				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -96,3 +81,23 @@
 		</tbody>
 	</table>
 </c:if>
+
+<script src="/js/jquery.tablesorter.js"></script>
+
+<script>
+	$(document).ready(function() {
+		$("#supplierTable").tablesorter({
+			widthFixed : true,
+			widgets : [ 'zebra' ],
+			headers : {
+				6 : {
+					sorter : false
+				},
+
+				7 : {
+					sorter : false
+				}
+			}
+		});
+	});
+</script>

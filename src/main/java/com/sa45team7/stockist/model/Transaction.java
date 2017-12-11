@@ -3,8 +3,6 @@ package com.sa45team7.stockist.model;
 import java.io.Serializable;
 import javax.persistence.*;
 
-import org.springframework.data.annotation.Transient;
-
 import java.util.Date;
 
 

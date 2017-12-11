@@ -1,12 +1,7 @@
 package com.sa45team7.stockist.mail;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,12 +12,12 @@ import javax.mail.util.ByteArrayDataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.InputStreamSource;
 import org.springframework.core.io.Resource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
+import com.sa45team7.stockist.service.ProductService;
 import com.sa45team7.stockist.service.ReorderService;
 
 import net.sf.jasperreports.engine.JRException;
@@ -44,6 +39,9 @@ public class GmailOrderManager implements OrderManager {
 
 	@Autowired
 	ReorderService rService;
+	
+	@Autowired
+	ProductService pService;
 
 	@Override
 	public void placeOrder(int supplierId) {
@@ -57,7 +55,7 @@ public class GmailOrderManager implements OrderManager {
 			JasperReport report = JasperCompileManager.compileReport(jasperFile.getInputStream());
 
 			JRBeanCollectionDataSource jrds = new JRBeanCollectionDataSource(
-					rService.getReorderProductListBySupplier(supplierId));
+					pService.findProductBySupplierId(supplierId));
 
 			// Map to hold Jasper report Parameters
 			Map<String, Object> parameters = new HashMap<String, Object>();

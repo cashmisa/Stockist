@@ -11,7 +11,7 @@
 <br />
 <h3>
 	<spring:message code="heading.report.supplierList" />
-</h3>
+</h3><hr/>
 <a href="${pageContext.request.contextPath}/admin/report/all"><spring:message
 		code="caption.reorderOverviewAll" /></a>
 <br />

@@ -5,16 +5,6 @@
 
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
 
-<script src="/js/jquery.tablesorter.js"></script>
-
-<script>
-	$(document).ready(function() {
-		$("#productTable").tablesorter({
-			widthFixed : true,
-			widgets : [ 'zebra' ]
-		});
-	});
-</script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>
@@ -23,6 +13,7 @@
 </head>
 <form:form modelAttribute="productSearchDTO" method="post" action="${pageContext.request.contextPath}/catalogue">
 	<br/><h3><spring:message code="fieldLabel.productCatalogue" /></h3>
+	<hr/>
 	<div>
 
 		<table class="searchTable">
@@ -110,3 +101,13 @@
 	</c:if>
 </form:form>
 
+<script src="/js/jquery.tablesorter.js"></script>
+
+<script>
+	$(document).ready(function() {
+		$("#productTable").tablesorter({
+			widthFixed : true,
+			widgets : [ 'zebra' ]
+		});
+	});
+</script>

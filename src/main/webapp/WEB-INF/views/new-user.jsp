@@ -10,7 +10,7 @@
 <spring:message code="heading.user.addUser" />
 </title>
 
-<br/><h3><spring:message code="heading.user.addUser" /></h3>
+<br/><h3><spring:message code="heading.user.addUser" /></h3><hr/>
 <form:form method="POST" modelAttribute="user" action="${pageContext.request.contextPath}/admin/user/create">
 	<table class="searchTable">
 			<tr>

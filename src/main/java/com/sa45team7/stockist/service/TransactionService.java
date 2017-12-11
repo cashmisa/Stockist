@@ -3,7 +3,6 @@ package com.sa45team7.stockist.service;
 import java.util.ArrayList;
 import java.util.Date;
 
-import com.sa45team7.stockist.model.Product;
 import com.sa45team7.stockist.model.Transaction;
 
 

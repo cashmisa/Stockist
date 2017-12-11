@@ -1,9 +1,7 @@
 package com.sa45team7.stockist.service;
 
 import java.util.Collection;
-import java.util.LinkedHashMap;
-
-import org.springframework.transaction.annotation.Transactional;
+import java.util.Map;
 
 import com.sa45team7.stockist.model.Product;
 import com.sa45team7.stockist.model.ReportDTO;
@@ -11,34 +9,35 @@ import com.sa45team7.stockist.model.Supplier;
 
 public interface ReorderService {
 
-	// jasper datasource DTO
-	Collection<ReportDTO> getReorderReportList();
+	/*
+	 * jsp: get suppliers who have products
+	 */
+	Collection<Supplier> findSuppliersWithProducts();
 
-	// jasper datasource DTO
-	Collection<ReportDTO> getReorderReportListBySupplier(int id);
+	/*
+	 * jsp: get map of (product) & (its qty to reorder)
+	 */
+	Map<Product, Integer> findReorderQtyMap();
 
-	// jasper helper
-	Collection<Product> getReorderProductList();
+	/*
+	 * jsp: get map of (product) & (its qty to reorder) for a given supplier
+	 */
+	Map<Product, Integer> findReoderQtyMapBySupplier(int id);
 
-	// jasper helper
-	Collection<Product> getReorderProductListBySupplier(int id);
+	/*
+	 * jsp: calculate total cost for given products' reorders
+	 */
+	double getReorderSumPrice(Map<Product, Integer> map);
 
-	// jasper helper method
-	Collection<ReportDTO> getReportDTOList(Collection<Product> pList);
+	/* 
+	 * jasper: get ReportDTO list based on all products
+	 */
+	Collection<ReportDTO> findReorderDTOList();
 
-	// jasper helper method
-	ReportDTO getReportDTO(Product p);
+	/* 
+	 * jasper: get ReportDTO list based on all products for a given supplier 
+	 */
+	Collection<ReportDTO> findReorderDTOListBySupplier(int id);
 
-	// jsp page: get suppliers who have products
-	Collection<Supplier> getSuppliersWithProducts();
-
-	// jsp page
-	LinkedHashMap<Product, Integer> getReorderProductMap();
-
-	// jsp page
-	LinkedHashMap<Product, Integer> getReoderProductMapBySupplier(int id);
-
-	// jsp page
-	double getReorderSumPrice(LinkedHashMap<Product, Integer> map);
 
 }

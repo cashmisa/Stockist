@@ -1,12 +1,10 @@
 package com.sa45team7.stockist.service;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

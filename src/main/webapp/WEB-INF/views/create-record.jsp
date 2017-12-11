@@ -8,10 +8,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title><spring:message code="heading.transaction.create"/></title>
 </head>
 <body>
-<h1>Create Record page</h1>
+<h3><spring:message code="heading.transaction.create"/></h3><hr/>
 <form:form method="POST" modelAttribute="transaction" action="${pageContext.request.contextPath}/usage/create">
 	<table>
 	        <tr>

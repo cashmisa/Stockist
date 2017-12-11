@@ -6,41 +6,27 @@
 	pageEncoding="ISO-8859-1"%>
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
 
-<script src="/js/jquery.tablesorter.js"></script>
-<script>
-	$(document).ready(function() {
-		$("#productTable").tablesorter({
-			widgets : [ 'zebra' ],
-			headers : {
-				9 : {
-					sorter : false
-				},
-
-				10 : {
-					sorter : false
-				}
-			}
-		});
-	});
-</script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>
-<spring:message code="heading.productList" />
-</title>
+<title><spring:message code="heading.productList" /></title>
 </head>
-<br/><h3><spring:message code="heading.productList" /></h3>
-<c:url var="add_url" value = "${pageContext.request.contextPath}/admin/product/create" />
-	<a href="${add_url}"><spring:message code="caption.product.add"/></a>	
-	<br/>
-	<c:if test="${message != null}">
-	<div class="alert alert-primary" style="color:black" role="alert">
-  <h5>Great!</h5>
- <h6>${message}</h6>
+<br />
+<h3>
+	<spring:message code="heading.productList" />
+</h3>
+<hr />
+<c:url var="add_url"
+	value="${pageContext.request.contextPath}/admin/product/create" />
+<a href="${add_url}"><spring:message code="caption.product.add" /></a>
+<br />
+<c:if test="${message != null}">
+	<div class="alert alert-primary" style="color: black" role="alert">
+		<h5>Great!</h5>
+		<h6>${message}</h6>
 
-</div>
-</c:if>	
-	<br/>
+	</div>
+</c:if>
+<br />
 <c:if test="${fn:length(productList) gt 0}">
 	<table id="productTable" class="tablesorter">
 		<thead>
@@ -54,8 +40,8 @@
 				<th><spring:message code="fieldLabel.partROQ" /></th>
 				<th><spring:message code="fieldLabel.partPrice" /></th>
 				<th><spring:message code="fieldLabel.partLocation" /></th>
-				<th> </th>
-				<th> </th>
+				<th></th>
+				<th></th>
 
 			</tr>
 		</thead>
@@ -83,3 +69,21 @@
 		</tbody>
 	</table>
 </c:if>
+
+<script src="/js/jquery.tablesorter.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#productTable").tablesorter({
+			widgets : [ 'zebra' ],
+			headers : {
+				9 : {
+					sorter : false
+				},
+
+				10 : {
+					sorter : false
+				}
+			}
+		});
+	});
+</script>

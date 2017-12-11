@@ -9,26 +9,8 @@
 <spring:message code="heading.supplier.addSupplier" />
 </title>
 </head>
-<script>
-$(document).ready(function() {
-$( "#target1" ).keypress(function() {
-	$("#error1").html("");
-});
-$( "#target2" ).keypress(function() {
-	$("#error2").html("");
-});
-$( "#target3" ).keypress(function() {
-	$("#error3").html("");
-});
-$( "#target4" ).keypress(function() {
-	$("#error4").html("");
-});
-$( "#target5" ).keypress(function() {
-	$("#error5").html("");
-});
-});
-</script>
-<br/><h3><spring:message code="heading.supplier.addSupplier" /></h3>
+
+<br/><h3><spring:message code="heading.supplier.addSupplier" /></h3><hr/>
 	<form:form method="POST" modelAttribute="supplier" action="${pageContext.request.contextPath}/admin/supplier/create">
 <table class="searchTable">
 		<tbody>
@@ -72,5 +54,23 @@ $( "#target5" ).keypress(function() {
 		</table>
 </form:form>
 
-
+<script>
+$(document).ready(function() {
+$( "#target1" ).keypress(function() {
+	$("#error1").html("");
+});
+$( "#target2" ).keypress(function() {
+	$("#error2").html("");
+});
+$( "#target3" ).keypress(function() {
+	$("#error3").html("");
+});
+$( "#target4" ).keypress(function() {
+	$("#error4").html("");
+});
+$( "#target5" ).keypress(function() {
+	$("#error5").html("");
+});
+});
+</script>
 

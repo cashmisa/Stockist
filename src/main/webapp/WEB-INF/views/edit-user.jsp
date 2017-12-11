@@ -4,13 +4,13 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
-<script src="/js/jquery.tablesorter.js"></script>
+
 <title>
 <spring:message code="heading.user.editUser" />
 </title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<br/><h3><spring:message code="heading.user.editUser" /></h3>
+<br/><h3><spring:message code="heading.user.editUser" /></h3><hr/>
 <form:form method="POST" commandName="user"
 	action="${pageContext.request.contextPath}/admin/user/edituser/${user.userName}">
 <table class="searchTable">
@@ -36,3 +36,5 @@
 			</tr>
 	</table>
 </form:form>
+
+<script src="/js/jquery.tablesorter.js"></script>

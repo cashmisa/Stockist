@@ -5,7 +5,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomNumberEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -50,7 +49,7 @@ public class AdminProductController {
 	@GetMapping(value = { "", "/list" })
 	public ModelAndView ProductListPage() {
 		ModelAndView mav = new ModelAndView("product-list");
-		List<Product> productList = pService.getProductList();
+		List<Product> productList = pService.findProductList();
 		mav.addObject("productList", productList);
 		return mav;
 	}

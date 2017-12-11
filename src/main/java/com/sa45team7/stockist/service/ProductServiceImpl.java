@@ -32,7 +32,7 @@ public class ProductServiceImpl implements ProductService
 	
 	@Override
 	@Transactional
-	public ArrayList<Product> getProductList()
+	public ArrayList<Product> findProductList()
 	{
 		return (ArrayList<Product>) productRepository.findAll();
 	}
@@ -40,7 +40,7 @@ public class ProductServiceImpl implements ProductService
 	
 	@Override
 	@Transactional
-	public ArrayList<Product> getProductListSorted()
+	public ArrayList<Product> findProductListSorted()
 	{
 		return (ArrayList<Product>) productRepository.findAll(new Sort("partNumber"));
 	}
