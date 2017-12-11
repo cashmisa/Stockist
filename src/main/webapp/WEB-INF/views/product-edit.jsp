@@ -41,8 +41,7 @@
 							<form:option value="${productDTO.supplierId}"/>		
 					</form:select></td>
 				<td><a
-					href="${pageContext.request.contextPath}/admin/supplier/create">Add
-						supplier</a></td>
+					href="${pageContext.request.contextPath}/admin/supplier/create"><spring:message code="heading.supplier.addSupplier" /></a></td>
 			</tr>
 
 			<tr>
