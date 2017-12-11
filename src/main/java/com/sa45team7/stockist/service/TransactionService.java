@@ -22,4 +22,6 @@ public interface TransactionService
 	
 	ArrayList<Transaction> findTransactionByPartNumberAndDate(int partNumber, Date startDate, Date endDate);
 	
+	ArrayList<String> findAllTransactionType();
+	
 }

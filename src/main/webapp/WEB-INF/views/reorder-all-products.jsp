@@ -30,16 +30,16 @@
 	<tbody>
 		<c:forEach var="reorder" items="${reorderMap}">
 			<tr class="listRecord">
-				<td>${reorder.key.supplier.supplierId}</td>
-				<td>${reorder.key.supplier.supplierName}</td>
-				<td><fmt:formatNumber value="${reorder.key.partNumber}"
+				<td align="right">${reorder.key.supplier.supplierId}</td>
+				<td align="right">${reorder.key.supplier.supplierName}</td>
+				<td align="right"><fmt:formatNumber value="${reorder.key.partNumber}"
 						pattern="##0000"></fmt:formatNumber></td>
-				<td><fmt:formatNumber value="${reorder.key.price}"
-						pattern="0.00"></fmt:formatNumber></td>
-				<td>${reorder.key.qty}</td>
-				<td>${reorder.key.reOrderQty}</td>
-				<td>${reorder.key.minOrderQty}</td>
-				<td>${reorder.value}</td>
+				<td align="right"><fmt:formatNumber value="${reorder.key.price}"
+						pattern="$#,##0.00"></fmt:formatNumber></td>
+				<td align="right">${reorder.key.qty}</td>
+				<td align="right">${reorder.key.reOrderQty}</td>
+				<td align="right">${reorder.key.minOrderQty}</td>
+				<td align="right">${reorder.value}</td>
 				<td align="right"><fmt:formatNumber
 						value="${reorder.key.price * reorder.value}" pattern="0.00"></fmt:formatNumber></td>
 			</tr>
@@ -49,7 +49,7 @@
 		<tr>
 			<th id="total" colspan="8">TOTAL</th>
 			<td align="right"><strong><fmt:formatNumber value="${sumPrice}"
-						pattern="0.00"></fmt:formatNumber></strong></td>
+						pattern="$#,##0.00"></fmt:formatNumber></strong></td>
 		</tr>
 	</tfoot>
 </table>

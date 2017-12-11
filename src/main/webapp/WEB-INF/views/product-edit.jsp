@@ -35,13 +35,12 @@
 
 			<tr>
 				<td><spring:message code="fieldLabel.supplier" /></td>
-				<td><form:select path="supplierId">
-						<form:options items="${suppliersList}" itemLabel="supplierName"
-							selected="${productDTO.supplierId}" />
-							<form:option value="${productDTO.supplierId}"/>		
+				<td><form:select path="supplierId" itemValue="supplierId"
+						items="${suppliersList}" itemLabel="supplierName">
 					</form:select></td>
 				<td><a
-					href="${pageContext.request.contextPath}/admin/supplier/create"><spring:message code="heading.supplier.addSupplier" /></a></td>
+					href="${pageContext.request.contextPath}/admin/supplier/create"><spring:message
+							code="heading.supplier.addSupplier" /></a></td>
 			</tr>
 
 			<tr>

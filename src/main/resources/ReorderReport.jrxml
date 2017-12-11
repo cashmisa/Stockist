@@ -135,7 +135,7 @@
 				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[$F{partNumber}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00">
+			<textField pattern="$#,##0.00">
 				<reportElement x="132" y="0" width="65" height="20" uuid="163d5c2d-c008-4e9a-ab80-328db28ae077">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="083e0b9d-d9c7-445b-92a4-362c6506c894"/>
 				</reportElement>
@@ -168,7 +168,7 @@
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$V{orderQty}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00">
+			<textField pattern="$#,##0.00">
 				<reportElement x="474" y="0" width="73" height="20" uuid="e8a8cece-0af2-447c-bba4-5575bd85f4cd"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$V{orderPrice}]]></textFieldExpression>
@@ -207,7 +207,7 @@
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="10" width="555" height="1" uuid="0c8d6c00-b01b-4fc0-b299-1a868b12ca1e"/>
 			</line>
-			<textField pattern="#,##0.00">
+			<textField pattern="$#,##0.00">
 				<reportElement x="486" y="11" width="50" height="30" uuid="84eb6b0a-97de-4e9d-9c97-62654d0fb538"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{Total}]]></textFieldExpression>
