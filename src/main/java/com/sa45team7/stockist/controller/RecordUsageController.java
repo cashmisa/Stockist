@@ -59,7 +59,7 @@ public class RecordUsageController {
 		
 		mav.setViewName("redirect:/viewproduct/{transaction.partNumber}");		
 		String message = "New transaction " + transaction.getTransactionId() + " was successfully created.";
-		
+		mav.addObject("transaction", transaction);
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;	
 	}
