@@ -16,15 +16,15 @@
 <table id="reorder-table-all" class="tablesorter">
 	<thead>
 		<tr class="listHeading">
-			<th><spring:message code="fieldLabel.supplierId" /></th>
-			<th><spring:message code="fieldLabel.supplierName" /></th>
-			<th><spring:message code="fieldLabel.partNumberReport" /></th>
-			<th><spring:message code="fieldLabel.partPriceReport" /></th>
-			<th><spring:message code="fieldLabel.partQtyReport" /></th>
-			<th><spring:message code="fieldLabel.partROQReport" /></th>
-			<th><spring:message code="fieldLabel.partMOQReport" /></th>
-			<th><spring:message code="fieldLabel.orderQtyReport" /></th>
-			<th><spring:message code="fieldLabel.orderPriceReport" /></th>
+			<th align="center"><spring:message code="fieldLabel.supplierId" /></th>
+			<th align="center"><spring:message code="fieldLabel.supplierName" /></th>
+			<th align="center"><spring:message code="fieldLabel.partNumberReport" /></th>
+			<th align="center"><spring:message code="fieldLabel.partPriceReport" /></th>
+			<th align="center"><spring:message code="fieldLabel.partQtyReport" /></th>
+			<th align="center"><spring:message code="fieldLabel.partROQReport" /></th>
+			<th align="center"><spring:message code="fieldLabel.partMOQReport" /></th>
+			<th align="center"><spring:message code="fieldLabel.orderQtyReport" /></th>
+			<th align="center"><spring:message code="fieldLabel.orderPriceReport" /></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -41,13 +41,13 @@
 				<td align="right">${reorder.key.minOrderQty}</td>
 				<td align="right">${reorder.value}</td>
 				<td align="right"><fmt:formatNumber
-						value="${reorder.key.price * reorder.value}" pattern="0.00"></fmt:formatNumber></td>
+						value="${reorder.key.price * reorder.value}" pattern="$#,##0.00"></fmt:formatNumber></td>
 			</tr>
 		</c:forEach>
 	</tbody>
 	<tfoot>
 		<tr>
-			<th id="total" colspan="8">TOTAL</th>
+			<th align="right" id="total" colspan="8">TOTAL</th>
 			<td align="right"><strong><fmt:formatNumber value="${sumPrice}"
 						pattern="$#,##0.00"></fmt:formatNumber></strong></td>
 		</tr>
