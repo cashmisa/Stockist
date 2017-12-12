@@ -53,8 +53,8 @@
 			</tr>
 
 			<tr>
-				<td><spring:message code="fieldLabel.partPrice" /></td>
-				<td>$<form:input type="number" min="0.1" step="0.01"
+				<td><spring:message code="fieldLabel.partPrice" /> ($)</td>
+				<td><form:input type="number" min="0.1" step="0.01"
 						path="price" /></td>
 				<td><form:errors path="price" cssStyle="color: red;" /></td>
 			</tr>
