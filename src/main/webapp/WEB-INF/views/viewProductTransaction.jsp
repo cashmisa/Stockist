@@ -86,7 +86,13 @@
 			<td><div class="div-emptyspace"></div></td>
 		</tr>
 	</table>
-
+<br/>
+	<c:if test="${createdRecord != null}">
+	<div class="alert alert-primary" style="color:black" role="alert" id="createdRecord">
+	<h5>Great!</h5>
+	<h6>${createdRecord}</h6>
+	</div>
+	</c:if>
 	<br>
 	<h3>
 		<spring:message code="heading.transaction" />
