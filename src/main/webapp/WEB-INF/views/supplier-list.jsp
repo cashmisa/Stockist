@@ -25,8 +25,7 @@
 </style>-->
 
 <a href="${pageContext.request.contextPath}/admin/supplier/create">
-	<spring:message code="heading.supplier.addSupplier" />
-</a>
+	<spring:message code="heading.supplier.addSupplier" /></a>
 <br>
 
 
