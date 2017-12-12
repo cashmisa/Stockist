@@ -55,7 +55,7 @@
 	<a href="${pageContext.request.contextPath }/admin/report/list"> <spring:message
 			code="caption.back" /></a>
 </p>
-
+<div id="bottom_section">&nbsp;</div>
 <script src="/js/jquery.tablesorter.js"></script>
 <script>
 	$(document).ready(function() {

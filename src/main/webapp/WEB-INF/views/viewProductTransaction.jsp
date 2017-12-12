@@ -222,19 +222,14 @@
 	</tr>
 
 </form:form>
+<div id="bottom_section">&nbsp;</div>
 
 <script src="/js/jquery.tablesorter.js"></script>
 <script>
 	$(document).ready(function() {
 		$("#productTable").tablesorter({
 			headers : {
-				9 : {
-					sorter : false
-				},
-
-				10 : {
-					sorter : false
-				}
+				widgets : [ 'zebra' ]
 			}
 		});
 	});
