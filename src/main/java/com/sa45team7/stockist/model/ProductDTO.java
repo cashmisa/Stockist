@@ -13,6 +13,8 @@ public class ProductDTO {
 	@Min(0)
 	private int partNumber;
 	
+	private String partNumberString;
+	
 	@NotNull
 	@NotBlank
 	private String partName;
@@ -120,6 +122,14 @@ public class ProductDTO {
 
 	public void setShelfLocation(String shelfLocation) {
 		this.shelfLocation = shelfLocation;
+	}
+	
+	public String getPartNumberString() {
+		return partNumberString;
+	}
+
+	public void setPartNumberString(String partNumberString) {
+		this.partNumberString = partNumberString;
 	}
 
 	public ProductDTO(Product product) {

@@ -6,20 +6,22 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>
-<spring:message code="fieldLabel.productCatalogue" />
-</title>
+<title><spring:message code="fieldLabel.productCatalogue" /></title>
 </head>
-<form:form modelAttribute="productDTO" method="post" action="${pageContext.request.contextPath}/catalogue">
-	<br/><h3><spring:message code="fieldLabel.productCatalogue" /></h3>
-	<hr/>
+<form:form modelAttribute="productDTO" method="post"
+	action="${pageContext.request.contextPath}/catalogue">
+	<br />
+	<h3>
+		<spring:message code="fieldLabel.productCatalogue" />
+	</h3>
+	<hr />
 	<div>
 
 		<table class="searchTable">
 
 			<tr>
 				<td><spring:message code="fieldLabel.partNumber" /></td>
-				<td><form:input path="partNumber" type="number" min="0"/></td>
+				<td><form:input path="partNumberString" type="number" min="0" /></td>
 			</tr>
 
 			<tr>
@@ -38,11 +40,15 @@
 			</tr>
 
 			<tr>
-				<td colspan="2" align="justify" id="tableButton"><form:button type="submit" class="btn btn-outline-primary" id="searchButton"> <spring:message code="button.search" /> </form:button> 
-				<a
-					href="${pageContext.request.contextPath}/catalogue/all"><input class="btn btn-outline-primary" id="browseAllButton" type="button" value="<spring:message code="button.browseAll" />"></input></a>
-					 <a
-					href="${pageContext.request.contextPath}/catalogue/reset"><input class="btn btn-outline-primary" id="resetButton" type="button" value="<spring:message code="button.reset" />"></input></a></td>
+				<td colspan="2" align="justify" id="tableButton"><form:button
+						type="submit" class="btn btn-outline-primary" id="searchButton">
+						<spring:message code="button.search" />
+					</form:button> <a href="${pageContext.request.contextPath}/catalogue/all"><input
+						class="btn btn-outline-primary" id="browseAllButton" type="button"
+						value="<spring:message code="button.browseAll" />"></input></a> <a
+					href="${pageContext.request.contextPath}/catalogue/reset"><input
+						class="btn btn-outline-primary" id="resetButton" type="button"
+						value="<spring:message code="button.reset" />"></input></a></td>
 			</tr>
 
 		</table>
@@ -52,9 +58,9 @@
 	<c:if test="${productList == null}">
 		<h6>
 			<spring:message code="message.startSearch" />
-			<br/>
+			<br />
 			<spring:message code="message.browseAll" />
-			<br/>
+			<br />
 			<spring:message code="message.reset" />
 		</h6>
 	</c:if>
@@ -68,18 +74,28 @@
 	<c:if test="${productList.size() > 0}">
 		<%-- Display product info --%>
 		<h6>
-			<spring:message code="message.showResult" arguments="${productList.size()};${productList.size()}" htmlEscape="false"
-				argumentSeparator=";" />
+			<spring:message code="message.showResult"
+				arguments="${productList.size()};${productList.size()}"
+				htmlEscape="false" argumentSeparator=";" />
 		</h6>
 		<br>
-		<h6><strong>TIP!</strong> <spring:message code="message.tip" /><noscript><br><strong><spring:message code="message.enableJavaScript" /></strong></noscript></h6>
+		<h6>
+			<strong>TIP!</strong>
+			<spring:message code="message.tip" />
+			<noscript>
+				<br>
+				<strong><spring:message code="message.enableJavaScript" /></strong>
+			</noscript>
+		</h6>
 		<table id="productTable" class="tablesorter">
 			<thead>
 				<tr>
-					<th class="header"><spring:message code="fieldLabel.partNumber" /></th>
+					<th class="header"><spring:message
+							code="fieldLabel.partNumber" /></th>
 					<th class="header"><spring:message code="fieldLabel.partName" /></th>
 					<th class="header"><spring:message code="fieldLabel.partBrand" /></th>
-					<th class="header"><spring:message code="fieldLabel.partLocation" /></th>
+					<th class="header"><spring:message
+							code="fieldLabel.partLocation" /></th>
 					<th class="header"><spring:message code="fieldLabel.partQty" /></th>
 				</tr>
 
@@ -87,7 +103,8 @@
 			<tbody>
 				<c:forEach var="product" items="${productList}">
 					<tr>
-						<c:url var="viewDetail" value="${pageContext.request.contextPath}/viewproduct/${product.partNumber}" />
+						<c:url var="viewDetail"
+							value="${pageContext.request.contextPath}/viewproduct/${product.partNumber}" />
 						<td><a href="${viewDetail}">${product.partNumber}</a></td>
 						<td>${product.partName}</td>
 						<td>${product.brand}</td>

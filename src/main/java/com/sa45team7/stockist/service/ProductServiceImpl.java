@@ -133,8 +133,8 @@ public class ProductServiceImpl implements ProductService {
 			resultList = (ArrayList<Product>) productRepository.findAll(example);
 		}
 
-		if (productDTO.getPartNumber() != 0) {
-			String partNumber = String.valueOf(productDTO.getPartNumber());
+		if (productDTO.getPartNumberString() != "") {
+			String partNumber = productDTO.getPartNumberString().trim();
 			if (resultList == null) // if no result from ExampleQuery, use partNumber for query
 			{
 				resultList = productRepository.findByPartNumberContaining(partNumber);
