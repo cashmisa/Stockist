@@ -9,6 +9,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><spring:message code="fieldLabel.viewProduct" /></title>
@@ -177,20 +178,38 @@
 			</table>
 		</c:otherwise>
 	</c:choose>
+
 	<tr>
-		<td><a href="${pageContext.request.contextPath}/catalogue/all"
-			class="btn btn-outline-primary txnButton"><spring:message
-					code="button.returnToCatalogue" /></a></td>
+
+		<td><noscript>
+				<a href="${pageContext.request.contextPath}/catalogue/all"
+					class="btn btn-outline-primary txnButton"><spring:message
+						code="button.returnToCatalogue" /> </a>
+			</noscript></td>
+
 	</tr>
+
+	<tr>
+		<td><div id="backNoScript" style="display: none">
+				<input action="action" type="button"
+					class="btn btn-outline-primary txnButton"
+					onclick="window.history.go(-1); return false;"
+					value="<spring:message
+						code="caption.back" />" />
+			</div></td>
+	</tr>
+
 	<tr>
 		<td><div class="div-smallemptyspace"></div></td>
 	</tr>
 
 	<tr>
 		<sec:authorize access="hasAuthority('admin')">
-			<td><a href="${pageContext.request.contextPath}/admin/product/"
-				class="btn btn-outline-primary txnButton"><spring:message
-						code="caption.adminProductPage" /></a></td>
+			<td><noscript>
+					<a href="${pageContext.request.contextPath}/admin/product/"
+						class="btn btn-outline-primary txnButton"><spring:message
+							code="caption.adminProductPage" /></a>
+				</noscript></td>
 
 		</sec:authorize>
 	</tr>
@@ -212,4 +231,7 @@
 			}
 		});
 	});
+</script>
+<script>
+	document.getElementById("backNoScript").style.display = "block";
 </script>
