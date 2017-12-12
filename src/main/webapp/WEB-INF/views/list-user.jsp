@@ -59,11 +59,11 @@
 		$("#userTable").tablesorter({
 			widgets : [ 'zebra' ],
 			headers : {
-				3 : {
+				2 : {
 					sorter : false
 				},
 
-				4 : {
+				3 : {
 					sorter : false
 				}
 			}
