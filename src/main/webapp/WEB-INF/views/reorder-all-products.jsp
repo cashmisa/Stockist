@@ -13,6 +13,7 @@
 <h3 align="center"><spring:message code="heading.report.all" /></h3><hr/>
 <p><a target="_blank" href="${pageContext.request.contextPath}/admin/report/allpdf"><Strong><spring:message code="report.viewReport" /></Strong></a>
 <br /></p>
+<noscript><h6><br><strong><spring:message code="message.enableJavaScript" /></strong></h6></noscript>
 <table id="reorder-table-all" class="tablesorter">
 	<thead>
 		<tr class="listHeading">

@@ -37,6 +37,7 @@
 	</div>
 	</c:if> 
 	<br/>
+	<noscript><h6><br><strong><spring:message code="message.enableJavaScript" /></strong></h6></noscript>
 	<table id="userTable" class="tablesorter">
 	<thead>
 			<tr>

@@ -16,6 +16,7 @@
 		code="caption.reorderOverviewAll" /></a>
 <br />
 <c:if test="${supplierList.size() gt 0}">
+<noscript><h6><br><strong><spring:message code="message.enableJavaScript" /></strong></h6></noscript>
 	<br />
 	<table id="supplierTable" class="tablesorter">
 		<thead>

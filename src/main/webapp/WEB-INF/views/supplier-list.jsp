@@ -12,7 +12,8 @@
 <br />
 <h3>
 	<spring:message code="heading.supplier.supplierList" />
-</h3><hr/>
+</h3>
+<hr />
 
 <!--  <style>
 
@@ -48,6 +49,12 @@
 
 <br>
 <c:if test="${fn:length(supplierList) gt 0}">
+	<noscript>
+		<h6>
+			<br>
+			<strong><spring:message code="message.enableJavaScript" /></strong>
+		</h6>
+	</noscript>
 	<table id="supplierTable" class="tablesorter">
 		<thead>
 			<tr class="listHeading">

@@ -18,7 +18,8 @@
 
 <form:form modelAttribute="transactionSearchHelper" method="post"
 	action="${pageContext.request.contextPath}/viewproduct/${id}">
-	<br/><h3>
+	<br />
+	<h3>
 		<spring:message code="fieldLabel.viewProduct" />
 	</h3>
 	<hr />
@@ -87,12 +88,13 @@
 			<td><div class="div-emptyspace"></div></td>
 		</tr>
 	</table>
-<br/>
+	<br />
 	<c:if test="${createdRecord != null}">
-	<div class="alert alert-primary" style="color:black" role="alert" id="createdRecord">
-	<h5>Great!</h5>
-	<h6>${createdRecord}</h6>
-	</div>
+		<div class="alert alert-primary" style="color: black" role="alert"
+			id="createdRecord">
+			<h5>Great!</h5>
+			<h6>${createdRecord}</h6>
+		</div>
 	</c:if>
 	<br>
 	<h3>
@@ -101,6 +103,12 @@
 	<hr />
 	<c:choose>
 		<c:when test="${fn:length(transactionL) gt 0}">
+			<noscript>
+				<h6>
+					<br>
+					<strong><spring:message code="message.enableJavaScript" /></strong>
+				</h6>
+			</noscript>
 			<table style="cellspacing: 2; cellpadding: 2; border: 1;">
 				<tr>
 					<td><div class="div-emptyspace"></div></td>

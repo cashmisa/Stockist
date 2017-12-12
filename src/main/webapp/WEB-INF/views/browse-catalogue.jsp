@@ -73,7 +73,7 @@
 				argumentSeparator=";" />
 		</h6>
 		<br>
-		<h6><strong>TIP!</strong> <spring:message code="message.tip" /></h6>
+		<h6><strong>TIP!</strong> <spring:message code="message.tip" /><noscript><br><strong><spring:message code="message.enableJavaScript" /></strong></noscript></h6>
 		<table id="productTable" class="tablesorter">
 			<thead>
 				<tr>
