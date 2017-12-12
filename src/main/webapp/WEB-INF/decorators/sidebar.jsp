@@ -31,6 +31,7 @@
 				<a class="list-group-item list-group-item-action" href="/admin/user"><spring:message code="sidebar.user" /></a>
 				<a class="list-group-item list-group-item-action" href="/admin/report"><spring:message code="sidebar.report" /></a>
 			</sec:authorize>
+			<img src="/images/ThuongDe1.png" width="132" height="77" alt="">
 		</div>
 	</nav>
 
