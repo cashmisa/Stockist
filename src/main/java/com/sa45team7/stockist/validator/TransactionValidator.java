@@ -36,13 +36,13 @@ public class TransactionValidator implements Validator {
 
 		if (product == null) {
 			errors.rejectValue("partNumber", "error.product.productNotFound");
-		} else {
-
-			if (product.getQty() - transaction.getQty() < 0) {
+		} 
+		
+		if (!transaction.getTransactionType().equals("received") && product.getQty() - transaction.getQty() < 0) {
 				errors.rejectValue("qty", "error.product.inventoryShortage");
-			}
 		}
+		
 
 		System.out.println(transaction.toString());
-	}
-}
+	
+}}
