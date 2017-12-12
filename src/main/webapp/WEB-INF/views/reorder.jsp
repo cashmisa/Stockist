@@ -28,7 +28,11 @@
 				<th><spring:message code="fieldLabel.website" /></th>
 				<th><spring:message code="caption.reorderOverview" /></th>
 				<th>PDF</th>
+<<<<<<< HEAD
 				<th>Eamil Report</th>
+=======
+				<th>Place Order</th>
+>>>>>>> branch 'master' of https://github.com/e0224917/Stockist.git
 			</tr>
 		</thead>
 		<tbody>
