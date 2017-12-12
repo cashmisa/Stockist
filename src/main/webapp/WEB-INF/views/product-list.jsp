@@ -35,8 +35,8 @@
 				<th><spring:message code="fieldLabel.partBrand" /></th>
 				<th><spring:message code="fieldLabel.supplierName" /></th>
 				<th><spring:message code="fieldLabel.partQty" /></th>
-				<th><spring:message code="fieldLabel.partMOQ" /></th>
-				<th><spring:message code="fieldLabel.partROQ" /></th>
+				<th style="width:30px"><spring:message code="fieldLabel.partMOQ" /></th>
+				<th style="width:30px"><spring:message code="fieldLabel.partROQ" /></th>
 				<th><spring:message code="fieldLabel.partPrice" /></th>
 				<th><spring:message code="fieldLabel.partLocation" /></th>
 				<th></th>

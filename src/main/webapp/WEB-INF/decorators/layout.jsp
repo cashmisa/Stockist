@@ -13,6 +13,8 @@
 	type="text/css" />
 <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="/css/bootstrap-themes.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="/stockfavicon.ico" type="image/x-icon">
+<link rel="icon" href="/stockfavicon.ico" type="image/x-icon">
 <title><dec:title default="Web Page" /></title>
 <script src="/js/jquery.js"></script>
 <script src="/js/jquery-ui.js"></script>

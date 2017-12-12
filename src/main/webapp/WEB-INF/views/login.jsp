@@ -4,11 +4,12 @@
 <html>
 
 <head>
-<link href="/css/bootstrap4-business-tycoon.min.css" rel="stylesheet"
+<link href="/css/bootstrap4-business-tycoon.css" rel="stylesheet"
 	type="text/css" />
 <link href="/css/bootstrap-themes.css" rel="stylesheet" type="text/css" />
 <link href="/css/blurred-bg.css" rel="stylesheet" type="text/css" />
-
+<link rel="shortcut icon" href="/stockfavicon.ico" type="image/x-icon">
+<link rel="icon" href="/stockfavicon.ico" type="image/x-icon">
 <title>
 <spring:message code="login.header" />
 </title>
