@@ -21,7 +21,7 @@ public class TransactionValidator implements Validator{
 	{
 		Transaction transaction = (Transaction) arg0;
 		
-		ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "qty", "error.product.qty.empty");
+		//ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "qty", "error.product.qty.empty");
 		
 		  if (transaction.getQty() <= 0) 
 		  {
