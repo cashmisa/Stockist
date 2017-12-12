@@ -17,7 +17,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
-import com.sa45team7.stockist.service.ProductService;
 import com.sa45team7.stockist.service.ReorderService;
 
 import net.sf.jasperreports.engine.JRException;
