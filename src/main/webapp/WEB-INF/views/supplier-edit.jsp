@@ -21,7 +21,7 @@
 		<tbody>
 			<tr>
 				<td><spring:message code="fieldLabel.supplierId" /></td>
-				<td><form:input path="supplierId" readonly="true" /></td>
+				<td><form:input path="supplierId" readonly="true" cssStyle="color:#868e96;opacity:1" /></td>
 			</tr>
 
 			<tr>
