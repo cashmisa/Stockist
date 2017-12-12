@@ -78,11 +78,15 @@
 						class="btn btn-outline-primary txnButton" id="allButton"><spring:message
 								code="caption.edit" /></a> <a
 						href="${pageContext.request.contextPath}/admin/product/delete/${product.partNumber}"
-						class="btn btn-outline-primary txnButton"><spring:message
+						class="btn btn-outline-primary txnButton" id="allButton"><spring:message
 								code="caption.delete" /></a></td>
 				</c:if>
 
 			</sec:authorize>
+			<td><a
+				href="${pageContext.request.contextPath}/usage/${product.partNumber}"
+				class="btn btn-outline-primary txnButton" id="allButton"><spring:message
+						code="heading.usage" /></a></td>
 		</tr>
 		<tr>
 			<td><div class="div-emptyspace"></div></td>
@@ -99,7 +103,7 @@
 	<h3>
 		<spring:message code="heading.transaction" />
 	</h3>
-	<a href="${pageContext.request.contextPath}/usage"><spring:message code="caption.transaction.add" /></a>
+	<hr />
 	<c:choose>
 		<c:when test="${transactionL !=0}">
 			<noscript>
