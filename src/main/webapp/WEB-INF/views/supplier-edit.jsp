@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
@@ -21,7 +19,7 @@
 		<tbody>
 			<tr>
 				<td><spring:message code="fieldLabel.supplierId" /></td>
-				<td><form:input path="supplierId" readonly="true" /></td>
+				<td><form:input path="supplierId" readonly="true" cssStyle="color:#868e96;opacity:1" /></td>
 			</tr>
 
 			<tr>

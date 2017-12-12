@@ -1,40 +1,41 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
 
-<title>
-<spring:message code="heading.user.editUser" />
-</title>
+<title><spring:message code="heading.user.editUser" /></title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<br/><h3><spring:message code="heading.user.editUser" /></h3><hr/>
+<br />
+<h3>
+	<spring:message code="heading.user.editUser" />
+</h3>
+<hr />
 <form:form method="POST" commandName="user"
 	action="${pageContext.request.contextPath}/admin/user/edituser/${user.userName}">
-<table class="searchTable">
-			<tr>
-				<td><spring:message code="fieldLabel.user.userName" /></td>	
-				<td><form:input path="userName" readonly="true" /></td>
-				<td></td>
-			</tr>
-			
-			<tr>
-				<td><spring:message code="fieldLabel.user.role" /></td>
-				<td><form:select path="role" items="${roleList}" /></td>
-			</tr>
-			<tr>
-				<td><spring:message code="fieldLabel.user.password" /></td>
-		 		<td><form:password path="password" /></td>
-		 		<td><form:errors path="password" cssStyle="color: red;" /></td>
-			</tr>
-			<tr>
-				<td colspan="2"><form:button type="submit" class="btn btn-outline-primary" id="allButton"><spring:message code="button.saveChanges" /></form:button>
-				<a href="${pageContext.request.contextPath}/admin/user"
-					class="btn btn-outline-primary"><spring:message code="button.cancel" /></a>
-				</td>
-			</tr>
+	<table class="searchTable">
+		<tr>
+			<td><spring:message code="fieldLabel.user.userName" /></td>
+			<td><form:input path="userName" readonly="true" cssStyle="color:#868e96;opacity:1" /></td>
+			<td></td>
+		</tr>
+
+		<tr>
+			<td><spring:message code="fieldLabel.user.role" /></td>
+			<td><form:select path="role" items="${roleList}" /></td>
+		</tr>
+		<tr>
+			<td><spring:message code="fieldLabel.user.password" /></td>
+			<td><a
+				href="${pageContext.request.contextPath}/admin/user/edituser/reset/${user.userName}">Reset
+					password</a></td>
+		</tr>
+		<tr>
+			<td> <a href="${pageContext.request.contextPath}/admin/user"
+					class="btn btn-outline-primary"> <spring:message
+							code="button.cancel" /></a>
+			</td>
+		</tr>
 	</table>
 </form:form>
 

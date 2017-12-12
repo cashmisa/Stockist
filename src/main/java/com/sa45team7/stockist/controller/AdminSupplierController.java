@@ -19,7 +19,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sa45team7.stockist.exception.SupplierNotFound;
 import com.sa45team7.stockist.model.Supplier;
-import com.sa45team7.stockist.service.ProductService;
 import com.sa45team7.stockist.service.SupplierService;
 import com.sa45team7.stockist.validator.SupplierValidator;
 

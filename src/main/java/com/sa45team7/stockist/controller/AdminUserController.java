@@ -26,102 +26,105 @@ import com.sa45team7.stockist.model.User;
 @RequestMapping("/admin/user")
 @Controller
 public class AdminUserController {
-	//CRUD users
-	//XIN YING
-	
+	// CRUD users
+	// XIN YING
+
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private UserValidator userValidator;
-	
+
 	@InitBinder("user")
 	private void initUserBinder(WebDataBinder binder) {
 		binder.addValidators(userValidator);
 	}
-	
-	
-	@RequestMapping(value ={"", "/listuser"}, method = RequestMethod.GET) //admin/user/listuser
-	public ModelAndView listUser() 
-	{
+
+	@RequestMapping(value = { "", "/listuser" }, method = RequestMethod.GET) // admin/user/listuser
+	public ModelAndView listUser() {
 		ModelAndView modelAndView = new ModelAndView("list-user");
 		List<User> userList = userService.findAllUsers();
 		modelAndView.addObject("userList", userList);
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView createNewUser() 
-	{
-		ModelAndView modelAndView = new ModelAndView("new-user", "user", new User()); //viewname, modelname, modelobject
+	public ModelAndView createNewUser() {
+		ModelAndView modelAndView = new ModelAndView("new-user", "user", new User()); // viewname, modelname,
+																						// modelobject
 		ArrayList<String> roleList = userService.findAllRoles();
 		modelAndView.addObject("roleList", roleList);
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/create", method = RequestMethod.POST) //admin/user/create
+	@RequestMapping(value = "/create", method = RequestMethod.POST) // admin/user/create
 	public ModelAndView createdUser(@ModelAttribute @Valid User user, BindingResult result,
-			final RedirectAttributes redirectAttributes) 
-	{
-		if (result.hasErrors())
-		{
+			final RedirectAttributes redirectAttributes) {
+		if (result.hasErrors()) {
 			ModelAndView modelAndView = new ModelAndView("new-user");
 			ArrayList<String> roleList = userService.findAllRoles();
 			modelAndView.addObject("roleList", roleList);
 			return modelAndView;
 		}
-		
+
 		userService.createUser(user);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("redirect:/admin/user/listuser");
-		String createdUser = "New User <strong>"+ user.getUserName() +"</strong> was successfully added.";
+		String message = "New User <strong>" + user.getUserName() + "</strong> was successfully added.";
 
-		redirectAttributes.addFlashAttribute("createdUser", createdUser);
+		redirectAttributes.addFlashAttribute("message", message);
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value = "/edituser/{userName}", method = RequestMethod.GET)
-	public ModelAndView editUser(@PathVariable String userName) throws UserNotFound
-	{
+	public ModelAndView editUser(@PathVariable String userName) throws UserNotFound {
 		ModelAndView modelAndView = new ModelAndView("edit-user");
 		User user = userService.findUser(userName);
 		modelAndView.addObject("user", user);
 		ArrayList<String> roleList = userService.findAllRoles();
 		modelAndView.addObject("roleList", roleList);
-		return modelAndView;		
+		return modelAndView;
 	}
-	
-	@RequestMapping(value = "/edituser/{userName}", method = RequestMethod.POST) //admin/edituser/whicheveruser
+
+	@RequestMapping(value = "/edituser/{userName}", method = RequestMethod.POST) // admin/edituser/whicheveruser
 	public ModelAndView editUser(@ModelAttribute @Valid User user, BindingResult result, @PathVariable String userName,
-			final RedirectAttributes redirectAttributes)
-	{
-		if (result.hasErrors())
-		{
+			final RedirectAttributes redirectAttributes) {
+		if (result.hasErrors()) {
 			ModelAndView modelAndView = new ModelAndView("edit-user");
 			ArrayList<String> roleList = userService.findAllRoles();
 			modelAndView.addObject("roleList", roleList);
 			return modelAndView;
 		}
-		
-		userService.changeUser(user);	
+
+		userService.changeUser(user);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("redirect:/admin/user/listuser");
-		String updatedUser = "User <strong>"+ user.getUserName() +"</strong> was successfully updated.";
+		String message = "User <strong>" + user.getUserName() + "</strong> was successfully updated.";
 
-		redirectAttributes.addFlashAttribute("updatedUser", updatedUser);
+		redirectAttributes.addFlashAttribute("message", message);
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value = "deleteuser/{userName}", method = RequestMethod.GET)
-	public ModelAndView delete(@PathVariable String userName, final RedirectAttributes redirectAttributes) throws UserNotFound
-	{	
+	public ModelAndView delete(@PathVariable String userName, final RedirectAttributes redirectAttributes)
+			throws UserNotFound {
 		ModelAndView modelAndView = new ModelAndView("redirect:/admin/user/listuser");
 		User user = userService.findUser(userName);
 		userService.removeUser(user);
-		String deletedUser = "User <strong>" + user.getUserName() + "</strong> was successfully deleted.";	
-		
-		redirectAttributes.addFlashAttribute("deletedUser", deletedUser);
+		String message = "User <strong>" + user.getUserName() + "</strong> was successfully deleted.";
+
+		redirectAttributes.addFlashAttribute("message", message);
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/edituser/reset/{userName}", method = RequestMethod.GET)
+	public ModelAndView resetUser(@PathVariable String userName, RedirectAttributes redirectAttributes) {
+		ModelAndView modelAndView = new ModelAndView("redirect:/admin/user/listuser");
+		User user = userService.findUser(userName);
+		userService.resetUser(user);
+		String message = "User <strong>" + user.getUserName() + "</strong>'s password was successfully reset.";
+
+		redirectAttributes.addFlashAttribute("message", message);
 		return modelAndView;
 	}
 }
-

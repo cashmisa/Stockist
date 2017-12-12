@@ -2,21 +2,7 @@
 	prefix="sec"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 	
-<script type="text/javascript">
-    $(function() {
-        // this will get the full URL at the address bar
-        var url = window.location.href;
 
-        // passes on every "a" tag
-        $(".list-group a").each(function() {
-        	var url = window.location.href;
-            // checks if its the same on the address bar
-            if (url.includes(this.href)) {
-                $(this).addClass("active");
-            }
-        });
-    });        
-</script>
 
 <div class="card" style="position:fixed">
 
@@ -36,3 +22,19 @@
 	</nav>
 
 </div>
+
+<script type="text/javascript">
+    $(function() {
+        // this will get the full URL at the address bar
+        var url = window.location.href;
+
+        // passes on every "a" tag
+        $(".list-group a").each(function() {
+        	var url = window.location.href;
+            // checks if its the same on the address bar
+            if (url.includes(this.href)) {
+                $(this).addClass("active");
+            }
+        });
+    });        
+</script>

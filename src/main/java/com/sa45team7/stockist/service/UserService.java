@@ -9,7 +9,7 @@ import com.sa45team7.stockist.model.User;
 public interface UserService extends UserDetailsService {
 
 	User authenticate(String uname, String pwd);
-	
+
 	ArrayList<User> findAllUsers();
 
 	User findUser(String userName);
@@ -19,7 +19,9 @@ public interface UserService extends UserDetailsService {
 	User changeUser(User user);
 
 	void removeUser(User user);
-	
+
 	ArrayList<String> findAllRoles();
 
-	}
+	void resetUser(User user);
+
+}

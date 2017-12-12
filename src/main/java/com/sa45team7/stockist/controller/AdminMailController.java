@@ -16,7 +16,7 @@ public class AdminMailController {
 	@GetMapping(value="/admin/mail/{supplierId}")
 	public String sendMail(@PathVariable("supplierId") int id) {
 		orderManager.placeOrder(id);
-		return "Order is sent successfully";
+		return "Order is sent successfully!";
 	}
 	
 }
