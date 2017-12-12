@@ -17,7 +17,7 @@
 
 <form:form modelAttribute="transactionSearchHelper" method="post"
 	action="${pageContext.request.contextPath}/viewproduct/${id}">
-	<h3>
+	<br/><h3>
 		<spring:message code="fieldLabel.viewProduct" />
 	</h3>
 	<hr />
