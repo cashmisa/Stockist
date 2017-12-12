@@ -1,4 +1,3 @@
-
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -6,8 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
 
 <head>
@@ -18,6 +16,7 @@
 
 <form:form modelAttribute="transactionSearchHelper" method="post"
 	action="${pageContext.request.contextPath}/viewproduct/${id}">
+	<br />
 	<h3>
 		<spring:message code="fieldLabel.viewProduct" />
 	</h3>
@@ -87,13 +86,27 @@
 			<td><div class="div-emptyspace"></div></td>
 		</tr>
 	</table>
-
+	<br />
+	<c:if test="${createdRecord != null}">
+		<div class="alert alert-primary" style="color: black" role="alert"
+			id="createdRecord">
+			<h5>Great!</h5>
+			<h6>${createdRecord}</h6>
+		</div>
+	</c:if>
 	<br>
 	<h3>
 		<spring:message code="heading.transaction" />
 	</h3>
+	<hr />
 	<c:choose>
 		<c:when test="${fn:length(transactionL) gt 0}">
+			<noscript>
+				<h6>
+					<br>
+					<strong><spring:message code="message.enableJavaScript" /></strong>
+				</h6>
+			</noscript>
 			<table style="cellspacing: 2; cellpadding: 2; border: 1;">
 				<tr>
 					<td><div class="div-emptyspace"></div></td>
@@ -215,20 +228,14 @@
 	</tr>
 
 </form:form>
+<div id="bottom_section">&nbsp;</div>
 
 <script src="/js/jquery.tablesorter.js"></script>
 <script>
 	$(document).ready(function() {
 		$("#productTable").tablesorter({
-			headers : {
-				9 : {
-					sorter : false
-				},
-
-				10 : {
-					sorter : false
-				}
-			}
+			widthFixed : true,
+			widgets : [ 'zebra' ]
 		});
 	});
 </script>

@@ -72,5 +72,10 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
-	
+	@Override
+	public void resetUser(User user) {
+		user.setPassword("123456");
+		userRepository.saveAndFlush(user);
+	}
+
 }

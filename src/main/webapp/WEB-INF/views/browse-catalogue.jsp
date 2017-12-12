@@ -1,4 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
@@ -73,7 +72,7 @@
 				argumentSeparator=";" />
 		</h6>
 		<br>
-		<h6><strong>TIP!</strong> <spring:message code="message.tip" /></h6>
+		<h6><strong>TIP!</strong> <spring:message code="message.tip" /><noscript><br><strong><spring:message code="message.enableJavaScript" /></strong></noscript></h6>
 		<table id="productTable" class="tablesorter">
 			<thead>
 				<tr>
@@ -100,7 +99,7 @@
 		</table>
 	</c:if>
 </form:form>
-
+<div id="bottom_section">&nbsp;</div>
 <script src="/js/jquery.tablesorter.js"></script>
 
 <script>

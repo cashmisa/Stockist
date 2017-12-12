@@ -2,8 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
 
 <head>
@@ -28,6 +26,7 @@
 </c:if>
 <br />
 <c:if test="${fn:length(productList) gt 0}">
+<noscript><h6><br><strong><spring:message code="message.enableJavaScript" /></strong></h6></noscript>
 	<table id="productTable" class="tablesorter">
 		<thead>
 			<tr class="listHeading">
@@ -69,6 +68,7 @@
 		</tbody>
 	</table>
 </c:if>
+<div id="bottom_section">&nbsp;</div>
 
 <script src="/js/jquery.tablesorter.js"></script>
 <script>

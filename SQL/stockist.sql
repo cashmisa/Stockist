@@ -71,7 +71,7 @@ DEFAULT CHARACTER SET = utf8;
 ALTER TABLE `product` AUTO_INCREMENT=1000;
 
 
-INSERT INTO product (`partName`, `brand`, `supplierId`, `qty`, `minOrderQty`, `reOrderQty`, `price`, `shelfLocation`) VALUES ('abs control unit','bosch',101,8,5,10,35,'b2');
+INSERT INTO product (`partName`, `brand`, `supplierId`, `qty`, `minOrderQty`, `reOrderQty`, `price`, `shelfLocation`) VALUES ('abs control unit','bosch',100,8,5,10,35,'b2');
 INSERT INTO product (`partName`, `brand`, `supplierId`, `qty`, `minOrderQty`, `reOrderQty`, `price`, `shelfLocation`) VALUES ('ac compressor','mophorn',102,8,5,10,90,'m5');
 INSERT INTO product (`partName`, `brand`, `supplierId`, `qty`, `minOrderQty`, `reOrderQty`, `price`, `shelfLocation`) VALUES ('alternator','magneti marelli',106,7,5,10,60,'m1');
 INSERT INTO product (`partName`, `brand`, `supplierId`, `qty`, `minOrderQty`, `reOrderQty`, `price`, `shelfLocation`) VALUES ('axle shaft','victory lap',114,8,5,10,42,'v1');

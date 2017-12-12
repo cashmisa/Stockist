@@ -12,7 +12,8 @@
 <br />
 <h3>
 	<spring:message code="heading.supplier.supplierList" />
-</h3><hr/>
+</h3>
+<hr />
 
 <!--  <style>
 
@@ -25,8 +26,7 @@
 </style>-->
 
 <a href="${pageContext.request.contextPath}/admin/supplier/create">
-	<spring:message code="heading.supplier.addSupplier" />
-</a>
+	<spring:message code="heading.supplier.addSupplier" /></a>
 <br>
 
 
@@ -48,6 +48,12 @@
 
 <br>
 <c:if test="${fn:length(supplierList) gt 0}">
+	<noscript>
+		<h6>
+			<br>
+			<strong><spring:message code="message.enableJavaScript" /></strong>
+		</h6>
+	</noscript>
 	<table id="supplierTable" class="tablesorter">
 		<thead>
 			<tr class="listHeading">
@@ -74,14 +80,14 @@
 						href="${pageContext.request.contextPath}/admin/supplier/edit/${supplier.supplierId}"><spring:message
 								code="caption.edit" /></a></td>
 					<td><a
-						href="${pageContext.request.contextPath}/admin/supplier/delete/${supplier.supplierId}.html"><spring:message
+						href="${pageContext.request.contextPath}/admin/supplier/delete/${supplier.supplierId}"><spring:message
 								code="caption.delete" /></a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 </c:if>
-
+<div id="bottom_section">&nbsp;</div>
 <script src="/js/jquery.tablesorter.js"></script>
 
 <script>

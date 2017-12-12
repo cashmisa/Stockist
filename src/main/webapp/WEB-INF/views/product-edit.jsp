@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
@@ -76,20 +74,23 @@
 			</tr>
 
 			<tr>
-				<td colspan="3"><form:button type="submit"
-						class="btn btn-outline-primary" id="allButton">
-						<spring:message code="button.saveChanges" />
-					</form:button>
+				<td colspan="3"><div style="display: inline-block">
+						<form:button type="submit" class="btn btn-outline-primary"
+							id="allButton">
+							<spring:message code="button.saveChanges" />
+						</form:button>
+					</div>
 					<noscript>
 						<a href="${pageContext.request.contextPath}/admin/product/list"
 							class="btn btn-outline-primary"><spring:message
 								code="button.cancel" /> </a>
-					</noscript> <input action="action" type="button"
-					class="btn btn-outline-primary txnButton"
-					onclick="window.history.go(-1); return false;" id="backNoScript"
-					style="display: none"
-					value="<spring:message
-						code="button.cancel" />" /></td>
+					</noscript>
+					<div id="backNoScript" style="display: none">
+						<input type="button" class="btn btn-outline-primary txnButton"
+							onclick="window.history.go(-1); return false;"
+							value="<spring:message
+						code="button.cancel" />" />
+					</div></td>
 
 			</tr>
 		</tbody>
@@ -97,5 +98,5 @@
 </form:form>
 </html>
 <script>
-	document.getElementById("backNoScript").style.display = "block";
+	document.getElementById("backNoScript").style.display = "inline-block";
 </script>

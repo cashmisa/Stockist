@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -29,7 +27,8 @@
 			</tr>
 			<tr>
 				<td colspan="2"><form:button type="submit" class="btn btn-outline-primary" id="allButton"><spring:message code="button.addNew" /></form:button>
-				<form:button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/admin/user'"><spring:message code="button.cancel" /></form:button></td>
+				<a href="${pageContext.request.contextPath}/admin/user"
+					class="btn btn-outline-primary"><spring:message code="button.cancel" /></a></td>
 				<td></td>
 			</tr>
 	</table>

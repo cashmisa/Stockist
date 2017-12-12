@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
@@ -68,8 +66,12 @@
 			</tr>
 
 			<tr>
-				<td colspan="2"><form:button type="submit" class="btn btn-outline-primary" id="allButton"><spring:message code="button.addNew" /></form:button>
-				<form:button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/admin/product'"><spring:message code="button.cancel" /></form:button></td>
+				<td colspan="2"><form:button type="submit"
+						class="btn btn-outline-primary" id="allButton">
+						<spring:message code="button.addNew" />
+					</form:button> <a href="${pageContext.request.contextPath}/admin/product"
+					class="btn btn-outline-primary"><spring:message
+							code="button.cancel" /></a></td>
 				<td></td>
 			</tr>
 		</tbody>
