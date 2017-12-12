@@ -153,7 +153,10 @@ public class ProductServiceImpl implements ProductService
 			product.setBrand(productSearchDTO.getBrand().trim());
 			product.setShelfLocation(productSearchDTO.getShelfLocation().trim());
 			
-			ExampleMatcher matcher = ExampleMatcher.matching().withIgnorePaths("partNumber", "minOrderQty", "price", "qty", "reOrderQty").withMatcher("partName", match -> match.ignoreCase().contains()).withMatcher("brand", match -> match.ignoreCase().contains())
+			ExampleMatcher matcher = ExampleMatcher.matching()
+					                               .withIgnorePaths("partNumber", "minOrderQty", "price", "qty", "reOrderQty")
+					                               .withMatcher("partName", match -> match.ignoreCase().contains())
+					                               .withMatcher("brand", match -> match.ignoreCase().contains())
 			                                       .withMatcher("shelfLocation", match -> match.ignoreCase().contains());
 			
 			Example<Product> example = Example.of(product, matcher);
@@ -163,13 +166,13 @@ public class ProductServiceImpl implements ProductService
 		
 		if (productSearchDTO.getPartNumber() != "")
 		{
-			String partNumber = productSearchDTO.getPartNumber().toLowerCase().trim();
+			String partNumber = productSearchDTO.getPartNumber().trim();
 			
 			if (resultList == null) // if no result from ExampleQuery, use partNumber for query
 			{
 				resultList = productRepository.findByPartNumberContaining(partNumber);
 			}
-			else // filter current resultList with partNumber
+			else // filter current resultList by partNumber
 			{
 				Predicate<Product> filterByPartNumber = p -> !String.valueOf(p.getPartNumber()).contains(partNumber);
 				resultList.removeIf(filterByPartNumber);
