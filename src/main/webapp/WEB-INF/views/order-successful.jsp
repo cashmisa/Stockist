@@ -7,6 +7,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><spring:message code="heading.reorder.successful" /></title>
 
-
-</body>
-</html>
+<br />
+<c:if test="${message != null}">
+	<div class="alert alert-primary" style="color: black" role="alert"
+		id="createdUser">
+		<h5>Great!</h5>
+		<h6>${message}</h6>
+	</div>
+</c:if>
