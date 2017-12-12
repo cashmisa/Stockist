@@ -100,7 +100,7 @@
 	</h3>
 	<hr />
 	<c:choose>
-		<c:when test="${fn:length(transactionL) gt 0}">
+		<c:when test="${transactionL !=0}">
 			<noscript>
 				<h6>
 					<br>

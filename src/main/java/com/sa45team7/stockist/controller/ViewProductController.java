@@ -56,10 +56,10 @@ public class ViewProductController {
 		ModelAndView mav = new ModelAndView("viewProductTransaction", "transactionSearchHelper", new StartEndDate());
 		Product product = pService.findProduct(idi);
 		ArrayList<Transaction> transactions = tService.findTransactionByPartNo(idi);
-		ArrayList<Transaction> transactionsL = transactions;
+		Long noOfTransactions = tService.findNoOfTransaction(idi);
 		mav.addObject("product", product);
 		mav.addObject("transactionList", transactions);
-		mav.addObject("transactionL", transactionsL);
+		mav.addObject("transactionL", noOfTransactions);
 		return mav;
 	}
 	
@@ -69,8 +69,8 @@ public class ViewProductController {
 		Integer idi = Integer.parseInt(id);
 		ModelAndView mav = new ModelAndView("viewProductTransaction");
 		Product product = pService.findProduct(idi);
-		ArrayList<Transaction> transactionsL = tService.findTransactionByPartNo(idi);
-		mav.addObject("transactionL", transactionsL);
+		Long noOfTransactions = tService.findNoOfTransaction(idi);
+		mav.addObject("transactionL", noOfTransactions);
 		if (!result.hasErrors())	{
 		ArrayList<Transaction> transactions = tService.findTransactionByPartNumberAndDate(idi, transactionSearchHelper.getStartDate(), transactionSearchHelper.getEndDate());
 		mav.addObject("transactionList", transactions);
