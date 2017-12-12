@@ -38,7 +38,7 @@ public class TransactionValidator implements Validator {
 			errors.rejectValue("partNumber", "error.product.productNotFound");
 		} 
 		
-		if (!transaction.getTransactionType().equals("received") && product.getQty() - transaction.getQty() < 0) {
+		else if (!transaction.getTransactionType().equals("received") && product.getQty() - transaction.getQty() < 0) {
 				errors.rejectValue("qty", "error.product.inventoryShortage");
 		}
 		
