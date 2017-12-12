@@ -40,9 +40,6 @@ public class GmailOrderManager implements OrderManager {
 	@Autowired
 	ReorderService rService;
 	
-	@Autowired
-	ProductService pService;
-
 	@Override
 	public void placeOrder(int supplierId) {
 
@@ -55,7 +52,7 @@ public class GmailOrderManager implements OrderManager {
 			JasperReport report = JasperCompileManager.compileReport(jasperFile.getInputStream());
 
 			JRBeanCollectionDataSource jrds = new JRBeanCollectionDataSource(
-					pService.findProductBySupplierId(supplierId));
+					rService.findReorderDTOListBySupplier(supplierId));
 
 			// Map to hold Jasper report Parameters
 			Map<String, Object> parameters = new HashMap<String, Object>();
