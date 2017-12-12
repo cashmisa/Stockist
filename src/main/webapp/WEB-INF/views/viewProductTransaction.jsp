@@ -97,6 +97,7 @@
 	<h3>
 		<spring:message code="heading.transaction" />
 	</h3>
+	<hr />
 	<c:choose>
 		<c:when test="${fn:length(transactionL) gt 0}">
 			<table style="cellspacing: 2; cellpadding: 2; border: 1;">

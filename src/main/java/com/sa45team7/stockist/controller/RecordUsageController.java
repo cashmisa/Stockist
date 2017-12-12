@@ -80,6 +80,7 @@ public class RecordUsageController {
 		{
 				partNumber = Integer.parseInt(request.getParameter("partNumber"));
 				request.setAttribute("partNumber", partNumber);
+				//request.setAttribute to prevent part number from disappearing.
 		}
 		
 		else {
