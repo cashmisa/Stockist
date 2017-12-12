@@ -62,7 +62,7 @@ public class GmailOrderManager implements OrderManager {
 			helper.setTo(supplierEmail);
 			helper.setBcc("matrixhero259@gmail.com");
 			helper.setSubject(subject);
-			helper.setText("Dear " + supplierContactName + ",\nPlease take our order as in attachment.\nBest regards,");
+			helper.setText("Dear " + supplierContactName + ",\n\nPlease take our order as in attachment.\n\nBest regards,");
 
 			JasperReport report = JasperCompileManager.compileReport(jasperFile.getInputStream());
 

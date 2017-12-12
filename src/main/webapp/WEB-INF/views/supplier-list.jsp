@@ -74,7 +74,7 @@
 						href="${pageContext.request.contextPath}/admin/supplier/edit/${supplier.supplierId}"><spring:message
 								code="caption.edit" /></a></td>
 					<td><a
-						href="${pageContext.request.contextPath}/admin/supplier/delete/${supplier.supplierId}.html"><spring:message
+						href="${pageContext.request.contextPath}/admin/supplier/delete/${supplier.supplierId}"><spring:message
 								code="caption.delete" /></a></td>
 				</tr>
 			</c:forEach>
