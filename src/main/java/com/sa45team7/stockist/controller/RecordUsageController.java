@@ -1,11 +1,14 @@
 package com.sa45team7.stockist.controller;
 
+//import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,137 +30,101 @@ import com.sa45team7.stockist.service.TransactionService;
 import com.sa45team7.stockist.service.UserService;
 import com.sa45team7.stockist.validator.TransactionValidator;
 
-
 @RequestMapping("/usage")
 @Controller
 public class RecordUsageController {
-	//record usage of different types (returned, received, used)
-	//populate to transaction table and reduce product qty
-	
+	// record usage of different types (returned, received, used)
+	// populate to transaction table and reduce product qty
+
+	// private static final Logger logger =
+	// LoggerFactory.getLogger(HomeController.class);
+
 	@Autowired
 	TransactionService transactionService;
-	
+
 	@Autowired
-	ProductService PService;
-	
+	ProductService pService;
+
+	@Autowired
+	ProductService productService;
+
 	@Autowired
 	UserService UService;
-	
+
 	@Autowired
 	private TransactionValidator transValidator;
+
 	@InitBinder("transaction")
 	private void initTransactionBinder(WebDataBinder binder) {
 		binder.setValidator(transValidator);
 	}
-	
+
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	//需要返还一个view的名字，对应空的页面
-	//需要返回一个新的 空的transaction object
+	// 需要返还一个view的名字，对应空的页面
+	// 需要返回一个新的 空的transaction object
 	public ModelAndView createUsage() {
 		ModelAndView mav = new ModelAndView("create-record", "transaction", new Transaction());
-		//ArrayList<Integer> productList = productService.findAllPartNumber();
-		//mav.addObject("productList", productList);
 		ArrayList<String> typelist = transactionService.findAllTransactionType();
 		mav.addObject("typelist", typelist);
 		return mav;
 	}
-	
-	
+
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public ModelAndView createUsage(@ModelAttribute @Valid Transaction transaction,
-			BindingResult result,
-			final RedirectAttributes redirectAttributes, HttpServletRequest request) throws Exception
-	{
+	public ModelAndView createUsage(@ModelAttribute @Valid Transaction transaction, BindingResult result,
+			final RedirectAttributes redirectAttributes, HttpServletRequest request) throws Exception {
 		// @RequestParam(value="partNumber") Integer partNumber
-		//需要获取填好后的transaction object
-		//把这个trans 存入数据库
-		//跳转页面到xxxx
-		Integer partNumber = 0;
-		
-		if(request.getParameter("partNumber") != "")
-		{
-				partNumber = Integer.parseInt(request.getParameter("partNumber"));
-				request.setAttribute("partNumber", partNumber);
-		}
-		
-		else {
-				 
-				ModelAndView modelAndView = new ModelAndView("create-record");
-				ArrayList<String> typelist = transactionService.findAllTransactionType();
-				modelAndView.addObject("typelist", typelist);
-				modelAndView.addObject("producterrorMsg", "error.product.productNotFound");
-				return modelAndView;	
-		}
-		
-//		if (result.hasErrors())
-//		{
-//			ModelAndView modelAndView = new ModelAndView("create-record");
-//			ArrayList<String> typelist = transactionService.findAllTransactionType();
-//			modelAndView.addObject("typelist", typelist);
-//			modelAndView.addObject("partNumber", partNumber);
-//			request.getSession().setAttribute("partNumber", partNumber);
-//			return modelAndView;
-//			
-//		}
-		
+		// 需要获取填好后的transaction object
+		// 把这个trans 存入数据库
+		// 跳转页面到xxxx
+
 		ModelAndView mav = new ModelAndView();
-		
-		//根据partNumber找到product，将product放入transaction
-		
-		Product product = PService.findProduct(partNumber);
-		if(product == null || result.hasErrors())
-		{
+		// 根据partNumber找到product，将product放入transaction
+		// Product product = pService.findProduct(partNumber);
+		if (result.hasErrors()) {
 			ModelAndView modelAndView = new ModelAndView("create-record");
 			ArrayList<String> typelist = transactionService.findAllTransactionType();
 			modelAndView.addObject("typelist", typelist);
-			modelAndView.addObject("producterrorMsg", "error.product.productNotFound");
+			modelAndView.addObject("partNumber", transaction.getPartNumber());
 			return modelAndView;
 		}
-		
+
+		Product product = productService.findProduct(transaction.getPartNumber());
+
 		Integer newqty;
-		if(transaction.getTransactionType().equals("received")) 
-		{
-		    newqty = product.getQty()+transaction.getQty();
-		
-		}else
-		{
-			newqty = product.getQty()-transaction.getQty();
-			if(newqty<=0) 
-			{
+		if (transaction.getTransactionType().equals("received")) {
+			newqty = product.getQty() + transaction.getQty();
+
+		} else {
+			newqty = product.getQty() - transaction.getQty();
+			if (result.hasErrors()) {
 				ModelAndView modelAndView = new ModelAndView("create-record");
 				ArrayList<String> typelist = transactionService.findAllTransactionType();
 				modelAndView.addObject("typelist", typelist);
-				modelAndView.addObject("qtyerrorMsg", "error.product.inventoryShortage");
 				return modelAndView;
 			}
 		}
-		product.setQty(newqty);	
-		
-		
+		product.setQty(newqty);
+
 		transaction.setProduct(product);
-		//根据userName找到user，将user放入transaction
-		//String userName = (String) request.getAttribute("userName");
-		
+		// 根据userName找到user，将user放入transaction
+		// String userName = (String) request.getAttribute("userName");
+
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String userName = authentication.getName();
-		
+
 		User user = UService.findUser(userName);
 		transaction.setUser(user);
-		
+
 		Date now = new Date();
 		transaction.setDate(now);
-				
-		transactionService.createTransaction(transaction);
-		
-		mav.setViewName("redirect:/viewproduct/" + partNumber);		
-		String message = "New transaction " + transaction.getTransactionId() + " was successfully created.";
-		
-		//mav.addObject("transaction", transaction);
-		
-		redirectAttributes.addFlashAttribute("message", message);
-		return mav;	
-	}
-	
-		
-}
 
+		transactionService.createTransaction(transaction);
+
+		mav.setViewName("redirect:/viewproduct/" + product.getPartNumber());
+		String createdTransaction = "New Product Transaction <strong>" + transaction.getTransactionId()
+				+ "</strong> was successfully created.";
+
+		redirectAttributes.addFlashAttribute("createdTransaction", createdTransaction);
+		return mav;
+	}
+}

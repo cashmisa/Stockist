@@ -89,11 +89,18 @@
 		</tr>
 	</table>
 	<br />
-	<c:if test="${createdRecord != null}">
+<c:if test="${message != null}">
+	<div class="alert alert-primary" style="color: black" role="alert"
+		id="createdUser">
+		<h5>Great!</h5>
+		<h6>${createdTransaction}</h6>
+	</div>
+</c:if>
+	<c:if test="${createdTransaction!= null}">
 		<div class="alert alert-primary" style="color: black" role="alert"
 			id="createdRecord">
 			<h5>Great!</h5>
-			<h6>${createdRecord}</h6>
+			<h6>${createdTransaction}</h6>
 		</div>
 	</c:if>
 	<br>
