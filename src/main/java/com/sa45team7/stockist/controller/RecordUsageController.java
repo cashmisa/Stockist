@@ -76,29 +76,26 @@ public class RecordUsageController {
 		
 		if(request.getParameter("partNumber") != "")
 		{
-		   partNumber = Integer.parseInt(request.getParameter("partNumber"));
+				partNumber = Integer.parseInt(request.getParameter("partNumber"));
 		}
-		else 
-			{
-			
-				ModelAndView modelAndView = new ModelAndView("create-record");
-				ArrayList<String> typelist = transactionService.findAllTransactionType();
-				modelAndView.addObject("typelist", typelist);
-				return modelAndView;	
-		}
+		
+//		else {
+//				 
+//				ModelAndView modelAndView = new ModelAndView("create-record");
+//				ArrayList<String> typelist = transactionService.findAllTransactionType();
+//				modelAndView.addObject("typelist", typelist);
+//				modelAndView.addObject("producterrorMsg", "Product not found");
+//				return modelAndView;	
+//		}
 		
 		if (result.hasErrors())
 		{
-			if(request.getParameter("partNumber") != "")
-			{
-			   partNumber = Integer.parseInt(request.getParameter("partNumber"));
-			
 			ModelAndView modelAndView = new ModelAndView("create-record");
 			ArrayList<String> typelist = transactionService.findAllTransactionType();
 			modelAndView.addObject("typelist", typelist);
 			modelAndView.addObject("partNumber", partNumber);
 			return modelAndView;
-			}
+			
 		}
 		
 		ModelAndView mav = new ModelAndView();
@@ -111,7 +108,7 @@ public class RecordUsageController {
 			ModelAndView modelAndView = new ModelAndView("create-record", "transaction", new Transaction());
 			ArrayList<String> typelist = transactionService.findAllTransactionType();
 			modelAndView.addObject("typelist", typelist);
-			modelAndView.addObject("producterrorMsg", "Product not found");
+			modelAndView.addObject("producterrorMsg", "Product not found. Please enter a valid Part Number.");
 			return modelAndView;
 		}
 		
