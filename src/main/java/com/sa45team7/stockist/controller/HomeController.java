@@ -30,9 +30,11 @@ public class HomeController {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		logger.info("Username: " + authentication.getName());
-		for (GrantedAuthority element : authentication.getAuthorities()) {
-			logger.info("Role: " + element.getAuthority());
+		if(authentication != null) {
+			logger.info("Username: " + authentication.getName());
+			for (GrantedAuthority element : authentication.getAuthorities()) {
+				logger.info("Role: " + element.getAuthority());
+			}
 		}
 
 		Date date = new Date();
