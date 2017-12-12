@@ -14,6 +14,7 @@
 <hr />
 <p><a target="_blank"
 						href="${pageContext.request.contextPath}/admin/report/supplierpdf/${supplierId}.pdf"><Strong><spring:message code="report.viewReport"></spring:message></Strong></a></p>
+						<noscript><h6><br><strong><spring:message code="message.enableJavaScript" /></strong></h6></noscript>
 <table id="reorder-table" class="tablesorter">
 	<thead>
 		<tr class="listHeading">
@@ -55,7 +56,7 @@
 	<a href="${pageContext.request.contextPath }/admin/report/list"> <spring:message
 			code="caption.back" /></a>
 </p>
-
+<div id="bottom_section">&nbsp;</div>
 <script src="/js/jquery.tablesorter.js"></script>
 <script>
 	$(document).ready(function() {

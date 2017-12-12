@@ -28,6 +28,7 @@
 </c:if>
 <br />
 <c:if test="${fn:length(productList) gt 0}">
+<noscript><h6><br><strong><spring:message code="message.enableJavaScript" /></strong></h6></noscript>
 	<table id="productTable" class="tablesorter">
 		<thead>
 			<tr class="listHeading">
@@ -69,6 +70,7 @@
 		</tbody>
 	</table>
 </c:if>
+<div id="bottom_section">&nbsp;</div>
 
 <script src="/js/jquery.tablesorter.js"></script>
 <script>

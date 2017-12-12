@@ -4,7 +4,6 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
-<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><spring:message code="heading.user.userList" /></title>
@@ -29,6 +28,7 @@
 	</div>
 </c:if>
 <br />
+<noscript><h6><br><strong><spring:message code="message.enableJavaScript" /></strong></h6></noscript>
 <table id="userTable" class="tablesorter">
 	<thead>
 		<tr>
@@ -71,5 +71,4 @@
 			}
 		});
 	});
-</script>
-</html>
+</script>   
