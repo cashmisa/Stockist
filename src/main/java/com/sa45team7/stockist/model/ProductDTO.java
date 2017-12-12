@@ -2,21 +2,27 @@ package com.sa45team7.stockist.model;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.BeanUtils;
 
 public class ProductDTO {
 
 	@NotNull
+	@Min(0)
 	private int partNumber;
 	
 	@NotNull
+	@NotBlank
 	private String partName;
 
 	@NotNull
+	@NotBlank
 	private String brand;
 
 	@NotNull
+	@Min(1)
 	private int supplierId;
 
 	@NotNull
@@ -36,6 +42,8 @@ public class ProductDTO {
 	private double price;
 
 	@NotNull
+	@NotBlank
+	@Size(min=2,max=2)
 	private String shelfLocation;
 
 	public ProductDTO() {
@@ -139,6 +147,20 @@ public class ProductDTO {
 		if (partNumber != other.partNumber)
 			return false;
 		return true;
+	}
+
+	public ProductDTO(int partNumber, String partName, String brand, int supplierId, int qty, int minOrderQty,
+			int reOrderQty, double price, String shelfLocation) {
+		super();
+		this.partNumber = partNumber;
+		this.partName = partName;
+		this.brand = brand;
+		this.supplierId = supplierId;
+		this.qty = qty;
+		this.minOrderQty = minOrderQty;
+		this.reOrderQty = reOrderQty;
+		this.price = price;
+		this.shelfLocation = shelfLocation;
 	}
 	
 }
