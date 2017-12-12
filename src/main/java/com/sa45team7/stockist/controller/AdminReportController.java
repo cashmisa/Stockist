@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
 
 import com.sa45team7.stockist.model.Product;
-import com.sa45team7.stockist.service.ReorderService;
+import com.sa45team7.stockist.service.ReportService;
 import com.sa45team7.stockist.service.SupplierService;
 
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -22,7 +22,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 public class AdminReportController {
 
 	@Autowired
-	ReorderService rService;
+	ReportService rService;
 
 	@Autowired
 	SupplierService sService;

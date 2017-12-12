@@ -7,7 +7,7 @@ import com.sa45team7.stockist.model.Product;
 import com.sa45team7.stockist.model.ReportDTO;
 import com.sa45team7.stockist.model.Supplier;
 
-public interface ReorderService {
+public interface ReportService {
 
 	/*
 	 * jsp: get suppliers who have products
