@@ -11,7 +11,7 @@
 	<table class="searchTable">
 	        <tr>
 				<td><spring:message code="fieldLabel.partNumber" /></td>
-				<td><input type="number" name="partNumber" value="<%= session.getAttribute("partNumber") %>" /></td>
+				<td><input type="number" name="partNumber" value="<%= request.getAttribute("partNumber") %>" /></td>
 				<td><font color="red"> ${producterrorMsg} </font></td>
 			</tr>
 			<tr>
