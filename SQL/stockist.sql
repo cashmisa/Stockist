@@ -52,6 +52,11 @@ INSERT INTO supplier  (`supplierName`,`contactName`,`phoneNumber`,`email`,`websi
 INSERT INTO supplier (`supplierName`,`contactName`,`phoneNumber`,`email`,`website`) VALUES ('provalue','garett eng',64890105,'provalue@nus.sg','www.provalue.com');
 INSERT INTO supplier (`supplierName`,`contactName`,`phoneNumber`,`email`,`website`) VALUES ('stockwise','davin tay',65998261,'stockwise@nus.sg','www.stockwise.com');
 INSERT INTO supplier (`supplierName`,`contactName`,`phoneNumber`,`email`,`website`) VALUES ('virota','zhen weida',69501594,'virota@nus.sg','www.virota.com');
+INSERT INTO supplier (`supplierName`,`contactName`,`phoneNumber`,`email`,`website`) VALUES ('the part giant','wallace ho',63282461,'thepartgiant@nus.sg','www.thepartgiant.com');
+INSERT INTO supplier (`supplierName`,`contactName`,`phoneNumber`,`email`,`website`) VALUES ('autopartszilla','esther choo',68855909,'autopartszilla@nus.sg','www.autopartszilla.com');
+INSERT INTO supplier (`supplierName`,`contactName`,`phoneNumber`,`email`,`website`)VALUES ('true blue','louis klass',66305022,'trueblue@nus.sg','www.trueblue.com');
+INSERT INTO supplier (`supplierName`,`contactName`,`phoneNumber`,`email`,`website`) VALUES ('windy city','thafiq hassan',65475718,'windycity@nus.sg','www.windycity.com');
+INSERT INTO supplier (`supplierName`,`contactName`,`phoneNumber`,`email`,`website`) VALUES ('mad dog','isabella sharil',62599174,'maddog@nus.sg','www.maddog.com');
 
 CREATE TABLE IF NOT EXISTS `stockist`.`product` (     
 `partNumber` INT NOT NULL AUTO_INCREMENT,   
@@ -121,6 +126,12 @@ INSERT INTO product (`partName`, `brand`, `supplierId`, `qty`, `minOrderQty`, `r
 INSERT INTO product (`partName`, `brand`, `supplierId`, `qty`, `minOrderQty`, `reOrderQty`, `price`, `shelfLocation`) VALUES ('water pump','acdelco',105,11,5,10,35,'a1');
 INSERT INTO product (`partName`, `brand`, `supplierId`, `qty`, `minOrderQty`, `reOrderQty`, `price`, `shelfLocation`) VALUES ('wheel speed sensor','autex',110,7,5,10,10,'a3');
 INSERT INTO product (`partName`, `brand`, `supplierId`, `qty`, `minOrderQty`, `reOrderQty`, `price`, `shelfLocation`) VALUES ('wiper motor','wexco',106,7,5,10,30,'w4');
+INSERT INTO product (`partName`, `brand`, `supplierId`, `qty`, `minOrderQty`, `reOrderQty`, `price`, `shelfLocation`) VALUES ('wiper blade','bosch',121,6,5,10,18,'b2');
+INSERT INTO product (`partName`, `brand`, `supplierId`, `qty`, `minOrderQty`, `reOrderQty`, `price`, `shelfLocation`) VALUES ('jump starter','gooloo',123,12,5,10,46,'g3');
+INSERT INTO product (`partName`, `brand`, `supplierId`, `qty`, `minOrderQty`, `reOrderQty`, `price`, `shelfLocation`) VALUES ('windshield','carlite',119,1,2,2,400,'c1');
+INSERT INTO product (`partName`, `brand`, `supplierId`, `qty`, `minOrderQty`, `reOrderQty`, `price`, `shelfLocation`) VALUES ('headlight','foxelli',120,4,2,2,145,'f2');
+INSERT INTO product (`partName`, `brand`, `supplierId`, `qty`, `minOrderQty`, `reOrderQty`, `price`, `shelfLocation`) VALUES ('serpentine belt','moca',122,8,5,10,15,'m7');
+
 
 CREATE TABLE IF NOT EXISTS `stockist`.`transaction` (     
 `transactionId` INT NOT NULL AUTO_INCREMENT,     
