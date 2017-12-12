@@ -9,7 +9,7 @@
 		aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
-	<a class="navbar-brand" href="/"><spring:message
+	<a class="navbar-brand" href="/" style="width:147px"><spring:message
 			code="title.application" /></a>
 
 	<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
