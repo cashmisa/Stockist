@@ -33,7 +33,9 @@
 			</tr>
 			<tr>
 				<td colspan="2"><form:button type="submit" class="btn btn-outline-primary" id="allButton"><spring:message code="button.addNew" /></form:button>
-				<form:button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/catalogue/all'"><spring:message code="button.cancel" /></form:button></td>
+				<a href="${pageContext.request.contextPath}/catalogue/all"
+					class="btn btn-outline-primary">
+				<spring:message code="button.cancel" /></a></td>
 				<td></td>
 			</tr>		
 	</table>
