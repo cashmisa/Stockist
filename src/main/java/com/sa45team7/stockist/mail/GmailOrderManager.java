@@ -17,7 +17,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
 import com.sa45team7.stockist.model.Supplier;
-import com.sa45team7.stockist.service.ReorderService;
+import com.sa45team7.stockist.service.ReportService;
 import com.sa45team7.stockist.service.SupplierService;
 
 import net.sf.jasperreports.engine.JRException;
@@ -38,7 +38,7 @@ public class GmailOrderManager implements OrderManager {
 	public JavaMailSender mailSender;
 
 	@Autowired
-	ReorderService rService;
+	ReportService rService;
 
 	@Autowired
 	SupplierService sService;
