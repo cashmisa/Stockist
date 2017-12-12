@@ -12,7 +12,7 @@
 <ul class="list-group ht-tm-element" style="position:fixed">
 	<li class="list-group-item active">Group 7 (The awesome group)</li>
 	<li class="list-group-item list-group-item-action">Tang Xiaowen</li>
-	<li class="list-group-item list-group-item-action">Ong Xin Yng</li>
+	<li class="list-group-item list-group-item-action">Ong Xin Ying</li>
 	<li class="list-group-item list-group-item-action">May Zin Ko</li>
 	<li class="list-group-item list-group-item-action">Guo Rui</li>
 	<li class="list-group-item list-group-item-action">Koh Meng Guan</li>
