@@ -77,7 +77,7 @@ public class RecordUsageController {
 		if(request.getParameter("partNumber") != "")
 		{
 				partNumber = Integer.parseInt(request.getParameter("partNumber"));
-				request.getSession().setAttribute("partNumber", partNumber);
+				request.setAttribute("partNumber", partNumber);
 		}
 		
 		else {
@@ -85,7 +85,7 @@ public class RecordUsageController {
 				ModelAndView modelAndView = new ModelAndView("create-record");
 				ArrayList<String> typelist = transactionService.findAllTransactionType();
 				modelAndView.addObject("typelist", typelist);
-				modelAndView.addObject("producterrorMsg", "Product not found. Please enter a valid Part Number.");
+				modelAndView.addObject("producterrorMsg", "error.product.productNotFound");
 				return modelAndView;	
 		}
 		
@@ -110,7 +110,7 @@ public class RecordUsageController {
 			ModelAndView modelAndView = new ModelAndView("create-record");
 			ArrayList<String> typelist = transactionService.findAllTransactionType();
 			modelAndView.addObject("typelist", typelist);
-			modelAndView.addObject("producterrorMsg", "Product not found. Please enter a valid Part Number.");
+			modelAndView.addObject("producterrorMsg", "error.product.productNotFound");
 			return modelAndView;
 		}
 		
@@ -127,7 +127,7 @@ public class RecordUsageController {
 				ModelAndView modelAndView = new ModelAndView("create-record");
 				ArrayList<String> typelist = transactionService.findAllTransactionType();
 				modelAndView.addObject("typelist", typelist);
-				modelAndView.addObject("qtyerrorMsg", "Inventory shortage. Please check in-stock.");
+				modelAndView.addObject("qtyerrorMsg", "error.product.inventoryShortage");
 				return modelAndView;
 			}
 		}
