@@ -1,18 +1,11 @@
 package com.sa45team7.stockist.validator;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-//import java.util.Locale;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.context.MessageSource;
-//import org.springframework.context.i18n.LocaleContextHolder;
+
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import com.sa45team7.stockist.controller.HomeController;
 import com.sa45team7.stockist.model.Product;
 import com.sa45team7.stockist.model.Transaction;
 import com.sa45team7.stockist.service.ProductService;
@@ -23,7 +16,7 @@ public class TransactionValidator implements Validator {
 	@Autowired
 	ProductService productService;
 
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	//private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	@Override
 	public boolean supports(Class<?> arg0) {
@@ -42,7 +35,6 @@ public class TransactionValidator implements Validator {
 		}
 
 		if (product == null) {
-			logger.info("inside validation");
 			errors.rejectValue("partNumber", "error.product.productNotFound");
 		} else {
 
