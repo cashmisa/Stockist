@@ -26,8 +26,7 @@
 </style>-->
 
 <a href="${pageContext.request.contextPath}/admin/supplier/create">
-	<spring:message code="heading.supplier.addSupplier" />
-</a>
+	<spring:message code="heading.supplier.addSupplier" /></a>
 <br>
 
 
@@ -88,7 +87,7 @@
 		</tbody>
 	</table>
 </c:if>
-
+<div id="bottom_section">&nbsp;</div>
 <script src="/js/jquery.tablesorter.js"></script>
 
 <script>

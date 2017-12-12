@@ -70,6 +70,7 @@
 		</tbody>
 	</table>
 </c:if>
+<div id="bottom_section">&nbsp;</div>
 
 <script src="/js/jquery.tablesorter.js"></script>
 <script>

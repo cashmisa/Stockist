@@ -3,6 +3,10 @@ table.searchTable td {
 	padding: 6px;
 }
 
+#bottom_section {
+    overflow: hidden;
+    padding-bottom: 90px;
+}
 #searchButton {
 	margin-right: 6px;
 	padding-left: 18px;

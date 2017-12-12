@@ -4,7 +4,6 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
-<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>
@@ -66,6 +65,7 @@
 			</c:forEach>
 	</tbody>
 	</table>
+	<div id="bottom_section">&nbsp;</div>
 <script src="/js/jquery.tablesorter.js"></script>
 <script>
 $(document).ready(function() {
@@ -83,4 +83,3 @@ $(document).ready(function() {
 	});
 });	       
 </script>
-</html>
