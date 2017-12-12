@@ -3,32 +3,26 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
-	
-<html>
-<head>
+<link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title><spring:message code="heading.transaction.create"/></title>
-</head>
-<body>
-<h3><spring:message code="heading.transaction.create"/></h3><hr/>
+<title><spring:message code="heading.usage"/></title>
+<br/><h3><spring:message code="heading.usage"/></h3><hr/>
 <form:form method="POST" modelAttribute="transaction" action="${pageContext.request.contextPath}/usage/create">
-	<table>
+	<table class="searchTable">
 	        <tr>
 				<td><spring:message code="fieldLabel.partNumber" /></td>
-				<td><input type="number" name="partNumber"> ${producterrorMsg} </td>
+				<td><input type="number" name="partNumber" value="<%= session.getAttribute("partNumber") %>" /></td>
+				<td><font color="red"> ${producterrorMsg} </font></td>
 			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.transactionQty" /></td>
-				<td><form:input path="qty" type="number" /> ${qtyerrorMsg}</td>
-				<td><form:errors path="qty" cssStyle="color: red;" /></td>
+				<td><form:input path="qty" type="number"/></td>
+				<td><form:errors path="qty" cssStyle="color: red;" /><font color="red">${qtyerrorMsg}</font></td>
 			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.transactionType" /></td>
 				<td><form:select path="transactionType" items="${typelist}"/>
-				<td><form:errors path="transactionType" cssStyle="color: red;" /></td>
 			</tr>
-
 			<tr>
 				<td><spring:message code="fieldLabel.transactionCustomer" /></td>
 				<td><form:input path="customer" /></td>
@@ -38,12 +32,9 @@
 				<td><form:input path="remarks" /></td>
 			</tr>
 			<tr>
-				<td colspan="2"><form:button type="submit"> Create New Record </form:button></td>
+				<td colspan="2"><form:button type="submit" class="btn btn-outline-primary" id="allButton"><spring:message code="button.addNew" /></form:button>
+				<form:button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/catalogue/all'"><spring:message code="button.cancel" /></form:button></td>
 				<td></td>
-			</tr>
-			
-			
+			</tr>		
 	</table>
 </form:form>
-</body>
-</html>

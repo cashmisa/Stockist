@@ -76,42 +76,41 @@ public class RecordUsageController {
 		
 		if(request.getParameter("partNumber") != "")
 		{
-		   partNumber = Integer.parseInt(request.getParameter("partNumber"));
+				partNumber = Integer.parseInt(request.getParameter("partNumber"));
+				request.getSession().setAttribute("partNumber", partNumber);
 		}
-		else 
-			{
-			
+		
+		else {
+				 
 				ModelAndView modelAndView = new ModelAndView("create-record");
 				ArrayList<String> typelist = transactionService.findAllTransactionType();
 				modelAndView.addObject("typelist", typelist);
+				modelAndView.addObject("producterrorMsg", "Product not found. Please enter a valid Part Number.");
 				return modelAndView;	
 		}
 		
-		if (result.hasErrors())
-		{
-			if(request.getParameter("partNumber") != "")
-			{
-			   partNumber = Integer.parseInt(request.getParameter("partNumber"));
-			
-			ModelAndView modelAndView = new ModelAndView("create-record");
-			ArrayList<String> typelist = transactionService.findAllTransactionType();
-			modelAndView.addObject("typelist", typelist);
-			modelAndView.addObject("partNumber", partNumber);
-			return modelAndView;
-			}
-		}
+//		if (result.hasErrors())
+//		{
+//			ModelAndView modelAndView = new ModelAndView("create-record");
+//			ArrayList<String> typelist = transactionService.findAllTransactionType();
+//			modelAndView.addObject("typelist", typelist);
+//			modelAndView.addObject("partNumber", partNumber);
+//			request.getSession().setAttribute("partNumber", partNumber);
+//			return modelAndView;
+//			
+//		}
 		
 		ModelAndView mav = new ModelAndView();
 		
 		//根据partNumber找到product，将product放入transaction
 		
 		Product product = PService.findProduct(partNumber);
-		if(product == null)
+		if(product == null || result.hasErrors())
 		{
-			ModelAndView modelAndView = new ModelAndView("create-record", "transaction", new Transaction());
+			ModelAndView modelAndView = new ModelAndView("create-record");
 			ArrayList<String> typelist = transactionService.findAllTransactionType();
 			modelAndView.addObject("typelist", typelist);
-			modelAndView.addObject("producterrorMsg", "Product not found");
+			modelAndView.addObject("producterrorMsg", "Product not found. Please enter a valid Part Number.");
 			return modelAndView;
 		}
 		
@@ -123,12 +122,12 @@ public class RecordUsageController {
 		}else
 		{
 			newqty = product.getQty()-transaction.getQty();
-			if(newqty<0) 
+			if(newqty<=0) 
 			{
-				ModelAndView modelAndView = new ModelAndView("create-record", "transaction", new Transaction());
+				ModelAndView modelAndView = new ModelAndView("create-record");
 				ArrayList<String> typelist = transactionService.findAllTransactionType();
 				modelAndView.addObject("typelist", typelist);
-				modelAndView.addObject("qtyerrorMsg", "Inventory shortage");
+				modelAndView.addObject("qtyerrorMsg", "Inventory shortage. Please check in-stock.");
 				return modelAndView;
 			}
 		}
