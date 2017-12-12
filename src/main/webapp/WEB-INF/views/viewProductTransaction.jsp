@@ -1,3 +1,4 @@
+<%@ page import="java.util.Date" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -7,6 +8,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 
 <link rel="stylesheet" href="/css/tablesorter-style.css" type="text/css">
+
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -113,11 +115,10 @@
 				</tr>
 				<tr>
 					<td colspan="2"><spring:message code="fieldLabel.startDate" />
-
-						<form:input path="startDate" class="form-control" value=""
+						<form:input path="startDate" pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$" class="form-control" value=""
 							id="example-date-input" type="date" name="startDateA" /></td>
 					<td colspan="5"><spring:message code="fieldLabel.endDate" />
-						<form:input path="endDate" class="form-control" value=""
+						<form:input path="endDate" pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$" class="form-control" value=""
 							id="example-date-input" type="date" name="endDateA" /></td>
 				</tr>
 				<tr>
