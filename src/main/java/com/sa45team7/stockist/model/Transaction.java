@@ -5,24 +5,19 @@ import javax.persistence.*;
 
 import java.util.Date;
 
-
 /**
  * The persistent class for the transaction database table.
  * 
  */
 @Entity
-@NamedQuery(name="Transaction.findAll", query="SELECT t FROM Transaction t")
-@Table(name ="transaction") 
+@NamedQuery(name = "Transaction.findAll", query = "SELECT t FROM Transaction t")
+@Table(name = "transaction")
 public class Transaction implements Serializable {
-	
-	
-	
+
 	private static final long serialVersionUID = 1L;
-	
-	
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int transactionId;
 
 	private String customer;
@@ -33,18 +28,21 @@ public class Transaction implements Serializable {
 	private int qty;
 
 	private String remarks;
-	
+
 	private String transactionType;
 
-	//bi-directional many-to-one association to User
+	// bi-directional many-to-one association to User
 	@ManyToOne
-	@JoinColumn(name="userName")
+	@JoinColumn(name = "userName")
 	private User user;
 
-	//bi-directional many-to-one association to Product
+	// bi-directional many-to-one association to Product
 	@ManyToOne
-	@JoinColumn(name="partNumber")
+	@JoinColumn(name = "partNumber")
 	private Product product;
+
+	@Transient
+	private int partNumber;
 
 	public Transaction() {
 	}
@@ -112,6 +110,13 @@ public class Transaction implements Serializable {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-	
+
+	public int getPartNumber() {
+		return this.partNumber;
+	}
+
+	public void setPartNumber(int partNumber) {
+		this.partNumber = partNumber;
+	}
 
 }

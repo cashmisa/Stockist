@@ -9,13 +9,13 @@
 	<table class="searchTable">
 	        <tr>
 				<td><spring:message code="fieldLabel.partNumber" /></td>
-				<td><input type="number" name="partNumber" value="<%= request.getAttribute("partNumber") %>" /></td>
-				<td><font color="red"> ${producterrorMsg} </font></td>
+				<td><input type="number" name="partNumber" value="<%= request.getAttribute("partNumber") %>" />
+				<form:errors path="partNumber" cssStyle="color: red;"/></td>
 			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.transactionQty" /></td>
-				<td><form:input path="qty" type="number"/></td>
-				<td><form:errors path="qty" cssStyle="color: red;" /><font color="red">${qtyerrorMsg}</font></td>
+				<td><form:input path="qty" type="number"/>
+				<form:errors path="qty" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.transactionType" /></td>
