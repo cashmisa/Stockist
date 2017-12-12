@@ -228,9 +228,8 @@
 <script>
 	$(document).ready(function() {
 		$("#productTable").tablesorter({
-			headers : {
-				widgets : [ 'zebra' ]
-			}
+			widthFixed : true,
+			widgets : [ 'zebra' ]
 		});
 	});
 </script>
