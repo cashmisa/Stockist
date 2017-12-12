@@ -3,7 +3,6 @@ package com.sa45team7.stockist.service;
 import java.util.ArrayList;
 import com.sa45team7.stockist.model.Product;
 import com.sa45team7.stockist.model.ProductDTO;
-import com.sa45team7.stockist.model.ProductSearchDTO;
 
 public interface ProductService {
 
@@ -31,7 +30,7 @@ public interface ProductService {
 
 	ArrayList<Product> findProductListSorted();
 	
-	ArrayList<Product> findProductByExample(ProductSearchDTO productSearchDTO);
+	ArrayList<Product> findProductByExample(ProductDTO productDTO);
 
 
 	

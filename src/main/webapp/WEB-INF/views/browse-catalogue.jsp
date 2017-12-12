@@ -10,7 +10,7 @@
 <spring:message code="fieldLabel.productCatalogue" />
 </title>
 </head>
-<form:form modelAttribute="productSearchDTO" method="post" action="${pageContext.request.contextPath}/catalogue">
+<form:form modelAttribute="productDTO" method="post" action="${pageContext.request.contextPath}/catalogue">
 	<br/><h3><spring:message code="fieldLabel.productCatalogue" /></h3>
 	<hr/>
 	<div>
@@ -19,7 +19,7 @@
 
 			<tr>
 				<td><spring:message code="fieldLabel.partNumber" /></td>
-				<td><form:input path="partNumber" type="number" /></td>
+				<td><form:input path="partNumber" type="number" min="0"/></td>
 			</tr>
 
 			<tr>

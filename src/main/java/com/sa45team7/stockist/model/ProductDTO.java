@@ -118,5 +118,27 @@ public class ProductDTO {
 		BeanUtils.copyProperties(product, this);
 		this.supplierId = product.getSupplier().getSupplierId();
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + partNumber;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ProductDTO other = (ProductDTO) obj;
+		if (partNumber != other.partNumber)
+			return false;
+		return true;
+	}
 	
 }
