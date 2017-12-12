@@ -28,7 +28,7 @@
 				<th><spring:message code="fieldLabel.website" /></th>
 				<th><spring:message code="caption.reorderOverview" /></th>
 				<th>PDF</th>
-				<th></th>
+				<th>Place Order</th>
 			</tr>
 		</thead>
 		<tbody>
