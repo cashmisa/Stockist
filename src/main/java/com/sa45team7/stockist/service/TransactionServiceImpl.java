@@ -58,5 +58,9 @@ public class TransactionServiceImpl implements TransactionService {
 			listOfTypes.add("returned");
 			return listOfTypes;
 	}
+	
+	public long findNoOfTransaction(Integer partNumber) {
+		return transactionRepository.findNoOfTransaction(partNumber);
+	}
 
 }

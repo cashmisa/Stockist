@@ -61,7 +61,7 @@
 			</tr>
 
 			<tr>
-				<td><spring:message code="fieldLabel.partPrice" /></td>
+				<td><spring:message code="fieldLabel.partPrice" /> ($)</td>
 				<td><span class="input-group-btn">$</span> <form:input
 						path="price" type="number" min="0.1" step="0.01" /></td>
 				<td><form:errors path="price" cssStyle="color: red;" /></td>

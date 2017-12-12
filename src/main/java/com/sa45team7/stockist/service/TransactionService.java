@@ -23,4 +23,6 @@ public interface TransactionService
 	
 	ArrayList<String> findAllTransactionType();
 	
+	long findNoOfTransaction(Integer partNumber);
+	
 }

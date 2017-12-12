@@ -20,7 +20,7 @@ import com.sa45team7.stockist.repository.ProductRepository;
 import com.sa45team7.stockist.repository.SupplierRepository;
 
 @Service
-public class ReorderServiceImpl implements ReorderService {
+public class ReportServiceImpl implements ReportService {
 
 	@Autowired
 	private ProductService pService;
