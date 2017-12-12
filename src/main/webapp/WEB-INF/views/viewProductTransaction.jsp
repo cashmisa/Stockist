@@ -83,13 +83,12 @@
 				</c:if>
 
 			</sec:authorize>
+		</tr>
+		<tr>
 			<td><a
 				href="${pageContext.request.contextPath}/usage/${product.partNumber}"
 				class="btn btn-outline-primary txnButton" id="allButton"><spring:message
 						code="heading.usage" /></a></td>
-		</tr>
-		<tr>
-			<td><div class="div-emptyspace"></div></td>
 		</tr>
 	</table>
 	<c:if test="${createdTransaction!= null}">

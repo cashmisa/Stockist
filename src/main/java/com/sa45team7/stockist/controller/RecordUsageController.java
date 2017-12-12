@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -63,6 +64,17 @@ public class RecordUsageController {
 		ModelAndView mav = new ModelAndView("create-record", "transaction", new Transaction());
 		ArrayList<String> typelist = transactionService.findAllTransactionType();
 		mav.addObject("typelist", typelist);
+		return mav;
+	}
+	
+	@RequestMapping(value = {"/{partNumber}"}, method = RequestMethod.GET)
+	// 需要返还一个view的名字，对应空的页面
+	// 需要返回一个新的 空的transaction object
+	public ModelAndView createUsage(@PathVariable int partNumber) {
+		ModelAndView mav = new ModelAndView("create-record", "transaction", new Transaction());
+		ArrayList<String> typelist = transactionService.findAllTransactionType();
+		mav.addObject("typelist", typelist);
+		//mav.addObject("partNumber", partNumber);
 		return mav;
 	}
 
