@@ -1,5 +1,6 @@
 package com.sa45team7.stockist.controller;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.test.annotation.ProfileValueSourceConfiguration;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -77,41 +79,40 @@ public class RecordUsageController {
 		if(request.getParameter("partNumber") != "")
 		{
 				partNumber = Integer.parseInt(request.getParameter("partNumber"));
+				request.setAttribute("partNumber", partNumber);
+				//request.setAttribute to prevent part number from disappearing.
 		}
 		
-//		else {
-//				 
-//				ModelAndView modelAndView = new ModelAndView("create-record");
-//				ArrayList<String> typelist = transactionService.findAllTransactionType();
-//				modelAndView.addObject("typelist", typelist);
-//				modelAndView.addObject("producterrorMsg", "Product not found");
-//				return modelAndView;	
-//		}
+		else {
+				 
+				ModelAndView modelAndView = new ModelAndView("create-record");
+				ArrayList<String> typelist = transactionService.findAllTransactionType();
+				modelAndView.addObject("typelist", typelist);
+				modelAndView.addObject("producterrorMsg", "Product not found. Please enter a valid Part Number.");
+				return modelAndView;	
+		}
 		
-		if (result.hasErrors())
+		
+		ModelAndView mav = new ModelAndView();
+		//根据partNumber找到product，将product放入transaction
+		Product product = PService.findProduct(partNumber);
+		if(product == null)
 		{
 			ModelAndView modelAndView = new ModelAndView("create-record");
 			ArrayList<String> typelist = transactionService.findAllTransactionType();
 			modelAndView.addObject("typelist", typelist);
-			modelAndView.addObject("partNumber", partNumber);
+			modelAndView.addObject("producterrorMsg", "Product not found. Please enter a valid Part Number.");
+			return modelAndView;					
+		}
+		if (result.hasErrors() || product == null)
+		{
+			ModelAndView modelAndView = new ModelAndView("create-record");
+			ArrayList<String> typelist = transactionService.findAllTransactionType();
+			modelAndView.addObject("typelist", typelist);
 			return modelAndView;
 			
 		}
-		
-		ModelAndView mav = new ModelAndView();
-		
-		//根据partNumber找到product，将product放入transaction
-		
-		Product product = PService.findProduct(partNumber);
-		if(product == null)
-		{
-			ModelAndView modelAndView = new ModelAndView("create-record", "transaction", new Transaction());
-			ArrayList<String> typelist = transactionService.findAllTransactionType();
-			modelAndView.addObject("typelist", typelist);
-			modelAndView.addObject("producterrorMsg", "Product not found. Please enter a valid Part Number.");
-			return modelAndView;
-		}
-		
+		 
 		Integer newqty;
 		if(transaction.getTransactionType().equals("received")) 
 		{
@@ -122,10 +123,10 @@ public class RecordUsageController {
 			newqty = product.getQty()-transaction.getQty();
 			if(newqty<0) 
 			{
-				ModelAndView modelAndView = new ModelAndView("create-record", "transaction", new Transaction());
+				ModelAndView modelAndView = new ModelAndView("create-record");
 				ArrayList<String> typelist = transactionService.findAllTransactionType();
 				modelAndView.addObject("typelist", typelist);
-				modelAndView.addObject("qtyerrorMsg", "Inventory shortage");
+				modelAndView.addObject("qtyerrorMsg", "Inventory shortage. Please check in-stock.");
 				return modelAndView;
 			}
 		}
@@ -148,11 +149,11 @@ public class RecordUsageController {
 		transactionService.createTransaction(transaction);
 		
 		mav.setViewName("redirect:/viewproduct/" + partNumber);		
-		String message = "New transaction " + transaction.getTransactionId() + " was successfully created.";
+		String createdRecord = "New Product Transaction <strong>"+ transaction.getTransactionId() +"</strong>  was successfully added.";
 		
 		//mav.addObject("transaction", transaction);
 		
-		redirectAttributes.addFlashAttribute("message", message);
+		redirectAttributes.addFlashAttribute("createdRecord", createdRecord);
 		return mav;	
 	}
 	

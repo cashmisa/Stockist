@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sa45team7.stockist.mail.GmailOrderManager;
 
 @RestController
-public class MailController {
+public class AdminMailController {
 	
 	@Autowired
 	GmailOrderManager orderManager;
@@ -16,7 +16,7 @@ public class MailController {
 	@GetMapping(value="/admin/mail/{supplierId}")
 	public String sendMail(@PathVariable("supplierId") int id) {
 		orderManager.placeOrder(id);
-		return "ok";
+		return "Order is sent successfully";
 	}
 	
 }
