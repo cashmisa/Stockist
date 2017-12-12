@@ -2,8 +2,6 @@ package com.sa45team7.stockist.mail;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.activation.DataSource;
 import javax.mail.MessagingException;
@@ -19,7 +17,6 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
 import com.sa45team7.stockist.model.Supplier;
-import com.sa45team7.stockist.service.ProductService;
 import com.sa45team7.stockist.service.ReorderService;
 import com.sa45team7.stockist.service.SupplierService;
 

@@ -1,6 +1,5 @@
 package com.sa45team7.stockist.controller;
 
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.test.annotation.ProfileValueSourceConfiguration;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -79,8 +77,7 @@ public class RecordUsageController {
 		if(request.getParameter("partNumber") != "")
 		{
 				partNumber = Integer.parseInt(request.getParameter("partNumber"));
-				request.setAttribute("partNumber", partNumber);
-				//request.setAttribute to prevent part number from disappearing.
+				request.getSession().setAttribute("partNumber", partNumber);
 		}
 		
 		else {
@@ -92,27 +89,31 @@ public class RecordUsageController {
 				return modelAndView;	
 		}
 		
+//		if (result.hasErrors())
+//		{
+//			ModelAndView modelAndView = new ModelAndView("create-record");
+//			ArrayList<String> typelist = transactionService.findAllTransactionType();
+//			modelAndView.addObject("typelist", typelist);
+//			modelAndView.addObject("partNumber", partNumber);
+//			request.getSession().setAttribute("partNumber", partNumber);
+//			return modelAndView;
+//			
+//		}
 		
 		ModelAndView mav = new ModelAndView();
+		
 		//根据partNumber找到product，将product放入transaction
+		
 		Product product = PService.findProduct(partNumber);
-		if(product == null)
+		if(product == null || result.hasErrors())
 		{
 			ModelAndView modelAndView = new ModelAndView("create-record");
 			ArrayList<String> typelist = transactionService.findAllTransactionType();
 			modelAndView.addObject("typelist", typelist);
 			modelAndView.addObject("producterrorMsg", "Product not found. Please enter a valid Part Number.");
-			return modelAndView;					
-		}
-		if (result.hasErrors() || product == null)
-		{
-			ModelAndView modelAndView = new ModelAndView("create-record");
-			ArrayList<String> typelist = transactionService.findAllTransactionType();
-			modelAndView.addObject("typelist", typelist);
 			return modelAndView;
-			
 		}
-		 
+		
 		Integer newqty;
 		if(transaction.getTransactionType().equals("received")) 
 		{
@@ -121,7 +122,7 @@ public class RecordUsageController {
 		}else
 		{
 			newqty = product.getQty()-transaction.getQty();
-			if(newqty<0) 
+			if(newqty<=0) 
 			{
 				ModelAndView modelAndView = new ModelAndView("create-record");
 				ArrayList<String> typelist = transactionService.findAllTransactionType();
@@ -149,11 +150,11 @@ public class RecordUsageController {
 		transactionService.createTransaction(transaction);
 		
 		mav.setViewName("redirect:/viewproduct/" + partNumber);		
-		String createdRecord = "New Product Transaction <strong>"+ transaction.getTransactionId() +"</strong>  was successfully added.";
+		String message = "New transaction " + transaction.getTransactionId() + " was successfully created.";
 		
 		//mav.addObject("transaction", transaction);
 		
-		redirectAttributes.addFlashAttribute("createdRecord", createdRecord);
+		redirectAttributes.addFlashAttribute("message", message);
 		return mav;	
 	}
 	
