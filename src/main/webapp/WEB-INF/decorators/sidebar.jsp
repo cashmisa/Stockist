@@ -18,6 +18,8 @@
 				<a class="list-group-item list-group-item-action" href="/admin/report"><spring:message code="sidebar.report" /></a>
 			</sec:authorize>
 			<img src="/images/ThuongDe1.png" width="132" height="77" alt="">
+			<img src="/images/Stockist_logo.jpg" width="168" height="83" alt="">
+			<a href="https://www.facebook.com/matrixhero259"><img src="/images/ffacebook.png" width="168" height="55" alt=""></a>
 		</div>
 	</nav>
 
