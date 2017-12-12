@@ -32,6 +32,9 @@
 						<form:options items="${suppliersList}" itemValue="supplierId"
 							itemLabel="supplierName" />
 					</form:select></td>
+				<td><a
+					href="${pageContext.request.contextPath}/admin/supplier/create"><spring:message
+							code="heading.supplier.addSupplier" /></a></td>
 			</tr>
 
 			<tr>
