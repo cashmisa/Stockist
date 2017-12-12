@@ -88,20 +88,25 @@ public class RecordUsageController {
 		Product product = productService.findProduct(transaction.getPartNumber());
 
 		Integer newqty;
-		if (transaction.getTransactionType().equals("received")) {
+		if (transaction.getTransactionType().equals("received")) 
+		{
 			newqty = product.getQty() + transaction.getQty();
 
-		} else {
+		} 
+		else 
+		{
 			newqty = product.getQty() - transaction.getQty();
-			if (result.hasErrors()) {
+		}
+			
+		if (result.hasErrors()) {
 				ModelAndView modelAndView = new ModelAndView("create-record");
 				ArrayList<String> typelist = transactionService.findAllTransactionType();
 				modelAndView.addObject("typelist", typelist);
 				return modelAndView;
 			}
-		}
+		
 		product.setQty(newqty);
-
+		
 		transaction.setProduct(product);
 		// 根据userName找到user，将user放入transaction
 		// String userName = (String) request.getAttribute("userName");
