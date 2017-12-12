@@ -66,9 +66,13 @@
 			<td>${product.shelfLocation}</td>
 		</tr>
 	</table>
+	<div class="div-emptyspace"></div>
 	<table>
-		<tr>
-			<td><div class="div-emptyspace"></div></td>
+		<tr><td>
+			<a
+				href="${pageContext.request.contextPath}/usage/${product.partNumber}"
+				class="btn btn-outline-primary txnButton" id="recordButton"><spring:message
+						code="heading.usage" /></a></td>
 		</tr>
 		<tr>
 			<sec:authorize access="hasAuthority('admin')">
@@ -85,10 +89,7 @@
 			</sec:authorize>
 		</tr>
 		<tr>
-			<td><a
-				href="${pageContext.request.contextPath}/usage/${product.partNumber}"
-				class="btn btn-outline-primary txnButton" id="allButton"><spring:message
-						code="heading.usage" /></a></td>
+		<td><div class="div-emptyspace"></div></td>
 		</tr>
 	</table>
 	<c:if test="${createdTransaction!= null}">
