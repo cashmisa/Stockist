@@ -27,7 +27,7 @@
 </c:if>
 <br />
 <noscript><h6><br><strong><spring:message code="message.enableJavaScript" /></strong></h6></noscript>
-<table id="userTable" class="tablesorter">
+<table id="userTable" class="tablesorter" style="width:50%">
 	<thead>
 		<tr>
 			<th><spring:message code="fieldLabel.user.userName" /></th>

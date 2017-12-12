@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 							throws IOException, ServletException {
 						Set<String> roles = AuthorityUtils.authorityListToSet(auth.getAuthorities());
 						if(roles.contains("admin")) {
-							response.sendRedirect("/admin/user");
+							response.sendRedirect("/");
 						} else if(roles.contains("mechanic")) {
 							response.sendRedirect("/catalogue");
 						}
