@@ -38,6 +38,10 @@ public class ProductValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "shelfLocation", "error.empty",
 				new String[] { messageSource.getMessage("fieldLabel.partLocation", null, locale) });
 		
+		if (!productDTO.getShelfLocation().isEmpty() && productDTO.getShelfLocation().length() != 2) {
+			errors.rejectValue("shelfLocation", "error.product.shelfLocation.length");
+		}
+		
 		System.out.println(productDTO.toString());
 	}
 
