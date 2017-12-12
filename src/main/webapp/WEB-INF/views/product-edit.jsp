@@ -10,7 +10,8 @@
 <br />
 <h3>
 	<spring:message code="heading.product.editProduct" />
-</h3><hr/>
+</h3>
+<hr />
 <form:form method="POST" modelAttribute="productDTO"
 	action="${pageContext.request.contextPath}/admin/product/edit/${productDTO.partNumber}">
 	<table class="searchTable">
@@ -75,15 +76,26 @@
 			</tr>
 
 			<tr>
-				<td colspan="2"><form:button type="submit"
+				<td colspan="3"><form:button type="submit"
 						class="btn btn-outline-primary" id="allButton">
 						<spring:message code="button.saveChanges" />
-					</form:button> <form:button type="button" class="btn btn-outline-primary"
-						onclick="location.href='${pageContext.request.contextPath}/admin/product/list'">
-						<spring:message code="button.cancel" />
-					</form:button></td>
+					</form:button>
+					<noscript>
+						<a href="${pageContext.request.contextPath}/admin/product/list"
+							class="btn btn-outline-primary"><spring:message
+								code="button.cancel" /> </a>
+					</noscript> <input action="action" type="button"
+					class="btn btn-outline-primary txnButton"
+					onclick="window.history.go(-1); return false;" id="backNoScript"
+					style="display: none"
+					value="<spring:message
+						code="button.cancel" />" /></td>
+
 			</tr>
 		</tbody>
 	</table>
 </form:form>
 </html>
+<script>
+	document.getElementById("backNoScript").style.display = "block";
+</script>
