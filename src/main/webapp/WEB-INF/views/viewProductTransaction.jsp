@@ -227,15 +227,8 @@
 <script>
 	$(document).ready(function() {
 		$("#productTable").tablesorter({
-			headers : {
-				9 : {
-					sorter : false
-				},
-
-				10 : {
-					sorter : false
-				}
-			}
+			widthFixed : true,
+			widgets : [ 'zebra' ]
 		});
 	});
 </script>
