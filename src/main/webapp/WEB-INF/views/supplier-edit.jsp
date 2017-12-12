@@ -66,10 +66,9 @@
 				<td colspan="2"><form:button type="submit"
 						class="btn btn-outline-primary" id="allButton">
 						<spring:message code="button.saveChanges" />
-					</form:button> <form:button type="button" class="btn btn-outline-primary"
-						onclick="location.href='${pageContext.request.contextPath}/admin/supplier'">
-						<spring:message code="button.cancel" />
-					</form:button></td>
+					</form:button> <a href="${pageContext.request.contextPath}/admin/supplier"
+					class="btn btn-outline-primary"> <spring:message
+							code="button.cancel" /></a></td>
 			</tr>
 		</tbody>
 	</table>
