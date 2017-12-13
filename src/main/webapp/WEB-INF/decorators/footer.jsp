@@ -1,5 +1,5 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-<div id="bottom_section">
-	<h6><spring:message code="page.footer" /></h6>
+<div style="position: fixed; bottom:0; left:0" id="bottom_section">
+	
 </div>
