@@ -37,7 +37,7 @@
 			<img src="/images/ThuongDe1.png" width="132" height="77" alt="">
 			<img src="/images/Stockist_logo.jpg" width="177" height="83" alt="">
 			<a id="thumbwrap" href="https://www.facebook.com/matrixhero259"><img
-				src="/images/ffacebook.png" width="177" height="55" alt="">
+				src="/images/ffacebook.png" width="177" height="55" alt=""></a>
 					<h6><spring:message code="page.footer" /></h6>
 		</div>
 		
