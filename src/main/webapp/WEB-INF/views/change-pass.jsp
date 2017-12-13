@@ -18,6 +18,13 @@
 		<h6>${message}</h6>
 	</div>
 </c:if>
+<c:if test="${error != null}">
+	<div class="alert alert-primary" style="color: black" role="alert"
+		id="createdUser">
+		<h5>Oops!</h5>
+		<h6>${error}</h6>
+	</div>
+</c:if>
 <form action="<spring:url value="/change-pass"/>" method="POST">
 	<table class="searchTable">
 		<tr>

@@ -90,7 +90,7 @@ public class HomeController {
 		ModelAndView modelAndView = new ModelAndView("redirect:/change-pass");
 		if (user == null) {
 			String message = "Wrong password.";
-			redirectAttributes.addFlashAttribute("message", message);
+			redirectAttributes.addFlashAttribute("error", message);
 			return modelAndView;
 		}
 		user.setPassword(newPassword);
