@@ -68,28 +68,26 @@
 	</table>
 	<div class="div-emptyspace"></div>
 	<table>
-		<tr><td>
-			<a
+		<tr>
+			<td colspan="3"><a
 				href="${pageContext.request.contextPath}/usage/${product.partNumber}"
 				class="btn btn-outline-primary txnButton" id="recordButton"><spring:message
-						code="heading.usage" /></a></td>
+						code="heading.usage" /></a> <sec:authorize
+					access="hasAuthority('admin')">
+					<c:if test="${not empty product}">
+						<a
+							href="${pageContext.request.contextPath}/admin/product/edit/${product.partNumber}"
+							class="btn btn-outline-primary txnButton" id="allButton"><spring:message
+								code="caption.edit" /></a>
+						<a
+							href="${pageContext.request.contextPath}/admin/product/delete/${product.partNumber}"
+							class="btn btn-outline-primary txnButton" id="allButton"><spring:message
+								code="caption.delete" /></a>
+					</c:if>
+				</sec:authorize></td>
 		</tr>
 		<tr>
-			<sec:authorize access="hasAuthority('admin')">
-				<c:if test="${not empty product}">
-					<td><a
-						href="${pageContext.request.contextPath}/admin/product/edit/${product.partNumber}"
-						class="btn btn-outline-primary txnButton" id="allButton"><spring:message
-								code="caption.edit" /></a> <a
-						href="${pageContext.request.contextPath}/admin/product/delete/${product.partNumber}"
-						class="btn btn-outline-primary txnButton" id="allButton"><spring:message
-								code="caption.delete" /></a></td>
-				</c:if>
-
-			</sec:authorize>
-		</tr>
-		<tr>
-		<td><div class="div-emptyspace"></div></td>
+			<td><div class="div-emptyspace"></div></td>
 		</tr>
 	</table>
 	<c:if test="${createdTransaction!= null}">
