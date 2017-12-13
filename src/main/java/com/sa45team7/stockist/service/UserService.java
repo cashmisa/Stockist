@@ -24,4 +24,6 @@ public interface UserService extends UserDetailsService {
 
 	void resetUser(User user);
 
+	void updatePassword(User user);
+
 }

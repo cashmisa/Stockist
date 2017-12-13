@@ -63,6 +63,7 @@ public class UserServiceImpl implements UserService {
 	}	
 	
 	@Override
+	@Transactional
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userRepository.findUserByUserName(username);
 		if (user == null) {
@@ -73,8 +74,15 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional
 	public void resetUser(User user) {
 		user.setPassword("123456");
+		userRepository.saveAndFlush(user);
+	}
+
+	@Override
+	@Transactional
+	public void updatePassword(User user) {
 		userRepository.saveAndFlush(user);
 	}
 
